@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Malerwerkstatt Musterle</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: Handwerker-Website, Handy zuerst. Farbfächer als Leitmotiv: jede Leistung ist ein Farbchip mit Fächer-Nummer.
+   Bewusst nur helles Design, wie eine echte Betriebs-Website. */
+@font-face {
+  font-family: "Bricolage";
+  src: url("fonts/bricolage-var.woff2") format("woff2");
+  font-weight: 400 800;
+  font-stretch: 75% 100%;
+  font-display: swap;
+}
+:root {
+  color-scheme: light;
+  --wall: #F3F4F1;
+  --paper: #FFFFFF;
+  --ink: #1D2229;
+  --ink-2: #565E66;
+  --line: #DCDFDA;
+  --kobalt: #2443B8;
+  --kobalt-ink: #FFFFFF;
+  --salbei: #8DA587;
+  --ocker: #C9962E;
+  --ziegel: #B5523B;
+  --schiefer: #4A5560;
+  --demo: #FFE7A3;
+  --font: "Bricolage", "Segoe UI", Roboto, Arial, sans-serif;
+  --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --wrap: 68rem;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--wall); color: var(--ink); font-family: var(--font); font-size: 1.0625rem; line-height: 1.55; font-variation-settings: "opsz" 16; padding-bottom: 76px; }
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { margin: 0; line-height: 1.05; text-wrap: balance; font-variation-settings: "opsz" 96; }
+h1 { font-size: clamp(2.3rem, 1.4rem + 4.2vw, 4.2rem); font-weight: 800; font-stretch: 82%; letter-spacing: -0.015em; }
+h2 { font-size: clamp(1.7rem, 1.2rem + 2vw, 2.5rem); font-weight: 780; font-stretch: 85%; }
+h3 { font-size: 1.25rem; font-weight: 700; font-stretch: 92%; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--ocker); outline-offset: 3px; }
+.code { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); }
+
+/* Hinweis-Leiste */
+.demo-bar { background: var(--demo); color: #3B2E05; font-size: 0.875rem; padding-block: 8px; }
+.demo-bar .wrap { display: flex; gap: 6px 14px; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+.demo-bar strong { font-weight: 700; }
+
+/* Kopf */
+.head { background: var(--paper); border-bottom: 1px solid var(--line); padding-block: 14px; }
+.head .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.fan { width: 38px; height: 38px; position: relative; flex: none; }
+.fan i { position: absolute; left: 15px; bottom: 2px; width: 9px; height: 34px; border-radius: 2px; transform-origin: 50% 100%; }
+.fan i:nth-child(1) { background: var(--ziegel); transform: rotate(-36deg); }
+.fan i:nth-child(2) { background: var(--ocker); transform: rotate(-12deg); }
+.fan i:nth-child(3) { background: var(--salbei); transform: rotate(12deg); }
+.fan i:nth-child(4) { background: var(--kobalt); transform: rotate(36deg); }
+.logo b { display: block; font-size: 1.2rem; font-weight: 800; font-stretch: 85%; line-height: 1; }
+.logo span { font-size: 0.8125rem; color: var(--ink-2); }
+.head-call { display: none; font-weight: 700; text-decoration: none; }
+@media (min-width: 720px) { .head-call { display: inline; } }
+
+/* Knöpfe */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 22px; border-radius: 999px; font: 700 1rem/1 var(--font); text-decoration: none; border: 2px solid var(--kobalt); background: var(--kobalt); color: var(--kobalt-ink); cursor: pointer; }
+.btn.alt { background: transparent; color: var(--kobalt); }
+.btn:hover { filter: brightness(1.08); }
+
+/* Hero */
+.hero { background: var(--paper); padding-block: clamp(28px, 5vw, 64px); }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(24px, 4vw, 48px); align-items: center; }
+.hero-text { display: grid; gap: 18px; min-width: 0; }
+.hero-text .lead { font-size: 1.1875rem; color: var(--ink-2); max-width: 30rem; }
+.cta { display: flex; gap: 10px; flex-wrap: wrap; }
+.rating { display: inline-flex; align-items: center; gap: 10px; font-size: 0.9375rem; }
+.stars { color: var(--ocker); letter-spacing: 2px; font-size: 1.05rem; }
+.rating .tag { background: var(--demo); color: #3B2E05; border-radius: 4px; padding: 1px 6px; font-size: 0.75rem; font-weight: 700; }
+.trust { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0; list-style: none; }
+.trust li { background: var(--wall); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; font-size: 0.875rem; }
+
+/* Vorher-nachher */
+.compare { position: relative; aspect-ratio: 4 / 3; max-width: 100%; border-radius: 14px; overflow: hidden; background: var(--line); box-shadow: 0 18px 40px -24px rgba(29, 34, 41, 0.55); touch-action: pan-y; }
+.compare canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.compare .after { clip-path: inset(0 0 0 var(--pos, 50%)); }
+.compare .divider { position: absolute; top: 0; bottom: 0; left: var(--pos, 50%); width: 3px; margin-left: -1.5px; background: #FFFFFF; pointer-events: none; }
+.compare .knob { position: absolute; top: 50%; left: var(--pos, 50%); width: 44px; height: 44px; margin: -22px 0 0 -22px; border-radius: 50%; background: #FFFFFF; display: grid; place-items: center; font-weight: 800; color: var(--ink); pointer-events: none; box-shadow: 0 2px 10px rgba(0,0,0,.25); }
+.compare .lbl { position: absolute; top: 12px; padding: 4px 10px; border-radius: 999px; font-size: 0.8125rem; font-weight: 700; background: rgba(255,255,255,.9); color: var(--ink); pointer-events: none; }
+.compare .lbl.l { left: 12px; } .compare .lbl.r { right: 12px; }
+.compare input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0; }
+.compare-note { margin-top: 8px; font-size: 0.8125rem; color: var(--ink-2); }
+
+/* Abschnitte */
+section.block { padding-block: clamp(40px, 6vw, 72px); }
+.block-head { display: grid; gap: 10px; margin-bottom: 26px; max-width: 40rem; }
+.block-head p { color: var(--ink-2); }
+
+.services { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.chip { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; display: grid; min-width: 0; }
+.chip .swatch { height: 76px; display: flex; align-items: flex-end; justify-content: space-between; padding: 8px 12px; }
+.chip .swatch .code { color: rgba(255,255,255,.92); }
+.chip .body { padding: 14px 14px 16px; display: grid; gap: 6px; }
+.chip .body p { color: var(--ink-2); font-size: 0.9375rem; }
+.chip .price { font-weight: 700; font-size: 0.9375rem; font-variant-numeric: tabular-nums; }
+.price-note { margin-top: 12px; font-size: 0.8125rem; color: var(--ink-2); }
+
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; counter-reset: s; }
+.step { display: grid; gap: 6px; align-content: start; padding-top: 14px; border-top: 3px solid var(--ink); min-width: 0; }
+.step::before { counter-increment: s; content: counter(s); font-weight: 800; font-size: 2rem; line-height: 1; font-stretch: 80%; color: var(--kobalt); }
+.step p { color: var(--ink-2); }
+
+/* Formular */
+.form-wrap { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: clamp(18px, 3vw, 32px); }
+form { display: grid; gap: 16px; }
+.row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+label, legend { font-weight: 700; font-size: 0.9375rem; }
+fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: 8px; }
+.field { display: grid; gap: 6px; min-width: 0; }
+input[type="text"], input[type="tel"], input[type="email"], select, textarea { width: 100%; font: 400 1rem/1.4 var(--font); padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 10px; background: #FFFFFF; color: var(--ink); }
+textarea { min-height: 90px; resize: vertical; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--kobalt); box-shadow: 0 0 0 3px rgba(36, 67, 184, .18); }
+.choices { display: flex; flex-wrap: wrap; gap: 8px; }
+.choices label { font-weight: 500; display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border: 1.5px solid var(--line); border-radius: 999px; cursor: pointer; background: #FFFFFF; }
+.choices input { accent-color: var(--kobalt); }
+.choices label:has(input:checked) { border-color: var(--kobalt); background: rgba(36, 67, 184, .08); }
+.drop { border: 2px dashed var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 10px; text-align: center; background: var(--wall); }
+.drop input { justify-self: center; max-width: 100%; }
+.thumbs { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.thumbs img { width: 72px; height: 72px; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); }
+.hint { font-size: 0.8125rem; color: var(--ink-2); }
+.done { display: grid; gap: 8px; padding: 16px; border-radius: 12px; background: rgba(141, 165, 135, .18); border: 1px solid var(--salbei); }
+
+/* Bewertungen, Karriere */
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
+.panel { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: clamp(18px, 3vw, 28px); display: grid; gap: 12px; align-content: start; min-width: 0; }
+.score { display: flex; align-items: baseline; gap: 12px; }
+.score b { font-size: 3rem; font-weight: 800; line-height: 1; font-stretch: 80%; font-variant-numeric: tabular-nums; }
+.placeholder { border: 1.5px dashed var(--line); border-radius: 10px; padding: 14px; color: var(--ink-2); font-size: 0.9375rem; }
+.jobs { display: grid; gap: 8px; padding: 0; margin: 0; list-style: none; }
+.jobs li { display: flex; justify-content: space-between; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.jobs li span { color: var(--ink-2); font-size: 0.9375rem; }
+
+.area { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 20px; }
+.towns { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0; list-style: none; }
+.towns li { padding: 6px 12px; border-radius: 6px; background: var(--paper); border: 1px solid var(--line); font-size: 0.9375rem; }
+.hours { display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; font-variant-numeric: tabular-nums; }
+
+footer { background: var(--ink); color: #D9DDE2; padding-block: 28px; font-size: 0.875rem; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; }
+footer a { color: #FFFFFF; }
+
+/* Anruf-Leiste am Handy */
+.callbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 10px max(12px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px)); background: rgba(255,255,255,.96); border-top: 1px solid var(--line); backdrop-filter: blur(6px); }
+.callbar .btn { padding: 12px; }
+@media (min-width: 900px) { .callbar { display: none; } body { padding-bottom: 0; } }
+
+@media (max-width: 900px) {
+  .hero .wrap { grid-template-columns: minmax(0, 1fr); }
+  .services { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .split, .area { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 600px) {
+  .services, .steps, .row { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 480px) { .head .btn { display: none; } }
+@media (prefers-reduced-motion: no-preference) { .btn { transition: filter .15s ease; } }
+</style>
+</head>
+<body>
+
+
+<div class="demo-bar" role="note">
+  <div class="wrap">
+    <span><strong>Beispiel-Website von Altun &amp; Riechert.</strong> Musterle ist ein erfundener Betrieb, alle Zahlen sind Beispiele.</span>
+    <span>So könnte Ihr Auftritt aussehen.</span>
+  </div>
+</div>
+
+<header class="head">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Malerwerkstatt Musterle, nach oben">
+      <span class="fan" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span><b>Malerwerkstatt Musterle</b><span>Meisterbetrieb · Beispielstadt</span></span>
+    </a>
+    <a class="head-call" href="#kontakt">0123 456 789</a>
+    <a class="btn" href="#anfrage">Angebot anfragen</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-text">
+        <span class="rating"><span class="stars" aria-hidden="true">★★★★★</span><span><b>4,9</b> aus 87 Google-Bewertungen</span><span class="tag">Beispiel</span></span>
+        <h1>Frische Wände, ohne dass Sie etwas tun müssen.</h1>
+        <p class="lead">Innenanstrich, Fassade und Tapete in Ludwigsburg und Umgebung. Fotos schicken, in 48 Stunden kommt Ihr Festpreis-Angebot.</p>
+        <div class="cta">
+          <a class="btn" href="#anfrage">Angebot mit Fotos anfragen</a>
+          <a class="btn alt" href="#kontakt">0123 456 789</a>
+        </div>
+        <ul class="trust">
+          <li>Meisterbetrieb</li>
+          <li>Festpreis vorab</li>
+          <li>Abdecken und Aufräumen inklusive</li>
+        </ul>
+      </div>
+      <div>
+        <div class="compare" id="compare" style="--pos:50%">
+          <canvas id="c-before" aria-hidden="true"></canvas>
+          <canvas id="c-after" class="after" aria-hidden="true"></canvas>
+          <span class="divider" aria-hidden="true"></span>
+          <span class="knob" aria-hidden="true">↔</span>
+          <span class="lbl l">Vorher</span>
+          <span class="lbl r">Nachher</span>
+          <input id="compare-range" type="range" min="0" max="100" value="50" aria-label="Vorher-nachher-Vergleich verschieben">
+        </div>
+        <p class="compare-note">Ziehen zum Vergleichen. Auf Ihrer Website stehen hier Fotos Ihrer eigenen Baustellen.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="leistungen">
+    <div class="wrap">
+      <div class="block-head">
+        <span class="code">Unser Farbfächer</span>
+        <h2>Was wir für Sie machen</h2>
+        <p>Klare Leistungen mit Richtpreis. So wissen Sie vor dem ersten Anruf, womit Sie rechnen können.</p>
+      </div>
+      <div class="services">
+        <article class="chip">
+          <div class="swatch" style="background:var(--salbei)"><span class="code">MU-01</span><span class="code">Salbei</span></div>
+          <div class="body"><h3>Innenanstrich</h3><p>Wände und Decken, Möbel abgedeckt, am Abend besenrein.</p><span class="price">ab 9,50 € pro m²</span></div>
+        </article>
+        <article class="chip">
+          <div class="swatch" style="background:var(--ziegel)"><span class="code">MU-02</span><span class="code">Ziegel</span></div>
+          <div class="body"><h3>Fassade</h3><p>Reinigen, ausbessern, streichen. Gerüst stellen wir mit.</p><span class="price">ab 28 € pro m²</span></div>
+        </article>
+        <article class="chip">
+          <div class="swatch" style="background:var(--ocker)"><span class="code">MU-03</span><span class="code">Ocker</span></div>
+          <div class="body"><h3>Tapezieren</h3><p>Raufaser, Vlies oder Mustertapete, alte Tapete entfernen wir.</p><span class="price">ab 14 € pro m²</span></div>
+        </article>
+        <article class="chip">
+          <div class="swatch" style="background:var(--kobalt)"><span class="code">MU-04</span><span class="code">Kobalt</span></div>
+          <div class="body"><h3>Lackieren und Spachteln</h3><p>Türen, Heizkörper, glatte Wände in Q4 und Spachteltechnik.</p><span class="price">auf Anfrage</span></div>
+        </article>
+      </div>
+      <p class="price-note">Beispielpreise. Der genaue Preis steht im Festpreis-Angebot.</p>
+    </div>
+  </section>
+
+  <section class="block" style="background:var(--paper)">
+    <div class="wrap">
+      <div class="block-head"><h2>So einfach geht's</h2></div>
+      <div class="steps">
+        <div class="step"><h3>Fotos schicken</h3><p>Zwei, drei Handyfotos der Räume oder Fassade genügen.</p></div>
+        <div class="step"><h3>Festpreis in 48 Stunden</h3><p>Sie bekommen ein klares Angebot, bei Bedarf schauen wir vorbei.</p></div>
+        <div class="step"><h3>Wir streichen, Sie wohnen</h3><p>Abdecken, streichen, aufräumen. Pünktlich zum vereinbarten Termin.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="anfrage">
+    <div class="wrap">
+      <div class="block-head">
+        <h2>Angebot anfragen</h2>
+        <p>Dauert etwa eine Minute. Wir melden uns am nächsten Werktag.</p>
+      </div>
+      <div class="form-wrap">
+        <form id="lead-form" novalidate>
+          <fieldset>
+            <legend>Was soll gemacht werden?</legend>
+            <div class="choices">
+              <label><input type="checkbox" id="w-innen" name="art" value="Innenanstrich" checked> Innenanstrich</label>
+              <label><input type="checkbox" id="w-fassade" name="art" value="Fassade"> Fassade</label>
+              <label><input type="checkbox" id="w-tapete" name="art" value="Tapezieren"> Tapezieren</label>
+              <label><input type="checkbox" id="w-lack" name="art" value="Lackieren"> Lackieren</label>
+            </div>
+          </fieldset>
+          <div class="row">
+            <div class="field"><label for="f-umfang">Umfang</label>
+              <select id="f-umfang"><option>1 Raum</option><option selected>2 bis 3 Räume</option><option>Ganze Wohnung</option><option>Ganzes Haus oder Fassade</option></select></div>
+            <div class="field"><label for="f-wann">Wunschzeitraum</label>
+              <select id="f-wann"><option>So bald wie möglich</option><option selected>In 1 bis 2 Monaten</option><option>Später, nur Preis</option></select></div>
+          </div>
+          <div class="drop">
+            <label for="f-fotos">Fotos hinzufügen (optional)</label>
+            <input id="f-fotos" type="file" accept="image/*" multiple>
+            <div class="thumbs" id="thumbs"></div>
+            <span class="hint">Die Fotos bleiben in dieser Beispielseite auf Ihrem Gerät.</span>
+          </div>
+          <div class="row">
+            <div class="field"><label for="f-name">Name</label><input id="f-name" type="text" autocomplete="name" placeholder="Maria Beispiel"></div>
+            <div class="field"><label for="f-tel">Telefon</label><input id="f-tel" type="tel" autocomplete="tel" placeholder="0171 2345678"></div>
+          </div>
+          <div class="field"><label for="f-ort">Ort</label><input id="f-ort" type="text" placeholder="Beispielstadt"></div>
+          <div><button class="btn" type="submit">Anfrage senden</button></div>
+          <div class="done" id="done" hidden>
+            <strong>So würde es auf Ihrer Website laufen:</strong>
+            <span id="done-text"></span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="background:var(--paper)">
+    <div class="wrap split">
+      <div class="panel">
+        <span class="code">Google-Bewertungen</span>
+        <div class="score"><b>4,9</b><span><span class="stars" aria-hidden="true">★★★★★</span><br>87 Bewertungen · Beispielwerte</span></div>
+        <p class="placeholder">Hier erscheinen auf Ihrer Website automatisch Ihre echten Google-Bewertungen, immer aktuell.</p>
+        <p class="hint">Nach jedem Auftrag bekommt der Kunde eine kurze Bitte mit QR-Code. So wachsen die Bewertungen von selbst.</p>
+      </div>
+      <div class="panel" id="karriere">
+        <span class="code">Karriere</span>
+        <h2>Komm ins Team</h2>
+        <ul class="jobs">
+          <li><b>Maler und Lackierer (m/w/d)</b><span>Vollzeit</span></li>
+          <li><b>Ausbildung 2027 (m/w/d)</b><span>3 Jahre</span></li>
+        </ul>
+        <form id="job-form" novalidate style="gap:12px">
+          <div class="row">
+            <div class="field"><label for="j-name">Name</label><input id="j-name" type="text" autocomplete="name"></div>
+            <div class="field"><label for="j-tel">Telefon</label><input id="j-tel" type="tel" autocomplete="tel"></div>
+          </div>
+          <div><button class="btn" type="submit">In 60 Sekunden bewerben</button></div>
+          <p class="hint" id="job-done" hidden>Beispiel: Die Bewerbung käme sofort per Mail beim Betrieb an, ganz ohne Anschreiben.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="kontakt">
+    <div class="wrap area">
+      <div class="panel">
+        <h2>Unser Einsatzgebiet</h2>
+        <ul class="towns"><li>Ludwigsburg</li><li>Kornwestheim</li><li>Remseck</li><li>Asperg</li><li>Möglingen</li><li>Freiberg</li><li>Marbach</li></ul>
+      </div>
+      <div class="panel">
+        <h2>Kontakt</h2>
+        <p><b>Malerwerkstatt Musterle</b><br>Musterweg 1, Beispielstadt</p>
+        <p>Telefon 0123 456 789</p>
+        <div class="hours"><span>Mo bis Do</span><span>7:00 bis 17:00</span><span>Fr</span><span>7:00 bis 13:00</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Beispiel-Website, erstellt von Altun &amp; Riechert. Musterle ist ein erfundener Betrieb.</span>
+    <span>Impressum · Datenschutz (auf der echten Website)</span>
+  </div>
+</footer>
+
+<nav class="callbar" aria-label="Schnellkontakt">
+  <a class="btn alt" href="#kontakt">Anrufen</a>
+  <a class="btn" href="#anfrage">Anfrage</a>
+</nav>
+
+<script>
+(function () {
+  /* Vorher-nachher: zwei gezeichnete Wände */
+  function rng(seed) { return function () { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }; }
+  function wall(cv, dirty) {
+    var box = cv.getBoundingClientRect();
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var w = Math.max(1, Math.round(box.width * dpr)), h = Math.max(1, Math.round(box.height * dpr));
+    cv.width = w; cv.height = h;
+    var g = cv.getContext("2d"), r = rng(dirty ? 7 : 11);
+    g.fillStyle = dirty ? "#D9D2BC" : "#8DA587";
+    g.fillRect(0, 0, w, h);
+    var i;
+    for (i = 0; i < w * h / 60; i++) {
+      g.fillStyle = dirty ? "rgba(90,70,40," + (r() * 0.06) + ")" : "rgba(255,255,255," + (r() * 0.05) + ")";
+      g.fillRect(r() * w, r() * h, dpr, dpr);
+    }
+    if (!dirty) {
+      for (i = 0; i < 26; i++) {
+        var x = r() * w;
+        g.fillStyle = "rgba(255,255,255," + (0.015 + r() * 0.03) + ")";
+        g.fillRect(x, 0, (6 + r() * 18) * dpr, h);
+      }
+      var lg = g.createLinearGradient(0, 0, w, h);
+      lg.addColorStop(0, "rgba(255,255,255,.10)"); lg.addColorStop(1, "rgba(0,0,0,.08)");
+      g.fillStyle = lg; g.fillRect(0, 0, w, h);
+      return;
+    }
+    for (i = 0; i < 9; i++) {
+      var cx = r() * w, cy = r() * h, rad = (20 + r() * 90) * dpr;
+      var rg = g.createRadialGradient(cx, cy, 0, cx, cy, rad);
+      rg.addColorStop(0, "rgba(140,105,50," + (0.18 + r() * 0.2) + ")");
+      rg.addColorStop(1, "rgba(140,105,50,0)");
+      g.fillStyle = rg; g.beginPath(); g.arc(cx, cy, rad, 0, Math.PI * 2); g.fill();
+    }
+    var vg = g.createLinearGradient(0, 0, 0, h);
+    vg.addColorStop(0, "rgba(120,100,60,.18)"); vg.addColorStop(0.3, "rgba(120,100,60,0)");
+    vg.addColorStop(0.85, "rgba(80,70,50,0)"); vg.addColorStop(1, "rgba(80,70,50,.28)");
+    g.fillStyle = vg; g.fillRect(0, 0, w, h);
+    g.strokeStyle = "rgba(60,50,35,.55)"; g.lineWidth = 1.2 * dpr;
+    for (i = 0; i < 3; i++) {
+      var px = r() * w, py = r() * h * 0.6;
+      g.beginPath(); g.moveTo(px, py);
+      for (var k = 0; k < 28; k++) { px += (r() - 0.5) * 14 * dpr; py += (2 + r() * 8) * dpr; g.lineTo(px, py); }
+      g.stroke();
+    }
+    for (i = 0; i < 5; i++) {
+      g.fillStyle = "rgba(245,242,232,.85)";
+      g.beginPath();
+      g.ellipse(r() * w, r() * h, (8 + r() * 26) * dpr, (5 + r() * 14) * dpr, r() * 3, 0, Math.PI * 2);
+      g.fill();
+    }
+  }
+  var before = document.getElementById("c-before"), after = document.getElementById("c-after");
+  function draw() { wall(before, true); wall(after, false); }
+  draw();
+  var t; window.addEventListener("resize", function () { clearTimeout(t); t = setTimeout(draw, 150); });
+  var range = document.getElementById("compare-range"), cmp = document.getElementById("compare");
+  range.addEventListener("input", function () { cmp.style.setProperty("--pos", range.value + "%"); });
+
+  /* Fotos als Vorschau */
+  var files = document.getElementById("f-fotos"), thumbs = document.getElementById("thumbs");
+  files.addEventListener("change", function () {
+    thumbs.innerHTML = "";
+    Array.prototype.slice.call(files.files, 0, 6).forEach(function (f) {
+      var rd = new FileReader();
+      rd.onload = function () { var im = new Image(); im.src = rd.result; im.alt = "Ihr Foto"; thumbs.appendChild(im); };
+      rd.readAsDataURL(f);
+    });
+  });
+
+  /* Formulare zeigen nur, was passieren würde */
+  document.getElementById("lead-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var arten = Array.prototype.slice.call(document.querySelectorAll('input[name="art"]:checked')).map(function (x) { return x.value; });
+    var n = files.files ? files.files.length : 0;
+    document.getElementById("done-text").textContent =
+      "Der Betrieb bekäme sofort eine Mail mit " + (arten.join(", ") || "Ihrer Auswahl") + ", " +
+      document.getElementById("f-umfang").value + ", " + n + (n === 1 ? " Foto" : " Fotos") +
+      " und Ihrer Telefonnummer. Hier wird nichts gesendet.";
+    document.getElementById("done").hidden = false;
+  });
+  document.getElementById("job-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    document.getElementById("job-done").hidden = false;
+  });
+})();
+</script>
+
+</body>
+</html>
