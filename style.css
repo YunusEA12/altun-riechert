@@ -174,7 +174,7 @@ section.alt { background: var(--paper-2); }
 .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--shadow); min-width: 0; }
 .swatch { height: 84px; background: var(--c); color: #FFFFFF; display: flex; justify-content: space-between; align-items: flex-end; padding: 10px 14px; font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; }
-.card-body { padding: 16px 18px 18px; display: grid; gap: 8px; flex: 1; align-content: start; }
+.card-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
 .card-body p { color: var(--ink-2); font-size: 0.9375rem; }
 .price { margin-top: auto; padding-top: 6px; font-weight: 700; font-variant-numeric: tabular-nums; }
 .price small { font-weight: 400; color: var(--ink-2); }
