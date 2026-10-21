@@ -6,4 +6,9 @@ Statische Website für GitHub Pages. Keine externen Ressourcen: Schriften liegen
 - `beispiel/` – Muster-Website „Malerwerkstatt Musterle“ (erfundener Betrieb, als Beispiel gekennzeichnet)
 - `_briefe/make_letters.py` – Erzeugt die Serienbriefe an Betriebe (HTML → PDF)
 
-**Noch nicht online schalten:** Im Impressum fehlen Telefonnummer, Calvins Nachname und die endgültige Rechtsform. Danach `noindex` in allen Seiten entfernen und GitHub Pages aktivieren (Settings → Pages → Branch `main`, Ordner `/`).
+## Branches
+
+- `main`: aktueller Stand für den Livegang
+- `test`: Testumgebung für die neue Gestaltung (Bricolage-Überschriften, Vorher-nachher-Vergleich, Paketkarten mit Preisen, Anfrageformular per E-Mail)
+
+**Noch nicht online schalten:** Im Impressum fehlen Telefonnummer und die Angabe zur Umsatzsteuer, in der Datenschutzerklärung der Hinweis auf den AV-Vertrag mit IONOS. Danach `noindex` in `index.html`, `impressum.html` und `datenschutz.html` entfernen (die Muster-Website unter `beispiel/` behält es) und bei IONOS hochladen, z. B. per IONOS Deploy Now mit diesem Repo.
