@@ -242,6 +242,7 @@ section.alt { background: var(--paper-2); }
 .consent input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--petrol-2); }
 .form-note { font-size: 0.8125rem; color: var(--ink-2); }
 .form-state { font-size: 0.9375rem; min-height: 1.2em; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .form-state.err { color: var(--bad); }
 .fallback { background: var(--paper); border: 1px dashed var(--line); border-radius: 10px; padding: 12px; font-family: var(--font-mono); font-size: 0.8125rem; white-space: pre-wrap; word-break: break-word; }
 

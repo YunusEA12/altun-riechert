@@ -241,12 +241,14 @@
           <div class="field"><label for="f-betrieb">Betrieb</label><input id="f-betrieb" name="betrieb" autocomplete="organization" required placeholder="z. B. Malerbetrieb Muster"></div>
           <div class="field"><label for="f-web">Website (falls vorhanden)</label><input id="f-web" name="website" inputmode="url" placeholder="www.ihr-betrieb.de"></div>
           <div class="field"><label for="f-name">Ihr Name</label><input id="f-name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="f-mail">E-Mail für unsere Antwort</label><input id="f-mail" name="email" type="email" autocomplete="email" required placeholder="name@ihr-betrieb.de"></div>
           <div class="field"><label for="f-tel">Telefon (optional)</label><input id="f-tel" name="telefon" type="tel" autocomplete="tel"></div>
+          <div class="hp" aria-hidden="true"><label for="f-hp">Bitte leer lassen</label><input id="f-hp" name="homepage" tabindex="-1" autocomplete="off"></div>
           <div class="field full"><label for="f-msg">Worum geht es? (optional)</label><textarea id="f-msg" name="nachricht" placeholder="z. B. Wir wollen mehr Anfragen über Google oder suchen Azubis."></textarea></div>
         </div>
         <label class="consent"><input type="checkbox" id="f-ok" required><span>Ich bin einverstanden, dass Altun &amp; Riechert meine Angaben nutzt, um meine Anfrage zu beantworten. Details in der <a href="datenschutz.html">Datenschutzerklärung</a>.</span></label>
-        <div><button class="btn" type="submit">Anfrage per E-Mail vorbereiten</button></div>
-        <p class="form-note">Beim Absenden öffnet sich Ihr E-Mail-Programm mit einer fertigen Nachricht an uns. Diese Seite selbst speichert und versendet nichts.</p>
+        <div><button class="btn" type="submit" id="f-send">Anfrage senden</button></div>
+        <p class="form-note">Ihre Angaben gehen per E-Mail direkt an uns. Wir melden uns in der Regel innerhalb von zwei Werktagen.</p>
         <p class="form-state" id="form-state" aria-live="polite"></p>
         <div class="fallback" id="fallback" hidden></div>
       </form>
@@ -282,24 +284,46 @@
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(MAIL).then(done, fail); else fail();
   });
 
-  // Anfrage als E-Mail vorbereiten
+  // Anfrage senden (kontakt.php); klappt das nicht, als E-Mail im eigenen Programm vorbereiten
   var form = document.getElementById("anfrage"), state = document.getElementById("form-state"), fb = document.getElementById("fallback");
-  if (form) form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    var v = function (id) { return document.getElementById(id).value.trim(); };
-    var betrieb = v("f-betrieb"), name = v("f-name");
-    state.className = "form-state";
-    if (!betrieb || !name) { state.textContent = "Bitte Betrieb und Ihren Namen angeben."; state.className = "form-state err"; return; }
-    if (!document.getElementById("f-ok").checked) { state.textContent = "Bitte bestätigen Sie die Einwilligung zur Bearbeitung Ihrer Anfrage."; state.className = "form-state err"; return; }
+  var loadedAt = Date.now();
+  function mailtoFallback(v, betrieb, name) {
     var body = "Hallo Altun & Riechert,\n\nich interessiere mich für den kostenlosen Check.\n\n" +
       "Betrieb: " + betrieb + "\n" + "Website: " + (v("f-web") || "–") + "\n" + "Name: " + name + "\n" + "Telefon: " + (v("f-tel") || "–") + "\n\n" +
       (v("f-msg") ? v("f-msg") + "\n\n" : "") + "Viele Grüße\n" + name;
     var subject = "Kostenloser Check: " + betrieb;
-    var href = "mailto:" + MAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-    window.location.href = href;
-    state.textContent = "Ihr E-Mail-Programm sollte sich jetzt öffnen. Falls nicht, kopieren Sie den Text unten und senden ihn an " + MAIL + ".";
+    window.location.href = "mailto:" + MAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    state.className = "form-state";
+    state.textContent = "Das direkte Senden hat nicht geklappt. Ihr E-Mail-Programm sollte sich jetzt öffnen. Falls nicht, kopieren Sie den Text unten und senden ihn an " + MAIL + ".";
     fb.textContent = "An: " + MAIL + "\nBetreff: " + subject + "\n\n" + body;
     fb.hidden = false;
+  }
+  if (form) form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var v = function (id) { return document.getElementById(id).value.trim(); };
+    var betrieb = v("f-betrieb"), name = v("f-name"), email = v("f-mail");
+    state.className = "form-state"; fb.hidden = true;
+    if (!betrieb || !name) { state.textContent = "Bitte Betrieb und Ihren Namen angeben."; state.className = "form-state err"; return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { state.textContent = "Bitte eine gültige E-Mail-Adresse angeben, damit wir antworten können."; state.className = "form-state err"; return; }
+    if (!document.getElementById("f-ok").checked) { state.textContent = "Bitte bestätigen Sie die Einwilligung zur Bearbeitung Ihrer Anfrage."; state.className = "form-state err"; return; }
+    var btn = document.getElementById("f-send"); btn.disabled = true;
+    state.textContent = "Wird gesendet…";
+    var data = new FormData(form);
+    data.append("einwilligung", "1");
+    data.append("t", String(loadedAt));
+    fetch("kontakt.php", { method: "POST", body: data, headers: { "Accept": "application/json" } })
+      .then(function (r) { return r.json().catch(function () { return { ok: false, fallback: true }; }).then(function (j) { return { status: r.status, body: j }; }); })
+      .then(function (res) {
+        btn.disabled = false;
+        if (res.body && res.body.ok) {
+          form.reset();
+          state.textContent = "Danke! Ihre Anfrage ist bei uns angekommen. Wir melden uns in der Regel innerhalb von zwei Werktagen.";
+          return;
+        }
+        if (res.status === 422 || res.status === 429) { state.className = "form-state err"; state.textContent = res.body.fehler || "Bitte prüfen Sie Ihre Angaben."; return; }
+        mailtoFallback(v, betrieb, name);
+      })
+      .catch(function () { btn.disabled = false; mailtoFallback(v, betrieb, name); });
   });
 })();
 </script>
