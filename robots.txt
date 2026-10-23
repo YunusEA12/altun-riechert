@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /beispiel/
+Disallow: /_briefe/
+Sitemap: https://bal-mio.de/sitemap.xml
