@@ -1,0 +1,32 @@
+﻿{
+    "reviewedAt":  "2026-10-25T19:31:17.5564452+01:00",
+    "baseCommit":  "de6a7b8d8bce858cdbcd408551970df9d13c542d",
+    "files":  {
+                  ".nojekyll":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                  "assets/site.css":  "55355b315d79074368f571e9b3343c36d19ea8bec858029acdc710d7949b8eda",
+                  "assets/site.js":  "354c9b8e0e37dad0534139e226a6c7afad5e1403118d823ed27f51467bbf316b",
+                  "beispiel/fonts/bricolage-var.woff2":  "eee4489aef10340c5eed50f9df0b411043ede7fd4a7e7c7ab0189e840521346b",
+                  "beispiel/fonts/OFL-Bricolage.txt":  "9e75de0268df02ccd432ce3e438b0a316c48a8170fd447aeadf0142541b667a6",
+                  "beispiel/index.html":  "768e5f501aaed96f59d7763d28eaa220f91116b4a2cfcc6feefdf7658ff52ed5",
+                  "brand_assets/logo.svg":  "e0a4f7802044b818e79de8e41cf1b6a7f3fbfbf9cd70d6bcd0672db278786f00",
+                  "brand_assets/tokens.css":  "c61feab996fb6051032d233ebab769aee068c086f7e058f3dcb88076992773f9",
+                  "datenschutz.html":  "27e0b26e1353099d7976f00ea5573964daa45097056df059e707bccb31dd404f",
+                  "fonts/archivo-var.woff2":  "0912493b3c8987811dc9fbbca3c93c520733409f9ce982a68817302e73f3f417",
+                  "fonts/OFL-Archivo.txt":  "393a694c7dee6694a22c73049e95cea5d0808697a872c435862d33c0afc67091",
+                  "icon.png":  "1d2f71140a6512d752bbbc4ca067bc13305117359eac00743c26c070c99e032c",
+                  "images/beispiel-musterle.png":  "32a7faab1049d1e042ed6a92373b89930999d50d98d9807e7024702ebe7b0ed3",
+                  "images/placeholder/bild.svg":  "7fd095431624787ba6b4f608bd9f57352cfd95eab6d581f2d86b8931131826a8",
+                  "images/placeholder/footer.svg":  "fcc158f681f16f226c87d4ec4874e41b68b6bdd63f9e96d3f1db061b6aae0e3b",
+                  "images/placeholder/portrait.svg":  "b75fe9b1f8e3d412e7c6a2ccfc67b488e04fbe207f15ea0c7d5c4038cb3a050c",
+                  "images/placeholder/team.svg":  "0a113dd1d56d1dae1c6aee440c47a085a30cdf294097aec3a20f0db89db4950b",
+                  "impressum.html":  "1cf4cf4067ea3a9d426081fa2f1c4269e46b7fa6efefc7a5097320828571b77b",
+                  "index.html":  "8576715c47614575b48b9b249ad524542f1e3094ba57ef2164025e77cb5a9e47",
+                  "scripts/build_public.py":  "fa9dd002de09350668e41d54835046a7d6898413b39abf1da3bcad0a3e35b9aa",
+                  "scripts/public-files.json":  "da06368046289572e1ff47ab7264eb48ad8e345d963f83fd4e28bf74f5d23177",
+                  "scripts/security_check.py":  "43c35a59367f8615364ff701955abf624791bc31e44c11dc2e68fb938681a88a",
+                  "scripts/test_build_public.py":  "aa80335a830fe28ac06222931ce8dcf5db35bdbb0b193f02d8dc80af741c3575",
+                  "scripts/test_demo_security.cjs":  "12c33a678ef65a57e9bb87b6d240bee18ccf879aa245fd68b717599b94b3f46b",
+                  "scripts/test_security_check.py":  "ac802725bdee39de201df3a37d043064345432802d51890eac3a67c1da12e48f",
+                  "style.css":  "9b8208081fd9fea125d862ef134f23a8168853a23176e3c717d8585da22f9047"
+              }
+}
