@@ -189,6 +189,11 @@ Design-Vorlage ist die **Startseite von lpas.com** (Entscheidung Yunus, 25.10.20
 - Die Höhenlinien im Hero sind ein `<canvas>` aus `assets/site.js` (Block „Hero-Hintergrund“): ruhige Bewegung, Ausweichen vor dem Mauszeiger, Puls am Gipfel.
 - Pflicht bleibt: Standbild ohne JS, stehendes Bild bei `prefers-reduced-motion`, Pause außerhalb des Bildschirms. Kommt das echte Teamfoto als Hero, wird die Animation entfernt oder z. B. auf den Footer verlegt (Absprache mit Yunus).
 
+### Effekte (Block „Effekte“ am Ende von `assets/site.js` und `assets/site.css`)
+- Wortweise aufsteigende Überschriften, sich zeichnende Trennlinien, gestaffeltes Erscheinen, Fortschrittsbalken, Lichtstreifen und Welle auf Buttons, Puls am Header-Kurz-Check, federndes Detailfenster, gestaffeltes Menü.
+- Nur mit echter Maus: Magnet-Buttons, Amber-Mauszeiger-Ring (der normale Zeiger bleibt), Video- und Team-Neigung zur Maus.
+- Regeln: nur `transform`/`opacity`; alles hängt an der Klasse `.fx`, die nur mit JS und ohne `prefers-reduced-motion` gesetzt wird; ohne JS ist jeder Inhalt sichtbar. Geteilte Überschriften behalten ihren Text als `aria-label`.
+
 ### Technische Vorgaben
 - **Keine CDNs.** Tailwind höchstens als lokaler Build (Ergebnis-CSS liegt im Repo), sonst eigenes CSS. Kein `cdn.tailwindcss.com`.
 - **Platzhalter-Bilder lokal** unter `images/placeholder/` (z. B. selbst erzeugte SVGs), **kein** `placehold.co` oder andere externe Bilddienste.

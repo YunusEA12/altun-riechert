@@ -382,3 +382,149 @@
   layoutHero();
   onScrollHeader();
 })();
+
+// Effekte: Überschriften, Staffelung, Fortschritt, Magnet-Buttons, Mauszeiger, Neigung, Parallaxe.
+// Nur mit JS und ohne prefers-reduced-motion; Inhalte bleiben ohne JS unverändert sichtbar.
+(function () {
+  var root = document.documentElement;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
+  root.classList.add("fx");
+  var fine = window.matchMedia("(pointer: fine)").matches;
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
+    });
+  }, { rootMargin: "0px 0px -12% 0px" });
+
+  // Überschriften in Wörter teilen; Screenreader lesen weiter den ganzen Satz
+  function split(el) {
+    var text = el.textContent.trim();
+    el.setAttribute("aria-label", text);
+    el.removeAttribute("data-reveal");
+    el.textContent = "";
+    text.split(/\s+/).forEach(function (word, i) {
+      var outer = document.createElement("span");
+      outer.className = "split-word";
+      outer.setAttribute("aria-hidden", "true");
+      var inner = document.createElement("span");
+      inner.textContent = word;
+      inner.style.setProperty("--i", i);
+      outer.appendChild(inner);
+      el.appendChild(outer);
+      el.appendChild(document.createTextNode(" "));
+    });
+    el.classList.add("is-split");
+  }
+  var heroTitle = document.querySelector(".hero__title");
+  if (heroTitle) {
+    split(heroTitle);
+    setTimeout(function () { heroTitle.classList.add("is-in"); }, 950);   // nach dem Ladebildschirm
+  }
+  document.querySelectorAll(".about__title, .steps__title, .team__title, .projects__header h2").forEach(function (el) {
+    split(el);
+    io.observe(el);
+  });
+
+  document.querySelectorAll(".line-label").forEach(function (el) { io.observe(el); });
+
+  // Listen nacheinander erscheinen lassen
+  [".steps__list > .step", ".faq__item", ".team__list > .person", ".panel"].forEach(function (sel) {
+    if (sel === ".panel" && window.matchMedia("(min-width: 1024px)").matches) return;   // Desktop: Panels fahren ohnehin herein
+    document.querySelectorAll(sel).forEach(function (el, i) {
+      el.removeAttribute("data-reveal");
+      el.setAttribute("data-stagger", "");
+      el.style.setProperty("--i", sel === ".panel" ? 0 : i);
+      io.observe(el);
+    });
+  });
+  document.querySelectorAll(".menu__list li").forEach(function (li, i) { li.style.setProperty("--i", i); });
+
+  // Fortschrittsbalken
+  var bar = document.createElement("div");
+  bar.className = "scroll-progress";
+  bar.setAttribute("aria-hidden", "true");
+  document.body.appendChild(bar);
+  var feature = document.querySelector(".feature img");
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.transform = "scaleX(" + (max > 0 ? window.scrollY / max : 0) + ")";
+      if (feature) {   // Parallaxe der Muster-Website-Vorschau
+        var r = feature.parentNode.getBoundingClientRect();
+        var p = (r.top + r.height / 2 - window.innerHeight / 2) / window.innerHeight;
+        feature.style.setProperty("--py", (p * -40).toFixed(1) + "px");
+      }
+      ticking = false;
+    });
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  // Welle beim Klick
+  document.addEventListener("pointerdown", function (e) {
+    var t = e.target.closest(".btn, .topbar__cta, .menu-btn, .btn-circle, .chat-chip, .compare-tab");
+    if (!t) return;
+    var r = t.getBoundingClientRect(), size = Math.max(r.width, r.height) * 2.2;
+    var dot = document.createElement("span");
+    dot.className = "fx-ripple";
+    dot.style.width = dot.style.height = size + "px";
+    dot.style.left = (e.clientX - r.left - size / 2) + "px";
+    dot.style.top = (e.clientY - r.top - size / 2) + "px";
+    if (getComputedStyle(t).position === "static") t.style.position = "relative";
+    t.style.overflow = "hidden";
+    t.appendChild(dot);
+    setTimeout(function () { dot.remove(); }, 650);
+  });
+
+  if (!fine) return;   // Ab hier nur mit echter Maus
+
+  // Magnet-Buttons
+  document.querySelectorAll(".btn--accent, .topbar__cta, .btn-circle, .btn-arrow__icon").forEach(function (el) {
+    el.classList.add("fx-magnet");
+    el.addEventListener("pointermove", function (e) {
+      var r = el.getBoundingClientRect();
+      var x = (e.clientX - r.left - r.width / 2) / r.width, y = (e.clientY - r.top - r.height / 2) / r.height;
+      el.style.translate = (x * 10).toFixed(1) + "px " + (y * 8).toFixed(1) + "px";
+    });
+    el.addEventListener("pointerleave", function () { el.style.translate = ""; });
+  });
+
+  // Mausbewegung als --mx/--my (-0,5 … 0,5) für Panels und Team
+  function track(sel) {
+    document.querySelectorAll(sel).forEach(function (el) {
+      el.addEventListener("pointermove", function (e) {
+        var r = el.getBoundingClientRect();
+        el.style.setProperty("--mx", ((e.clientX - r.left) / r.width - 0.5).toFixed(3));
+        el.style.setProperty("--my", ((e.clientY - r.top) / r.height - 0.5).toFixed(3));
+      });
+      el.addEventListener("pointerleave", function () { el.style.setProperty("--mx", 0); el.style.setProperty("--my", 0); });
+    });
+  }
+  track(".panel");
+  track(".person");
+
+  // Mauszeiger-Begleiter
+  var ring = document.createElement("div");
+  ring.className = "fx-cursor";
+  ring.setAttribute("aria-hidden", "true");
+  document.body.appendChild(ring);
+  var cx = 0, cy = 0, tx = 0, ty = 0, moving = false;
+  document.addEventListener("pointermove", function (e) {
+    if (e.pointerType !== "mouse") return;
+    tx = e.clientX; ty = e.clientY;
+    if (!ring.classList.contains("is-visible")) { cx = tx; cy = ty; ring.classList.add("is-visible"); }
+    ring.classList.toggle("is-hover", !!e.target.closest("a, button, .panel, [data-open-panel]"));
+    if (!moving) { moving = true; requestAnimationFrame(follow); }
+  });
+  document.addEventListener("pointerleave", function () { ring.classList.remove("is-visible"); });
+  function follow() {
+    cx += (tx - cx) * 0.2; cy += (ty - cy) * 0.2;
+    ring.style.transform = "translate(" + cx.toFixed(1) + "px," + cy.toFixed(1) + "px)";
+    if (Math.abs(tx - cx) > 0.3 || Math.abs(ty - cy) > 0.3) requestAnimationFrame(follow);
+    else moving = false;
+  }
+})();
