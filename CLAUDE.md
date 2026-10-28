@@ -289,7 +289,8 @@ Design-Vorlage ist die **Startseite von lpas.com** (Entscheidung Yunus, 25.10.20
 
 **Erledigt in Runde 3 (Auftrag Yunus: selbst verbessern, Bewertung 65 → 80/100, siehe `docs/claude-bericht-2026-10-25-runde3.md`):**
 - [x] Markenfarben überall, eigene Übergangs-Grafiken statt Platzhalter
-- [x] Ladebildschirm entfernt, Footer verkleinert, Scrollweg der Panels verkürzt
+- [x] Footer verkleinert, Scrollweg der Panels verkürzt
+- [x] **Ladebildschirm bleibt** (Entscheidung Yunus, 28.10.2026): „Prüfen. Planen. Bauen. Begleiten.“ bzw. „Check. Plan. Build. Support.“ – nur CSS, blendet nach ca. 1,2 s aus, blockiert keine Klicks, bei reduzierter Bewegung gar nicht sichtbar
 - [x] Englische Version `en/index.html`
 - [x] Link-Vorschaubild `images/og-image.png` + Open-Graph-Tags
 - [x] Drei Antworten auf typische Fragen im Ablauf
