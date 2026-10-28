@@ -694,7 +694,7 @@ html.js .panel__nojs-link { display: none; }
 
 /* Panels: Video bewegt sich mit der Maus */
 .fx .panel__image video, .fx .panel__image img {
-  transform: scale(1.08) translate(calc(var(--mx, 0) * -14px), calc(var(--my, 0) * -10px));
+  transform: scale(1.03) translate(calc(var(--mx, 0) * -8px), calc(var(--my, 0) * -6px));
   transition: transform .6s var(--ease);
 }
 
