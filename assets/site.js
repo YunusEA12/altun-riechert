@@ -175,8 +175,12 @@
       ctx.fill();
     }
 
+    // Auf Touch-Geräten nur jedes zweite Bild zeichnen (~30 fps) – schont den Akku
+    var coarse = window.matchMedia("(pointer: coarse)").matches, tick = 0;
+
     function frame(now) {
       if (!onScreen || document.hidden || calm.matches) { running = false; return; }
+      if (coarse && (tick++ & 1)) { requestAnimationFrame(frame); return; }
       mouse.active += (mouse.target - mouse.active) * 0.06;
       mouse.x += (mouse.tx - mouse.x) * 0.12;
       mouse.y += (mouse.ty - mouse.y) * 0.12;
