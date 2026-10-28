@@ -93,37 +93,45 @@
 
       <div class="hero__strip">
         <!-- Online presence: petrol tones -->
-        <article class="panel" style="--panel:#123B40;--panel-ink:#FFFFFF">
-          <div class="panel__image"><img src="../images/grafik/panel-webseiten.svg" alt="" width="1600" height="1280" loading="lazy"></div>
+        <article class="panel" style="--panel:#123B40;--panel-ink:#FFFFFF" data-panel="webseiten">
+          <div class="panel__image"><video src="../videos/panel-webseiten.mp4" poster="../images/grafik/panel-webseiten.svg" autoplay loop muted playsinline aria-hidden="true"></video></div>
           <div class="panel__band">
             <span class="panel__area">Online presence</span>
             <nav class="panel__links" aria-label="Websites">
               <a href="../beispiel/" hreflang="de">See the sample website (German)</a>
-              <a href="mailto:altunriechert@gmail.com?subject=Kurz-Check%3A%20Websites">Request a quick check</a>
+              <button type="button" class="panel__details-link" data-open-panel="webseiten">See details</button>
             </nav>
-            <a class="btn-circle panel__plus" href="mailto:altunriechert@gmail.com?subject=Kurz-Check%3A%20Websites" aria-label="Request a quick check for websites"><svg viewBox="0 0 19 19" width="19" height="19" aria-hidden="true"><path d="M9.5 3v13M3 9.5h13" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></a>
+            <button type="button" class="btn-circle panel__plus" data-open-panel="webseiten" aria-label="See details for websites"><svg viewBox="0 0 19 19" width="19" height="19" aria-hidden="true"><path d="M9.5 3v13M3 9.5h13" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
             <h2 class="panel__title t-xxl">Websites</h2>
             <span class="panel__count">1 / 5</span>
             <p class="panel__subtitle"><span>From €1,490 fixed price</span><span>+ €29 / month hosting &amp; care</span></p>
           </div>
         </article>
 
-        <article class="panel" style="--panel:#1F5A60;--panel-ink:#FFFFFF">
-          <div class="panel__image"><img src="../images/grafik/panel-sichtbar.svg" alt="" width="1600" height="1280" loading="lazy"></div>
+        <article class="panel" style="--panel:#1F5A60;--panel-ink:#FFFFFF" data-panel="sichtbar">
+          <div class="panel__image"><video src="../videos/panel-sichtbar.mp4" poster="../images/panel-sichtbar.jpg" autoplay loop muted playsinline aria-hidden="true"></video></div>
           <div class="panel__band">
             <span class="panel__area">Online presence</span>
-            <a class="btn-circle panel__plus" href="mailto:altunriechert@gmail.com?subject=Kurz-Check%3A%20Sichtbar" aria-label="Request a quick check for Visible"><svg viewBox="0 0 19 19" width="19" height="19" aria-hidden="true"><path d="M9.5 3v13M3 9.5h13" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></a>
+            <nav class="panel__links" aria-label="Visible">
+              <button type="button" class="panel__details-link" data-open-panel="sichtbar">See details</button>
+              <a href="mailto:altunriechert@gmail.com?subject=Kurz-Check%3A%20Sichtbar">Request quick check</a>
+            </nav>
+            <button type="button" class="btn-circle panel__plus" data-open-panel="sichtbar" aria-label="See details for Visible"><svg viewBox="0 0 19 19" width="19" height="19" aria-hidden="true"><path d="M9.5 3v13M3 9.5h13" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
             <h2 class="panel__title t-xxl">Visible</h2>
             <span class="panel__count">2 / 5</span>
             <p class="panel__subtitle"><span>€390 fixed price</span><span>Google Business Profile and reviews</span></p>
           </div>
         </article>
 
-        <article class="panel" style="--panel:#4E6A6D;--panel-ink:#FFFFFF">
-          <div class="panel__image"><img src="../images/grafik/panel-fachkraefte.svg" alt="" width="1600" height="1280" loading="lazy"></div>
+        <article class="panel" style="--panel:#4E6A6D;--panel-ink:#FFFFFF" data-panel="fachkraefte">
+          <div class="panel__image"><video src="../videos/panel-fachkraefte.mp4" poster="../images/panel-fachkraefte.jpg" autoplay loop muted playsinline aria-hidden="true"></video></div>
           <div class="panel__band">
             <span class="panel__area">Online presence</span>
-            <a class="btn-circle panel__plus" href="mailto:altunriechert@gmail.com?subject=Kurz-Check%3A%20Fachkr%C3%A4fte" aria-label="Request a quick check for recruiting"><svg viewBox="0 0 19 19" width="19" height="19" aria-hidden="true"><path d="M9.5 3v13M3 9.5h13" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></a>
+            <nav class="panel__links" aria-label="Recruiting">
+              <button type="button" class="panel__details-link" data-open-panel="fachkraefte">See details</button>
+              <a href="mailto:altunriechert@gmail.com?subject=Kurz-Check%3A%20Fachkr%C3%A4fte">Request quick check</a>
+            </nav>
+            <button type="button" class="btn-circle panel__plus" data-open-panel="fachkraefte" aria-label="See details for recruiting"><svg viewBox="0 0 19 19" width="19" height="19" aria-hidden="true"><path d="M9.5 3v13M3 9.5h13" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
             <h2 class="panel__title t-xxl">Recruiting</h2>
             <span class="panel__count">3 / 5</span>
             <p class="panel__subtitle"><span>€990 fixed price</span><span>Careers page and Google Jobs</span></p>
@@ -131,22 +139,30 @@
         </article>
 
         <!-- AI integration: amber tones -->
-        <article class="panel" style="--panel:#E39A2D;--panel-ink:#111111">
-          <div class="panel__image"><img src="../images/grafik/panel-ki-assistent.svg" alt="" width="1600" height="1280" loading="lazy"></div>
+        <article class="panel" style="--panel:#E39A2D;--panel-ink:#111111" data-panel="ki-assistent">
+          <div class="panel__image"><video src="../videos/panel-ki-assistent.mp4" poster="../images/grafik/panel-ki-assistent.svg" autoplay loop muted playsinline aria-hidden="true"></video></div>
           <div class="panel__band">
             <span class="panel__area">AI integration</span>
-            <a class="btn-circle panel__plus" href="mailto:altunriechert@gmail.com?subject=Anfrage%3A%20KI-Assistent" aria-label="Ask about the AI assistant"><svg viewBox="0 0 19 19" width="19" height="19" aria-hidden="true"><path d="M9.5 3v13M3 9.5h13" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></a>
+            <nav class="panel__links" aria-label="AI assistant">
+              <button type="button" class="panel__details-link" data-open-panel="ki-assistent">Details &amp; Live Demo</button>
+              <a href="mailto:altunriechert@gmail.com?subject=Anfrage%3A%20KI-Assistent">Ask about assistant</a>
+            </nav>
+            <button type="button" class="btn-circle panel__plus" data-open-panel="ki-assistent" aria-label="See details for AI assistant"><svg viewBox="0 0 19 19" width="19" height="19" aria-hidden="true"><path d="M9.5 3v13M3 9.5h13" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
             <h2 class="panel__title t-xxl">AI assistant</h2>
             <span class="panel__count">4 / 5</span>
             <p class="panel__subtitle"><span>From €49 / month</span><span>Scope on request</span></p>
           </div>
         </article>
 
-        <article class="panel" style="--panel:#F1E4CE;--panel-ink:#123B40">
-          <div class="panel__image"><img src="../images/grafik/panel-automatisierung.svg" alt="" width="1600" height="1280" loading="lazy"></div>
+        <article class="panel" style="--panel:#F1E4CE;--panel-ink:#123B40" data-panel="automatisierung">
+          <div class="panel__image"><video src="../videos/panel-automatisierung.mp4" poster="../images/panel-automatisierung.jpg" autoplay loop muted playsinline aria-hidden="true"></video></div>
           <div class="panel__band">
             <span class="panel__area">AI integration</span>
-            <a class="btn-circle panel__plus" href="mailto:altunriechert@gmail.com?subject=Anfrage%3A%20Automatisierung" aria-label="Ask about automation"><svg viewBox="0 0 19 19" width="19" height="19" aria-hidden="true"><path d="M9.5 3v13M3 9.5h13" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></a>
+            <nav class="panel__links" aria-label="Automation">
+              <button type="button" class="panel__details-link" data-open-panel="automatisierung">See details</button>
+              <a href="mailto:altunriechert@gmail.com?subject=Anfrage%3A%20Automatisierung">Ask about automation</a>
+            </nav>
+            <button type="button" class="btn-circle panel__plus" data-open-panel="automatisierung" aria-label="See details for automation"><svg viewBox="0 0 19 19" width="19" height="19" aria-hidden="true"><path d="M9.5 3v13M3 9.5h13" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
             <h2 class="panel__title t-xxl">Automation</h2>
             <span class="panel__count">5 / 5</span>
             <p class="panel__subtitle"><span>Less paperwork</span><span>Price on request</span></p>
@@ -254,6 +270,167 @@
       </li>
     </ul>
   </section>
+
+  <!-- Panel Details Modal -->
+  <dialog class="panel-modal" id="panel-modal" aria-labelledby="modal-title" aria-modal="true">
+    <div class="panel-modal__box">
+      <button type="button" class="panel-modal__close" id="modal-close" aria-label="Close">
+        <svg viewBox="0 0 19 19" width="19" height="19" aria-hidden="true"><path d="M4 4l11 11M15 4L4 15" stroke="currentColor" stroke-width="1.4"/></svg>
+      </button>
+      <div class="panel-modal__content" id="modal-content"></div>
+    </div>
+  </dialog>
+
+  <!-- Templates for panel contents -->
+  <template id="tmpl-panel-webseiten">
+    <div class="modal-header">
+      <span class="modal-area">Online presence · 1 / 5</span>
+      <h2 class="modal-title" id="modal-title">Websites &amp; Online Presence</h2>
+      <div class="modal-price-card">
+        <span class="modal-price">From €1,490 fixed price</span>
+        <span class="modal-pilot">+ €29 / month hosting &amp; care · 3 pilot spots free of charge</span>
+      </div>
+    </div>
+    <p class="modal-section-title">What is included:</p>
+    <ul class="modal-list">
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Custom &amp; modern:</strong> No bloated site builders. Handcrafted design tailored to your trade that builds immediate trust.</div></li>
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Under 1 second load time:</strong> Lightning fast on every smartphone so searching customers don't bounce.</div></li>
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>100% GDPR compliant:</strong> Local fonts, no tracking cookies, no annoying cookie banners needed.</div></li>
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>One-tap calling:</strong> Phone number is tap-to-call immediately on mobile screens.</div></li>
+    </ul>
+    <div class="modal-benefit">
+      <strong>Why this matters:</strong>
+      Most customers today search for craft businesses on smartphones. If a website is outdated or hard to read, they call the next shop.
+    </div>
+    <div class="modal-actions">
+      <a class="btn btn--accent" href="mailto:altunriechert@gmail.com?subject=Kurz-Check%3A%20Websites&amp;body=Hello%20Altun%20%26%20Riechert%2C%0D%0A%0D%0AI%20am%20interested%20in%20a%20new%20website.%0D%0A%0D%0ABusiness%3A%20%0D%0ALocation%3A%20%0D%0AWebsite%20(if%20any)%3A%20%0D%0A">Request quick check for websites</a>
+      <a class="btn" href="../beispiel/" hreflang="de">See sample site →</a>
+    </div>
+  </template>
+
+  <template id="tmpl-panel-sichtbar">
+    <div class="modal-header">
+      <span class="modal-area">Online presence · 2 / 5</span>
+      <h2 class="modal-title" id="modal-title">Visible – Google Business &amp; Reviews</h2>
+      <div class="modal-price-card">
+        <span class="modal-price">€390 fixed price</span>
+        <span class="modal-pilot">One-time · 3 pilot spots for €99 in exchange for a review</span>
+      </div>
+    </div>
+    <p class="modal-section-title">What is included:</p>
+    <ul class="modal-list">
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Google Business Profile:</strong> Fully claimed and configured with correct address, operating hours, photos, and services.</div></li>
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Top of regional search:</strong> Your business gets found when locals search for your trade.</div></li>
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Review QR cards:</strong> Printed cards for vehicles and job sites – happy clients scan and review in 10 seconds.</div></li>
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Before-and-after audit:</strong> Clear documentation of how your ranking improved.</div></li>
+    </ul>
+    <div class="compare-demo">
+      <div class="compare-tabs">
+        <button type="button" class="compare-tab is-active" data-target="nachher">✅ With Altun &amp; Riechert</button>
+        <button type="button" class="compare-tab" data-target="vorher">❌ Without Optimization</button>
+      </div>
+      <div class="compare-content">
+        <div class="compare-view" data-view="nachher">
+          <div class="compare-item"><span>📍</span><span><strong>Top 3 in Google Maps:</strong> Immediate visibility in local search queries.</span></div>
+          <div class="compare-item"><span>⭐</span><span><strong>Consistent 5-star reviews:</strong> QR cards prompt happy clients right when work finishes.</span></div>
+          <div class="compare-item"><span>📞</span><span><strong>Direct phone calls:</strong> Potential clients call with one tap straight from search results.</span></div>
+        </div>
+        <div class="compare-view" data-view="vorher" hidden>
+          <div class="compare-item"><span>❌</span><span><strong>Not found:</strong> Hidden on page 3 of Google search results.</span></div>
+          <div class="compare-item"><span>❌</span><span><strong>No recent reviews:</strong> Last entry several years old.</span></div>
+          <div class="compare-item"><span>❌</span><span><strong>Incomplete profile:</strong> Opening hours and phone number missing or outdated.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <a class="btn btn--accent" href="mailto:altunriechert@gmail.com?subject=Kurz-Check%3A%20Sichtbar&amp;body=Hello%20Altun%20%26%20Riechert%2C%0D%0A%0D%0AI%20am%20interested%20in%20the%20Visible%20package.%0D%0A%0D%0ABusiness%3A%20%0D%0ALocation%3A%20%0D%0AWebsite%20(if%20any)%3A%20%0D%0A">Request quick check for Visible</a>
+    </div>
+  </template>
+
+  <template id="tmpl-panel-fachkraefte">
+    <div class="modal-header">
+      <span class="modal-area">Online presence · 3 / 5</span>
+      <h2 class="modal-title" id="modal-title">Recruiting – Careers Page &amp; Mobile Apply</h2>
+      <div class="modal-price-card">
+        <span class="modal-price">€990 fixed price</span>
+        <span class="modal-pilot">One-time · Ongoing maintenance available</span>
+      </div>
+    </div>
+    <p class="modal-section-title">What is included:</p>
+    <ul class="modal-list">
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Custom careers page:</strong> Authentic, warm, and honest – shows your team and workshop culture.</div></li>
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>60-second mobile apply:</strong> Applicants apply directly on their phone with 3 taps – no cover letters or PDF CVs required.</div></li>
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Google for Jobs:</strong> Automatic syndication across regional Google job listings.</div></li>
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Instant mobile alerts:</strong> New applicant notifications arrive straight to your phone.</div></li>
+    </ul>
+    <div class="modal-benefit">
+      <strong>Why this matters:</strong>
+      Skilled craftsmen already have jobs. They won't sit down at a laptop after hours to write formal application letters. A 60-second mobile application lowers the barrier completely.
+    </div>
+    <div class="modal-actions">
+      <a class="btn btn--accent" href="mailto:altunriechert@gmail.com?subject=Kurz-Check%3A%20Fachkr%C3%A4fte&amp;body=Hello%20Altun%20%26%20Riechert%2C%0D%0A%0D%0AI%20am%20interested%20in%20the%20Recruiting%20package.%0D%0A%0D%0ABusiness%3A%20%0D%0ALocation%3A%20%0D%0AWebsite%20(if%20any)%3A%20%0D%0A">Request quick check for recruiting</a>
+    </div>
+  </template>
+
+  <template id="tmpl-panel-ki-assistent">
+    <div class="modal-header">
+      <span class="modal-area">AI integration · 4 / 5</span>
+      <h2 class="modal-title" id="modal-title">AI Website Assistant</h2>
+      <div class="modal-price-card">
+        <span class="modal-price">From €49 / month</span>
+        <span class="modal-pilot">Scope on request · Free live demonstration</span>
+      </div>
+    </div>
+    <p class="modal-section-title">What the assistant does for you:</p>
+    <ul class="modal-list">
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>24/7 customer front-desk:</strong> Answers inquiries regarding services, emergency call-outs, and scheduling around the clock.</div></li>
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Pre-qualifies inquiries:</strong> Automatically collects contact details, trade requirements, and urgency.</div></li>
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Trained on your business:</strong> Knows your working area, pricing guidelines, and schedule.</div></li>
+    </ul>
+    <div class="chat-demo">
+      <div class="chat-demo__header">
+        <span class="chat-demo__dot"></span>
+        <span>Live preview: How the AI answers on your website</span>
+      </div>
+      <div class="chat-demo__messages" id="modal-chat-msgs">
+        <div class="chat-msg chat-msg--bot">Hello! How can I assist you today? Feel free to ask about our services or request an on-site appointment.</div>
+      </div>
+      <div class="chat-demo__chips-title">Click a question to test:</div>
+      <div class="chat-demo__chips">
+        <button type="button" class="chat-chip" data-q="termin">"Do you have openings next week?"</button>
+        <button type="button" class="chat-chip" data-q="angebot">"How quickly do I get a quote?"</button>
+        <button type="button" class="chat-chip" data-q="notfall">"Do you handle emergency repairs?"</button>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <a class="btn btn--accent" href="mailto:altunriechert@gmail.com?subject=Anfrage%3A%20KI-Assistent&amp;body=Hello%20Altun%20%26%20Riechert%2C%0D%0A%0D%0AI%20am%20interested%20in%20the%20AI%20Assistant.%0D%0A%0D%0ABusiness%3A%20%0D%0ALocation%3A%20%0D%0AWebsite%20(if%20any)%3A%20%0D%0A">Ask about the AI assistant</a>
+    </div>
+  </template>
+
+  <template id="tmpl-panel-automatisierung">
+    <div class="modal-header">
+      <span class="modal-area">AI integration · 5 / 5</span>
+      <h2 class="modal-title" id="modal-title">Office Automation &amp; AI Workflows</h2>
+      <div class="modal-price-card">
+        <span class="modal-price">Price on request</span>
+        <span class="modal-pilot">Tailored to your needs · Free initial consultation</span>
+      </div>
+    </div>
+    <p class="modal-section-title">Typical time-wasters we eliminate:</p>
+    <ul class="modal-list">
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Automated invoice filing:</strong> Incoming PDF bills and receipts get indexed and filed automatically.</div></li>
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Email response templates:</strong> Recurring client inquiries answered with one click.</div></li>
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Connecting your tools:</strong> Syncing email, calendar, and trades software without manual copy-pasting.</div></li>
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Simple &amp; practical:</strong> No complicated IT overhauls, just immediate relief in daily office work.</div></li>
+    </ul>
+    <div class="modal-benefit">
+      <strong>Why this matters:</strong>
+      Craft business owners often spend 2 extra hours at night filing paperwork after 8 hours on site. Automation gives your evenings back.
+    </div>
+    <div class="modal-actions">
+      <a class="btn btn--accent" href="mailto:altunriechert@gmail.com?subject=Anfrage%3A%20Automatisierung&amp;body=Hello%20Altun%20%26%20Riechert%2C%0D%0A%0D%0AI%20am%20interested%20in%20office%20automation.%0D%0A%0D%0ABusiness%3A%20%0D%0ALocation%3A%20%0D%0AWebsite%20(if%20any)%3A%20%0D%0A">Ask about automation</a>
+    </div>
+  </template>
 </main>
 
 <!-- Footer -->
