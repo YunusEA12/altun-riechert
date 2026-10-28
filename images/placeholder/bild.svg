@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="Platzhalter: Bild">
+  <defs>
+    <pattern id="p" width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="40" stroke="#b9c4d1" stroke-width="2"/></pattern>
+  </defs>
+  <rect width="1600" height="1000" fill="#C9D3DF"/>
+  <rect width="1600" height="1000" fill="url(#p)" opacity=".5"/>
+  <rect x="560" y="440" width="480" height="120" rx="6" fill="#262626"/>
+  <text x="800" y="512" text-anchor="middle" font-family="Archivo, sans-serif" font-size="34" fill="#ffffff">PLATZHALTER · Bild</text>
+</svg>

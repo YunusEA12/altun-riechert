@@ -1,0 +1,23 @@
+# Interne Arbeitsdateien – gehören NICHT ins öffentliche Website-Repo.
+# GitHub Pages liefert wegen .nojekyll jede Datei im Repo aus.
+_briefe/
+obsidian-vault/
+
+# Referenz-Material (Screenshots fremder Seiten) nur lokal
+referenz/*
+!referenz/README.md
+
+# Lokale Werkzeuge
+.claude/settings.local.json
+
+# System und Tools
+.DS_Store
+Thumbs.db
+.env
+*.log
+__pycache__/
+
+# Exportpakete; ausschließlich der Inhalt eines geprüften Pakets wird veröffentlicht
+dist/
+.env.*
+!.env.example

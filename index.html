@@ -4,133 +4,346 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>Altun &amp; Riechert · Mehr Anfragen für Ihren Betrieb</title>
-<meta name="description" content="Kostenloser Check Ihres Online-Auftritts und Umsetzung zum Festpreis. Für Betriebe im Kreis Ludwigsburg und in der Region Stuttgart.">
+<title>Altun &amp; Riechert · Webseiten und KI für Betriebe in der Region Stuttgart</title>
+<meta name="description" content="Wir prüfen kostenlos, wo du online Kunden verlierst, und setzen die Lösung zum Festpreis um. Webseiten, Google-Profil und KI für Betriebe in der Region Stuttgart.">
+<meta name="theme-color" content="#0C2A2E">
+<!-- Link-Vorschau. Sobald die Domain feststeht: og:image und og:url als vollständige URL eintragen, dazu hreflang-Links für DE/EN -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:site_name" content="Altun &amp; Riechert">
+<meta property="og:title" content="Altun &amp; Riechert · Webseiten und KI für Betriebe">
+<meta property="og:description" content="Kostenloser Kurz-Check für Betriebe in der Region Stuttgart und im Kreis Ludwigsburg.">
+<meta property="og:image" content="images/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="preload" href="fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="brand_assets/tokens.css">
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
 
-<header class="top">
-  <div class="wrap">
-    <a class="brand" href="./" aria-label="Altun &amp; Riechert, Startseite">
-      <span class="brand-tile">A<span class="amp">&amp;</span>R</span>
-      <span>
-        <span class="brand-name">Altun <span class="amp">&amp;</span> Riechert</span><br>
-        <span class="brand-sub">DIGITAL FÜR BETRIEBE · REGION STUTTGART</span>
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+<!-- Header -->
+<header class="topbar is-light" id="topbar">
+  <a class="topbar__logo" href="./" aria-label="A&amp;R – Altun &amp; Riechert, zur Startseite"><span class="logo-tile" aria-hidden="true">A<span class="amp">&amp;</span>R</span></a>
+  <div class="topbar__items">
+    <div class="lang" role="group" aria-label="Sprache">
+      <span class="lang__pill">
+        <a class="lang__opt is-active" href="./" aria-current="page" lang="de">DE</a>
+        <a class="lang__opt" href="en/" lang="en" hreflang="en">EN</a>
       </span>
-    </a>
-    <a class="btn" href="#kontakt">Kontakt</a>
+    </div>
+    <a class="topbar__cta" href="mailto:altunriechert@gmail.com?subject=Kurz-Check&amp;body=Hallo%20Altun%20%26%20Riechert%2C%0D%0A%0D%0Aich%20h%C3%A4tte%20gern%20einen%20kostenlosen%20Kurz-Check.%0D%0A%0D%0ABetrieb%3A%20%0D%0AOrt%3A%20%0D%0AWebsite%20(falls%20vorhanden)%3A%20%0D%0A">Kurz-Check</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">
+      <span class="menu-btn__text">Menü</span>
+      <svg class="menu-btn__icon" viewBox="0 0 30 30" width="30" height="30" aria-hidden="true"><path d="M9 12h12M9 18h12" stroke="currentColor" stroke-width="1.2"/></svg>
+    </button>
   </div>
 </header>
 
-<main>
-  <section class="hero">
-    <div class="wrap">
-      <div class="hero-text">
-        <p class="label">Region Stuttgart · Kreis Ludwigsburg</p>
-        <h1>Mehr Anfragen für <span class="mark">Ihren Betrieb</span>.</h1>
-        <p class="lead">Wir prüfen kostenlos, wo Sie online Kunden verlieren, und setzen die Lösung zum Festpreis um.</p>
-        <div><a class="btn" href="#kontakt">Kostenlosen Check anfragen</a></div>
-        <div class="trust"><span>Kostenlos und unverbindlich</span><span>Festpreis vorab</span><span>Auf Wunsch bei Ihnen vor Ort</span></div>
-      </div>
+<nav class="menu" id="menu" aria-label="Hauptmenü" hidden>
+  <ul class="menu__list">
+    <li><a href="#start">Start</a></li>
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#ueber-uns">Über uns</a></li>
+    <li><a href="#ablauf">Ablauf</a></li>
+    <li><a href="#beispiel">Beispiel</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
 
-      <aside class="report" aria-label="Erfundenes Beispiel eines Checks">
-        <div class="report-head">
-          <span class="report-title">So sieht ein Check aus</span>
-          <span class="tag">Erfundenes Beispiel</span>
+<main id="start">
+
+  <!-- 1 · Hero mit Leistungs-Panels (auf Desktop fixiert, Panels fahren von rechts herein) -->
+  <div class="hero-pin" id="leistungen">
+    <section class="hero" aria-label="Einstieg und Leistungen">
+      <div class="hero__main">
+        <!-- Übergangsgrafik, wird durch das Teamfoto ersetzt (brand_assets/team.jpg) -->
+        <img class="hero__bg" src="images/grafik/hero.svg" alt="" width="1600" height="1000">
+        <div class="hero__overlay"></div>
+        <div class="hero__details">
+          <span>Webseiten + KI</span>
+          <span>Für Betriebe in der Region Stuttgart und im Kreis Ludwigsburg</span>
+          <a class="hero__scroll" href="#ueber-uns">
+            <span>Scrollen und entdecken</span>
+            <span class="arrow-dot arrow-dot--light" aria-hidden="true"><svg viewBox="0 0 19 19" width="19" height="19"><path d="M5 9.5h9M10 5l4.5 4.5L10 14" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          </a>
         </div>
-        <div class="finding"><span class="dot ok" aria-hidden="true"></span><b>9 Google-Bewertungen, Schnitt 4,8</b><span class="what">Auf der Website aber nicht zu sehen.</span></div>
-        <div class="finding"><span class="dot bad" aria-hidden="true"></span><b>Website seit Jahren unverändert</b><span class="what">Auf dem Handy schwer zu bedienen.</span></div>
-        <div class="finding"><span class="dot warn" aria-hidden="true"></span><b>Telefon nicht antippbar</b><span class="what">Wer unterwegs sucht, ruft beim Nächsten an.</span></div>
-        <div class="report-foot"><strong>Ergebnis:</strong> eine Seite mit den zwei stärksten Hebeln.</div>
-      </aside>
+        <div class="hero__content" id="inhalt" tabindex="-1">
+          <h1 class="hero__title t-3xl">Wir bringen deinen Betrieb online nach vorn – mit Webseiten und KI</h1>
+          <p class="hero__lead">Kostenloser Kurz-Check: Wir schauen uns deinen Online-Auftritt an und schicken dir die wichtigsten Verbesserungen auf einer Seite.</p>
+          <div class="hero__actions">
+            <a class="btn btn--accent" href="mailto:altunriechert@gmail.com?subject=Kurz-Check&amp;body=Hallo%20Altun%20%26%20Riechert%2C%0D%0A%0D%0Aich%20h%C3%A4tte%20gern%20einen%20kostenlosen%20Kurz-Check.%0D%0A%0D%0ABetrieb%3A%20%0D%0AOrt%3A%20%0D%0AWebsite%20(falls%20vorhanden)%3A%20%0D%0A">Kurz-Check anfragen</a>
+            <span class="hero__note">Startphase: Kurz-Check und 3 Pilotplätze kostenlos</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__strip">
+        <!-- Online-Präsenz: Petrol-Töne -->
+        <article class="panel" style="--panel:#123B40;--panel-ink:#FFFFFF">
+          <div class="panel__image"><img src="images/grafik/panel-webseiten.svg" alt="" width="1600" height="1280" loading="lazy"></div>
+          <div class="panel__band">
+            <span class="panel__area">Online-Präsenz</span>
+            <nav class="panel__links" aria-label="Webseiten">
+              <a href="beispiel/">Muster-Website ansehen</a>
+              <a href="mailto:altunriechert@gmail.com?subject=Kurz-Check%3A%20Webseiten">Kurz-Check anfragen</a>
+            </nav>
+            <a class="btn-circle panel__plus" href="mailto:altunriechert@gmail.com?subject=Kurz-Check%3A%20Webseiten" aria-label="Kurz-Check zu Webseiten anfragen"><svg viewBox="0 0 19 19" width="19" height="19" aria-hidden="true"><path d="M9.5 3v13M3 9.5h13" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></a>
+            <h2 class="panel__title t-xxl">Webseiten</h2>
+            <span class="panel__count">1 / 5</span>
+            <p class="panel__subtitle"><span>Ab 1.490 € Festpreis</span><span>+ 29 € / Monat Hosting &amp; Pflege</span></p>
+          </div>
+        </article>
+
+        <article class="panel" style="--panel:#1F5A60;--panel-ink:#FFFFFF">
+          <div class="panel__image"><img src="images/grafik/panel-sichtbar.svg" alt="" width="1600" height="1280" loading="lazy"></div>
+          <div class="panel__band">
+            <span class="panel__area">Online-Präsenz</span>
+            <a class="btn-circle panel__plus" href="mailto:altunriechert@gmail.com?subject=Kurz-Check%3A%20Sichtbar" aria-label="Kurz-Check zu Sichtbar anfragen"><svg viewBox="0 0 19 19" width="19" height="19" aria-hidden="true"><path d="M9.5 3v13M3 9.5h13" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></a>
+            <h2 class="panel__title t-xxl">Sichtbar</h2>
+            <span class="panel__count">2 / 5</span>
+            <p class="panel__subtitle"><span>390 € Festpreis</span><span>Google-Profil und Bewertungen</span></p>
+          </div>
+        </article>
+
+        <article class="panel" style="--panel:#4E6A6D;--panel-ink:#FFFFFF">
+          <div class="panel__image"><img src="images/grafik/panel-fachkraefte.svg" alt="" width="1600" height="1280" loading="lazy"></div>
+          <div class="panel__band">
+            <span class="panel__area">Online-Präsenz</span>
+            <a class="btn-circle panel__plus" href="mailto:altunriechert@gmail.com?subject=Kurz-Check%3A%20Fachkr%C3%A4fte" aria-label="Kurz-Check zu Fachkräfte anfragen"><svg viewBox="0 0 19 19" width="19" height="19" aria-hidden="true"><path d="M9.5 3v13M3 9.5h13" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></a>
+            <h2 class="panel__title t-xxl">Fachkräfte</h2>
+            <span class="panel__count">3 / 5</span>
+            <p class="panel__subtitle"><span>990 € Festpreis</span><span>Karriereseite und Google Jobs</span></p>
+          </div>
+        </article>
+
+        <!-- KI-Integration: Amber-Töne -->
+        <article class="panel" style="--panel:#E39A2D;--panel-ink:#111111">
+          <div class="panel__image"><img src="images/grafik/panel-ki-assistent.svg" alt="" width="1600" height="1280" loading="lazy"></div>
+          <div class="panel__band">
+            <span class="panel__area">KI-Integration</span>
+            <a class="btn-circle panel__plus" href="mailto:altunriechert@gmail.com?subject=Anfrage%3A%20KI-Assistent" aria-label="Zum KI-Assistenten anfragen"><svg viewBox="0 0 19 19" width="19" height="19" aria-hidden="true"><path d="M9.5 3v13M3 9.5h13" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></a>
+            <h2 class="panel__title t-xxl">KI-Assistent</h2>
+            <span class="panel__count">4 / 5</span>
+            <p class="panel__subtitle"><span>Ab 49 € / Monat</span><span>Umfang auf Anfrage</span></p>
+          </div>
+        </article>
+
+        <article class="panel" style="--panel:#F1E4CE;--panel-ink:#123B40">
+          <div class="panel__image"><img src="images/grafik/panel-automatisierung.svg" alt="" width="1600" height="1280" loading="lazy"></div>
+          <div class="panel__band">
+            <span class="panel__area">KI-Integration</span>
+            <a class="btn-circle panel__plus" href="mailto:altunriechert@gmail.com?subject=Anfrage%3A%20Automatisierung" aria-label="Zur Automatisierung anfragen"><svg viewBox="0 0 19 19" width="19" height="19" aria-hidden="true"><path d="M9.5 3v13M3 9.5h13" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></a>
+            <h2 class="panel__title t-xxl">Automatisierung</h2>
+            <span class="panel__count">5 / 5</span>
+            <p class="panel__subtitle"><span>Weniger Büroarbeit</span><span>Preis auf Anfrage</span></p>
+          </div>
+        </article>
+
+        <div class="panel panel--last" aria-hidden="true"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 2 · Über uns -->
+  <section class="about wrap" id="ueber-uns">
+    <h2 class="about__title t-xxl" data-reveal>Ehrlich beraten. Fair bezahlt. Messbar besser.</h2>
+    <div class="about__row">
+      <h3 class="about__tagline">Prüfen.<br>Planen.<br>Umsetzen.</h3>
+      <div class="about__body">
+        <p class="about__text" data-reveal>Wir sind Yunus, Calvin und Hamza. Von Stuttgart aus prüfen wir kostenlos, wo dein Betrieb online Kunden verliert, und setzen die Lösung zum Festpreis um: von der neuen Website über dein Google-Profil bis zu KI, die dir Arbeit im Büro abnimmt. Persönlich, regional und ohne Fachchinesisch.</p>
+        <a class="btn-arrow" href="#ablauf">
+          <span class="btn-arrow__title">So läuft der Kurz-Check</span>
+          <span class="btn-arrow__icon" aria-hidden="true"><svg viewBox="0 0 19 19" width="19" height="19"><path d="M5 9.5h9M10 5l4.5 4.5L10 14" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </a>
+      </div>
     </div>
   </section>
 
-  <section class="block">
-    <div class="wrap">
-      <h2>Was wir für Sie machen</h2>
-      <div class="three">
-        <div class="item"><h3>Gefunden werden</h3><p>Website fürs Handy, Google-Profil und Bewertungen, damit Kunden Sie bei „Leistung + Ort“ finden.</p></div>
-        <div class="item"><h3>Mehr Umsatz</h3><p>Online-Buchung, Gutscheine und Werbung in Ihrer Region. Wir messen für Sie, was es bringt.</p></div>
-        <div class="item"><h3>Weniger Aufwand</h3><p>KI-Assistenten, Automatisierung und eine schnellere Personalsuche, die Ihrem Team Zeit sparen.</p></div>
+  <!-- 3 · Ablauf -->
+  <section class="steps wrap" id="ablauf">
+    <div class="line-label">Kostenlos und unverbindlich</div>
+    <h2 class="steps__title t-l">So läuft der Kurz-Check</h2>
+    <ol class="steps__list">
+      <li class="step" data-reveal>
+        <span class="step__no t-3xl">01</span>
+        <h3 class="step__title t-m">Du schreibst uns</h3>
+        <p>Schick uns per Mail den Namen deines Betriebs, den Ort und – falls vorhanden – deine Website. Mehr brauchen wir nicht.</p>
+      </li>
+      <li class="step" data-reveal>
+        <span class="step__no t-3xl">02</span>
+        <h3 class="step__title t-m">Du bekommst deinen Check</h3>
+        <p>Wir prüfen deinen Online-Auftritt und schicken dir die Ergebnisse übersichtlich auf einer Seite.</p>
+      </li>
+      <li class="step" data-reveal>
+        <span class="step__no t-3xl">03</span>
+        <h3 class="step__title t-m">Wir sprechen 15 Minuten</h3>
+        <p>Am Telefon oder bei dir vor Ort. Danach entscheidest du, ob und was wir zum Festpreis umsetzen.</p>
+      </li>
+    </ol>
+    <dl class="faq">
+      <div class="faq__item">
+        <dt>Was kostet der Kurz-Check?</dt>
+        <dd>Nichts. Er ist kostenlos und unverbindlich.</dd>
+      </div>
+      <div class="faq__item">
+        <dt>Muss ich danach etwas kaufen?</dt>
+        <dd>Nein. Du entscheidest nach dem Gespräch selbst, ob wir etwas umsetzen.</dd>
+      </div>
+      <div class="faq__item">
+        <dt>Warum macht ihr das kostenlos?</dt>
+        <dd>Wir sind in der Startphase und bauen unsere ersten Referenzen auf.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- 4 · Beispiel (echte Projekte folgen nach den Pilotprojekten) -->
+  <section class="projects wrap" id="beispiel">
+    <header class="projects__header">
+      <h2 class="t-l">So kann deine Website aussehen</h2>
+      <a class="btn-arrow" href="beispiel/">
+        <span class="btn-arrow__title">Muster-Website ansehen</span>
+        <span class="btn-arrow__icon" aria-hidden="true"><svg viewBox="0 0 19 19" width="19" height="19"><path d="M5 9.5h9M10 5l4.5 4.5L10 14" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></span>
+      </a>
+    </header>
+
+    <a class="feature" href="beispiel/">
+      <img src="images/beispiel-musterle.png" alt="Vorschau der Muster-Website Malerwerkstatt Musterle, oben als Beispiel gekennzeichnet" width="1600" height="1000" loading="lazy">
+      <span class="feature__box">
+        <span class="arrow-dot arrow-dot--light" aria-hidden="true"><svg viewBox="0 0 19 19" width="19" height="19"><path d="M5 9.5h9M10 5l4.5 4.5L10 14" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        <span class="feature__title">Malerwerkstatt Musterle · Muster-Website</span>
+        <span class="feature__loc">Beispiel · erfundener Betrieb</span>
+      </span>
+    </a>
+
+    <!-- Echte Projekte: erst sichtbar schalten (hidden entfernen), wenn es sie gibt und der Betrieb zugestimmt hat -->
+    <div class="grid-row" hidden>
+      <a class="img-card img-card--big" href="#beispiel">
+        <span class="img-card__image"><img src="images/placeholder/bild.svg" alt="" width="1600" height="1000" loading="lazy"></span>
+        <span class="img-card__title">[PLATZHALTER: Pilotprojekt 1]</span>
+        <span class="img-card__loc">Region Stuttgart</span>
+      </a>
+      <div class="small-grid">
+        <a class="img-card" href="#beispiel">
+          <span class="img-card__image"><img src="images/placeholder/bild.svg" alt="" width="1600" height="1000" loading="lazy"></span>
+          <span class="img-card__title">[PLATZHALTER: Pilotprojekt 2]</span>
+          <span class="img-card__loc">Kreis Ludwigsburg</span>
+        </a>
+        <a class="img-card" href="#beispiel">
+          <span class="img-card__image"><img src="images/placeholder/bild.svg" alt="" width="1600" height="1000" loading="lazy"></span>
+          <span class="img-card__title">[PLATZHALTER: Pilotprojekt 3]</span>
+          <span class="img-card__loc">Region Stuttgart</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <section class="block">
-    <div class="wrap">
-      <h2>So läuft es</h2>
-      <div class="three steps">
-        <div class="item"><span class="step-no">1</span><h3>Kostenloser Check</h3><p>Sie bekommen Ihre Auswertung auf einer Seite.</p></div>
-        <div class="item"><span class="step-no">2</span><h3>15 Minuten Gespräch</h3><p>Am Telefon oder bei Ihnen. Sie entscheiden, was sich lohnt.</p></div>
-        <div class="item"><span class="step-no">3</span><h3>Umsetzung zum Festpreis</h3><p>Danach zeigen wir Ihnen, was es gebracht hat.</p></div>
-      </div>
-    </div>
+  <!-- 5 · Team (Initialen-Grafiken werden durch echte Porträts ersetzt) -->
+  <section class="team wrap" id="team">
+    <div class="line-label">Wer dahintersteckt</div>
+    <h2 class="team__title t-l">Drei Ansprechpartner, ein Team</h2>
+    <ul class="team__list">
+      <li class="person" data-reveal>
+        <img class="person__photo" src="images/grafik/portrait-yunus.svg" alt="Initialen von Yunus Altun, Foto folgt" width="800" height="1000" loading="lazy">
+        <h3 class="person__name">Yunus Altun</h3>
+        <p class="person__role">Website und Online-Präsenz</p>
+        <p class="person__bio">Informatiker (B.Sc.), studiert KI und Data Science (M.Sc.) an der Universität Stuttgart.</p>
+      </li>
+      <li class="person" data-reveal>
+        <img class="person__photo" src="images/grafik/portrait-calvin.svg" alt="Initialen von Calvin Riechert, Foto folgt" width="800" height="1000" loading="lazy">
+        <h3 class="person__name">Calvin Riechert</h3>
+        <p class="person__role">Kundenkontakt und KI</p>
+        <p class="person__bio">KI-Lösungen, Automatisierungen, KI-Agenten und 3D-Websites mit Blender.</p>
+      </li>
+      <li class="person" data-reveal>
+        <img class="person__photo" src="images/grafik/portrait-hamza.svg" alt="Initiale von Hamza, Foto folgt" width="800" height="1000" loading="lazy">
+        <h3 class="person__name">Hamza</h3>
+        <!-- Nachname, Rolle und Kurzbeschreibung folgen, sobald Hamza sie bestätigt hat -->
+        <p class="person__role">Steckbrief folgt</p>
+      </li>
+    </ul>
   </section>
 
-  <section class="block">
-    <div class="wrap">
-      <h2>Wer wir sind</h2>
-      <div class="team">
-        <div class="person"><span class="avatar" aria-hidden="true">YA</span><div><h3>Yunus Altun</h3><span class="muted">Informatiker (B.Sc.), studiert KI und Data Science (M.Sc.) an der Universität Stuttgart</span></div></div>
-        <div class="person"><span class="avatar" aria-hidden="true">CR</span><div><h3>Calvin Riechert</h3><span class="muted">Technik und Automatisierung, baut KI-Assistenten und automatische Abläufe</span></div></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="contact" id="kontakt">
-    <div class="wrap">
-      <div style="display:grid;gap:12px;min-width:0">
-        <h2>Kostenlosen Check anfragen</h2>
-        <p>Schreiben Sie uns Ihren Betrieb und Ihre Website. Ihre Auswertung kommt in der Regel innerhalb von zwei Werktagen.</p>
-      </div>
-      <div class="mailbox">
-        <span class="label">E-Mail</span>
-        <a class="mail" id="mail" href="mailto:altunriechert@gmail.com">altunriechert@gmail.com</a>
-        <button class="copy" id="copy-mail" type="button">Adresse kopieren</button>
-        <span class="copy-state" id="copy-state" aria-live="polite"></span>
-      </div>
-    </div>
+  <!-- Aktuelles: erst sichtbar schalten, wenn es gepflegte Neuigkeiten gibt -->
+  <section class="latest wrap" id="aktuelles" hidden>
+    <h2 class="latest__title t-m">Aktuelles</h2>
+    <ul class="latest__list">
+      <li><a class="latest__item" href="#aktuelles">
+        <h3>[PLATZHALTER: Neuigkeit]</h3>
+        <p>[PLATZHALTER: Kurzer Satz zur Neuigkeit]</p>
+        <span class="latest__date">[DATUM]</span>
+        <span class="arrow-dot" aria-hidden="true"><svg viewBox="0 0 19 19" width="19" height="19"><path d="M5 9.5h9M10 5l4.5 4.5L10 14" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></span>
+      </a></li>
+    </ul>
   </section>
 </main>
 
-<footer>
-  <div class="wrap">
-    <span>© 2026 Altun &amp; Riechert · Stuttgart</span>
-    <nav aria-label="Rechtliches"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></nav>
+<!-- Footer -->
+<footer class="footer" id="kontakt">
+  <div class="footer__top">
+    <img class="footer__bg" src="images/grafik/footer.svg" alt="" width="1600" height="1000" loading="lazy">
+    <div class="footer__topInner">
+      <div class="footer__line"></div>
+      <div class="footer__menus">
+        <ul class="footer__mainMenu">
+          <li class="footer__menuLabel">Unser Fokus</li>
+          <li class="t-xl"><a href="#leistungen">Webseiten</a></li>
+          <li class="t-xl"><a href="#leistungen">Sichtbar</a></li>
+          <li class="t-xl"><a href="#leistungen">Fachkräfte</a></li>
+          <li class="t-xl"><a href="#leistungen">KI-Assistent</a></li>
+          <li class="t-xl"><a href="#leistungen">Automatisierung</a></li>
+        </ul>
+        <div class="footer__subMenu">
+          <span class="footer__menuLabel">Kostenlos anfragen</span>
+          <a class="t-l" href="mailto:altunriechert@gmail.com?subject=Kurz-Check&amp;body=Hallo%20Altun%20%26%20Riechert%2C%0D%0A%0D%0Aich%20h%C3%A4tte%20gern%20einen%20kostenlosen%20Kurz-Check.%0D%0A%0D%0ABetrieb%3A%20%0D%0AOrt%3A%20%0D%0AWebsite%20(falls%20vorhanden)%3A%20%0D%0A">Kurz-Check</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <div class="footer__row1">
+      <ul class="footer__nav">
+        <li><a class="is-active" href="#start">Start</a></li>
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#ueber-uns">Über uns</a></li>
+        <li><a href="#ablauf">Ablauf</a></li>
+        <li><a href="#beispiel">Beispiel</a></li>
+        <li><a href="#team">Team</a></li>
+      </ul>
+      <a class="footer__logo" href="./" aria-label="A&amp;R – Altun &amp; Riechert, zur Startseite"><span class="logo-tile logo-tile--lg" aria-hidden="true">A<span class="amp">&amp;</span>R</span></a>
+    </div>
+    <div class="footer__row2">
+      <div class="contact-info">
+        <h2>Stuttgart</h2>
+        <p>Achardweg 17<br>70435 Stuttgart</p>
+        <a class="btn-line" href="mailto:altunriechert@gmail.com?subject=Kurz-Check">altunriechert@gmail.com</a>
+      </div>
+      <div class="contact-info">
+        <h2>Einsatzgebiet</h2>
+        <p>Region Stuttgart<br>Kreis Ludwigsburg</p>
+        <button class="btn-line" type="button" id="copy-mail" data-mail="altunriechert@gmail.com" data-copied="Kopiert.">E-Mail-Adresse kopieren</button>
+        <span class="copy-state" id="copy-state" aria-live="polite"></span>
+      </div>
+      <div class="footer__legal">
+        <a class="btn-line" href="impressum.html">Impressum</a>
+        <a class="btn-line" href="datenschutz.html">Datenschutz</a>
+      </div>
+    </div>
+    <div class="footer__row3">
+      <span class="footer__copy">© 2026 Altun &amp; Riechert. Alle Rechte vorbehalten.</span>
+      <a class="footer__top-link" href="#start">Nach oben
+        <svg viewBox="0 0 19 19" width="19" height="19" aria-hidden="true"><path d="M9.5 15V4M5 8.5 9.5 4 14 8.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+      </a>
+      <span class="footer__credits">Yunus · Calvin · Hamza</span>
+    </div>
   </div>
 </footer>
 
-<script>
-(function () {
-  var btn = document.getElementById("copy-mail");
-  var state = document.getElementById("copy-state");
-  var mail = document.getElementById("mail");
-  function selectText() {
-    var r = document.createRange();
-    r.selectNodeContents(mail);
-    var s = window.getSelection();
-    s.removeAllRanges();
-    s.addRange(r);
-  }
-  btn.addEventListener("click", function () {
-    var text = mail.textContent.trim();
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(function () {
-        state.textContent = "Kopiert.";
-      }).catch(function () {
-        selectText();
-        state.textContent = "Adresse markiert. Jetzt kopieren.";
-      });
-    } else {
-      selectText();
-      state.textContent = "Adresse markiert. Jetzt kopieren.";
-    }
-  });
-})();
-</script>
+<script src="assets/site.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,33 @@
+/* Altun & Riechert – Marken-Tokens (verbindlich)
+   Quelle: Übergabe vom 25.10.2026 und bestehende Website.
+   Schriften immer lokal einbinden (SIL OFL, Lizenztext liegt in fonts/). */
+
+@font-face {
+  font-family: "Archivo";
+  src: url("../fonts/archivo-var.woff2") format("woff2");
+  font-weight: 100 900;
+  font-stretch: 100% 115%;
+  font-display: swap;
+}
+
+:root {
+  /* Kernfarben */
+  --brand-petrol: #123B40;      /* Kachel, dunkle Flächen, Text auf hell */
+  --brand-amber: #E39A2D;       /* &-Zeichen, Akzente, Haupt-Button */
+  --brand-amber-ink: #8A5A10;   /* Amber als Textfarbe auf Weiß (Kontrast) */
+
+  /* Abgeleitete Töne */
+  --brand-petrol-deep: #0C2A2E; /* Hero, Menü, Footer */
+  --brand-petrol-mid: #1F5A60;  /* zweite Petrol-Fläche */
+  --brand-petrol-2: #4E6A6D;    /* Sekundärtext, dritte Petrol-Fläche */
+  --brand-mist: #D3DEDC;        /* helle Petrol-Fläche, Linien */
+  --brand-paper: #F3F6F5;       /* heller Hintergrund */
+  --brand-sand: #F1E4CE;        /* helle Amber-Fläche */
+  --brand-line: #D3DEDC;        /* Linien */
+  --brand-white: #FFFFFF;
+
+  /* Schriften */
+  --font-brand: "Archivo", "Arial Narrow", Arial, sans-serif;   /* Website Altun & Riechert */
+  --font-example: "Bricolage Grotesque", sans-serif;            /* nur Muster-Website */
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}

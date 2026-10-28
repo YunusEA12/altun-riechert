@@ -2,6 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="form-action 'none'; base-uri 'self'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <title>Malerwerkstatt Musterle</title>
@@ -267,7 +268,7 @@ footer a { color: #FFFFFF; }
     <div class="wrap">
       <div class="block-head">
         <h2>Angebot anfragen</h2>
-        <p>Dauert etwa eine Minute. Wir melden uns am nächsten Werktag.</p>
+        <p>Unverbindliche Demo: Hier wird nichts gesendet. Bitte nur Beispieldaten eingeben.</p>
       </div>
       <div class="form-wrap">
         <form id="lead-form" novalidate>
@@ -288,16 +289,18 @@ footer a { color: #FFFFFF; }
           </div>
           <div class="drop">
             <label for="f-fotos">Fotos hinzufügen (optional)</label>
-            <input id="f-fotos" type="file" accept="image/*" multiple>
+            <input id="f-fotos" type="file" accept="image/jpeg,image/png,image/webp" multiple aria-describedby="photo-hint photo-state">
             <div class="thumbs" id="thumbs"></div>
-            <span class="hint">Die Fotos bleiben in dieser Beispielseite auf Ihrem Gerät.</span>
+            <span class="hint" id="photo-hint">Nur lokale Vorschau: bis zu 6 JPG-, PNG- oder WebP-Bilder, je 5 MB, zusammen 20 MB. Die Fotos bleiben auf Ihrem Gerät.</span>
+            <span class="hint" id="photo-state" role="status"></span>
           </div>
           <div class="row">
             <div class="field"><label for="f-name">Name</label><input id="f-name" type="text" autocomplete="name" placeholder="Maria Beispiel"></div>
             <div class="field"><label for="f-tel">Telefon</label><input id="f-tel" type="tel" autocomplete="tel" placeholder="0171 2345678"></div>
           </div>
           <div class="field"><label for="f-ort">Ort</label><input id="f-ort" type="text" placeholder="Beispielstadt"></div>
-          <div><button class="btn" type="submit">Anfrage senden</button></div>
+          <div><button class="btn" id="lead-demo" type="button">Anfrage als Demo testen</button></div>
+          <noscript><p class="hint">Die Demo benötigt JavaScript. Es werden keine Angaben gesendet.</p></noscript>
           <div class="done" id="done" hidden>
             <strong>So würde es auf Ihrer Website laufen:</strong>
             <span id="done-text"></span>
@@ -323,11 +326,13 @@ footer a { color: #FFFFFF; }
           <li><b>Ausbildung 2027 (m/w/d)</b><span>3 Jahre</span></li>
         </ul>
         <form id="job-form" novalidate style="gap:12px">
+          <p class="hint">Bewerbungsdemo: Bitte nur Beispieldaten eingeben. Hier wird nichts gesendet.</p>
           <div class="row">
             <div class="field"><label for="j-name">Name</label><input id="j-name" type="text" autocomplete="name"></div>
             <div class="field"><label for="j-tel">Telefon</label><input id="j-tel" type="tel" autocomplete="tel"></div>
           </div>
-          <div><button class="btn" type="submit">In 60 Sekunden bewerben</button></div>
+          <div><button class="btn" id="job-demo" type="button">Bewerbung als Demo testen</button></div>
+          <noscript><p class="hint">Die Demo benötigt JavaScript. Es werden keine Angaben gesendet.</p></noscript>
           <p class="hint" id="job-done" hidden>Beispiel: Die Bewerbung käme sofort per Mail beim Betrieb an, ganz ohne Anschreiben.</p>
         </form>
       </div>
@@ -422,30 +427,59 @@ footer a { color: #FFFFFF; }
   var range = document.getElementById("compare-range"), cmp = document.getElementById("compare");
   range.addEventListener("input", function () { cmp.style.setProperty("--pos", range.value + "%"); });
 
-  /* Fotos als Vorschau */
+  /* Fotos als lokale, begrenzte Vorschau */
   var files = document.getElementById("f-fotos"), thumbs = document.getElementById("thumbs");
+  var photoState = document.getElementById("photo-state");
+  var readers = [], selection = 0, previewCount = 0;
   files.addEventListener("change", function () {
-    thumbs.innerHTML = "";
-    Array.prototype.slice.call(files.files, 0, 6).forEach(function (f) {
+    var current = ++selection;
+    readers.forEach(function (reader) { if (reader.readyState === 1) reader.abort(); });
+    readers = [];
+    thumbs.textContent = "";
+    photoState.textContent = "";
+    previewCount = 0;
+    var chosen = Array.prototype.slice.call(files.files || []);
+    var total = chosen.reduce(function (sum, f) { return sum + f.size; }, 0);
+    if (chosen.length > 6 || total > 20 * 1024 * 1024 || chosen.some(function (f) {
+      return !/^(image\/jpeg|image\/png|image\/webp)$/.test(f.type) || f.size > 5 * 1024 * 1024;
+    })) {
+      photoState.textContent = "Bitte höchstens 6 JPG-, PNG- oder WebP-Bilder wählen: je maximal 5 MB, zusammen maximal 20 MB.";
+      files.value = "";
+      return;
+    }
+    chosen.forEach(function (f) {
       var rd = new FileReader();
-      rd.onload = function () { var im = new Image(); im.src = rd.result; im.alt = "Ihr Foto"; thumbs.appendChild(im); };
+      readers.push(rd);
+      function failed() { if (current === selection) photoState.textContent = "Ein Bild konnte nicht als Vorschau geladen werden."; }
+      rd.onerror = failed;
+      rd.onload = function () {
+        if (current !== selection) return;
+        var im = new Image();
+        im.alt = "Ihr Foto";
+        im.onload = function () { if (current === selection) { thumbs.appendChild(im); previewCount++; } };
+        im.onerror = failed;
+        im.src = rd.result;
+      };
       rd.readAsDataURL(f);
     });
   });
 
-  /* Formulare zeigen nur, was passieren würde */
-  document.getElementById("lead-form").addEventListener("submit", function (e) {
-    e.preventDefault();
+  /* Native Übermittlung auch bei Enter verhindern; CSP greift zusätzlich ohne JS. */
+  ["lead-form", "job-form"].forEach(function (id) {
+    document.getElementById(id).addEventListener("submit", function (e) { e.preventDefault(); });
+  });
+
+  /* Schaltflächen zeigen nur, was passieren würde. */
+  document.getElementById("lead-demo").addEventListener("click", function () {
     var arten = Array.prototype.slice.call(document.querySelectorAll('input[name="art"]:checked')).map(function (x) { return x.value; });
-    var n = files.files ? files.files.length : 0;
+    var n = previewCount;
     document.getElementById("done-text").textContent =
       "Der Betrieb bekäme sofort eine Mail mit " + (arten.join(", ") || "Ihrer Auswahl") + ", " +
       document.getElementById("f-umfang").value + ", " + n + (n === 1 ? " Foto" : " Fotos") +
       " und Ihrer Telefonnummer. Hier wird nichts gesendet.";
     document.getElementById("done").hidden = false;
   });
-  document.getElementById("job-form").addEventListener("submit", function (e) {
-    e.preventDefault();
+  document.getElementById("job-demo").addEventListener("click", function () {
     document.getElementById("job-done").hidden = false;
   });
 })();
