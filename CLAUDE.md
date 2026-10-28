@@ -185,6 +185,10 @@ Design-Vorlage ist die **Startseite von lpas.com** (Entscheidung Yunus, 25.10.20
 - **Bilder:** Verlaufsüberlagerung von unten (dunkel, ca. 60 %) und eine Farbebene im Marken-Ton mit `mix-blend-mode: multiply`.
 - **Abstände:** feste Spacing-Tokens, keine zufälligen Werte.
 
+### Hero-Animation
+- Die Höhenlinien im Hero sind ein `<canvas>` aus `assets/site.js` (Block „Hero-Hintergrund“): ruhige Bewegung, Ausweichen vor dem Mauszeiger, Puls am Gipfel.
+- Pflicht bleibt: Standbild ohne JS, stehendes Bild bei `prefers-reduced-motion`, Pause außerhalb des Bildschirms. Kommt das echte Teamfoto als Hero, wird die Animation entfernt oder z. B. auf den Footer verlegt (Absprache mit Yunus).
+
 ### Technische Vorgaben
 - **Keine CDNs.** Tailwind höchstens als lokaler Build (Ergebnis-CSS liegt im Repo), sonst eigenes CSS. Kein `cdn.tailwindcss.com`.
 - **Platzhalter-Bilder lokal** unter `images/placeholder/` (z. B. selbst erzeugte SVGs), **kein** `placehold.co` oder andere externe Bilddienste.

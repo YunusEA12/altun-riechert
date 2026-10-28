@@ -1,5 +1,13 @@
 # Sicherheitsmonitor – Ausgangsstand
 
+## Folgeprüfung 28.10.2026
+
+Aktueller geprüfter Stand: Commit `d352842` plus uncommittierte Änderungen, insbesondere Canvas-Animation in `assets/site.js` und zugehöriges CSS. Vollständige Dateihashes der öffentlichen Manifest-Dateien, Prüfwerkzeuge und lokalen Export-/Serverregeln: `docs/security-baseline-2026-10-28.json`. Diese Momentaufnahme ist für den nächsten Vergleich maßgeblich; die ursprüngliche Baseline bleibt als Historie erhalten.
+
+Seit der ersten Prüfung: englische Seite, eigene SVG-Grafiken, aktualisierte Markenfarben, Manifest und lokaler Canvas-Hintergrund ergänzt. Den aktuellen JavaScript-Code und die Ressourcenverweise der neuen Seiten/Grafiken geprüft: kein neuer belegter DOM-XSS-Eingabepfad, keine neue aktive externe Einbindung oder eigenes Backend festgestellt. Canvas verwendet lokale Konstanten und Zeigerkoordinaten; keine Datenübertragung darin. Prüfwerkzeuge und Demo-Sicherheitsfixes sind gegenüber der ursprünglichen Baseline unverändert. Keine neue Deployment-Pipeline festgestellt; lokaler Server weiterhin an 127.0.0.1 gebunden.
+
+Ergebnis: `python scripts/security_check.py` prüft 21 Assets, 0 Fehler, 1 bereits bekannte Warnung `INTERNAL_HISTORY`. Alle 13 Python-Tests und `node scripts/test_demo_security.cjs` bestanden. Keine Produktdateien geändert. S-01, S-02 und S-05 bleiben wie unten beschrieben offen; keine neue Nutzerentscheidung und keine erneute Benachrichtigung wegen unveränderter Risiken. Keine Live-Hosting-, Netzwerk- oder Browser-Penetrationsprüfung in diesem Lauf.
+
 Erste Prüfung und lokale Härtung: 25.10.2026.
 
 Git-Basis: `de6a7b8d8bce858cdbcd408551970df9d13c542d`. Es gibt zahlreiche uncommittierte Änderungen von Claude und Codex; der Commit allein bezeichnet deshalb nicht den geprüften Website-Stand. SHA-256-Hashes der öffentlichen Dateien und Prüfwerkzeuge stehen in `docs/security-baseline.json`.

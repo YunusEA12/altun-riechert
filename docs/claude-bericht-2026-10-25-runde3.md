@@ -73,6 +73,13 @@ Gleiches Raster vor und nach der Runde. Gewichtet nach dem Zweck der Seite: Ein 
 
 Damit sind realistisch **93–95** erreichbar. 100 setzt zusätzlich echte Nutzer- und Screenreader-Tests voraus.
 
+## 4b. Nachtrag: animierte Höhenlinien im Hero (Wunsch Yunus)
+
+- **Umsetzung:** `assets/site.js` (Block „Hero-Hintergrund“) zeichnet die Höhenlinien auf ein `<canvas>`, das das Standbild `images/grafik/hero.svg` ersetzt. Ohne Maus „atmen“ und wellen sich die Linien langsam, am Gipfel pulsiert alle 4 s ein Amber-Ring. Mit Maus (nur Maus/Stift, nicht Touch) weichen die Linien dem Zeiger weich aus, der Hügel folgt leicht; beim Verlassen gleitet alles zurück.
+- **Abschaltungen:** ohne JS bleibt das SVG; bei `prefers-reduced-motion` ein stehendes Bild; Pause, wenn der Hero nicht im Bild oder der Tab verborgen ist. Größe folgt per `ResizeObserver`, Pixeldichte max. 2×.
+- **Tests (Browser-Pane):** Zeichenzeit pro Bild Median 0,8 ms, max. 2,3 ms. Mit eingefrorener Zeit: ohne Maus 0 geänderte Pixel; mit Maus nahe am Zeiger 2.657/25.600 Pixel geändert (Ausweichen), weit weg 1.328 (Parallaxe); nach dem Verlassen 0 Unterschied zum Ausgangsbild. Handy 375 × 812: Canvas 750 × 1624 px, kein Überlauf, keine Konsolenfehler. Lighthouse mit Animation: DE Mobile 98/100/100/63 (TBT 90 ms), DE Desktop 100/100/100/63.
+- **Nicht getestet:** echtes Gerät mit `prefers-reduced-motion` (Codepfad vorhanden, nicht emuliert), Akkuverbrauch auf echten Handys.
+
 ## 5. Wichtig ab jetzt
 
 - **Zwei Sprachen = zwei Dateien.** Jede Textänderung in `index.html` **und** `en/index.html`.

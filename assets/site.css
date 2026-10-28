@@ -214,6 +214,9 @@ a.lang__opt:hover { background: rgba(255, 255, 255, .15); }
   display: flex; flex-direction: column; justify-content: flex-end; gap: 40px;
 }
 .hero__bg { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; }
+/* Animierte Höhenlinien (assets/site.js) ersetzen das Standbild nur, wenn JS läuft */
+.hero__canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+.hero__main.has-canvas .hero__bg { visibility: hidden; }
 .hero__overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.6), rgba(0,0,0,.25)); }
 .hero__details {
   position: relative;
@@ -263,6 +266,7 @@ a.lang__opt:hover { background: rgba(255, 255, 255, .15); }
 .hero-pin.is-pinned .hero { position: sticky; top: 0; height: 100vh; overflow: hidden; }
 .hero-pin.is-pinned .hero__main { position: absolute; inset: 0 auto 0 0; width: 86.1%; min-height: 0; padding: 60px 40px 60px var(--gutter); }
 .hero-pin.is-pinned .hero__bg,
+.hero-pin.is-pinned .hero__canvas,
 .hero-pin.is-pinned .hero__overlay { width: 100vw; }
 .hero-pin.is-pinned .hero__strip {
   position: absolute; top: 0; bottom: 0; left: 86.1%;
