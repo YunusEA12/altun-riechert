@@ -20,6 +20,7 @@
 <link rel="preload" href="../fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../brand_assets/tokens.css">
 <link rel="stylesheet" href="../assets/site.css">
+<script>(function (d) { d.classList.add("js"); var m = function (q) { return window.matchMedia(q).matches; }; if (m("(min-width: 1024px)") && !m("(prefers-reduced-motion: reduce)") && window.innerHeight >= 640) d.classList.add("pin-ok"); })(document.documentElement);</script>
 </head>
 <body>
 
@@ -95,12 +96,13 @@
       <div class="hero__strip">
         <!-- Online presence: petrol tones -->
         <article class="panel" style="--panel:#123B40;--panel-ink:#FFFFFF" data-panel="webseiten">
-          <div class="panel__image"><video src="../videos/panel-webseiten.mp4" poster="../images/grafik/panel-webseiten.svg" autoplay loop muted playsinline aria-hidden="true"></video></div>
+          <div class="panel__image"><video src="../videos/panel-webseiten.mp4" poster="../images/grafik/panel-webseiten.svg" loop muted playsinline preload="none" aria-hidden="true"></video></div>
           <div class="panel__band">
             <span class="panel__area">Online presence</span>
             <nav class="panel__links" aria-label="Websites">
               <a href="../beispiel/" hreflang="de">See the sample website (German)</a>
               <button type="button" class="panel__details-link" data-open-panel="webseiten">See details</button>
+              <a class="panel__nojs-link" href="mailto:altunriechert@gmail.com?subject=Kurz-Check%3A%20Websites">Request a quick check</a>
             </nav>
             <button type="button" class="btn-circle panel__plus" data-open-panel="webseiten" aria-label="See details for websites"><svg viewBox="0 0 19 19" width="19" height="19" aria-hidden="true"><path d="M9.5 3v13M3 9.5h13" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
             <h2 class="panel__title t-xxl">Websites</h2>
@@ -110,7 +112,7 @@
         </article>
 
         <article class="panel" style="--panel:#1F5A60;--panel-ink:#FFFFFF" data-panel="sichtbar">
-          <div class="panel__image"><video src="../videos/panel-sichtbar.mp4" poster="../images/panel-sichtbar.jpg" autoplay loop muted playsinline aria-hidden="true"></video></div>
+          <div class="panel__image"><video src="../videos/panel-sichtbar.mp4" poster="../images/panel-sichtbar.jpg" loop muted playsinline preload="none" aria-hidden="true"></video></div>
           <div class="panel__band">
             <span class="panel__area">Online presence</span>
             <nav class="panel__links" aria-label="Visible">
@@ -125,7 +127,7 @@
         </article>
 
         <article class="panel" style="--panel:#4E6A6D;--panel-ink:#FFFFFF" data-panel="fachkraefte">
-          <div class="panel__image"><video src="../videos/panel-fachkraefte.mp4" poster="../images/panel-fachkraefte.jpg" autoplay loop muted playsinline aria-hidden="true"></video></div>
+          <div class="panel__image"><video src="../videos/panel-fachkraefte.mp4" poster="../images/panel-fachkraefte.jpg" loop muted playsinline preload="none" aria-hidden="true"></video></div>
           <div class="panel__band">
             <span class="panel__area">Online presence</span>
             <nav class="panel__links" aria-label="Recruiting">
@@ -141,11 +143,11 @@
 
         <!-- AI integration: amber tones -->
         <article class="panel" style="--panel:#E39A2D;--panel-ink:#111111" data-panel="ki-assistent">
-          <div class="panel__image"><video src="../videos/panel-ki-assistent.mp4" poster="../images/grafik/panel-ki-assistent.svg" autoplay loop muted playsinline aria-hidden="true"></video></div>
+          <div class="panel__image"><video src="../videos/panel-ki-assistent.mp4" poster="../images/grafik/panel-ki-assistent.svg" loop muted playsinline preload="none" aria-hidden="true"></video></div>
           <div class="panel__band">
             <span class="panel__area">AI integration</span>
             <nav class="panel__links" aria-label="AI assistant">
-              <button type="button" class="panel__details-link" data-open-panel="ki-assistent">Details &amp; Live Demo</button>
+              <button type="button" class="panel__details-link" data-open-panel="ki-assistent">Details &amp; sample chat</button>
               <a href="mailto:altunriechert@gmail.com?subject=Anfrage%3A%20KI-Assistent">Ask about assistant</a>
             </nav>
             <button type="button" class="btn-circle panel__plus" data-open-panel="ki-assistent" aria-label="See details for AI assistant"><svg viewBox="0 0 19 19" width="19" height="19" aria-hidden="true"><path d="M9.5 3v13M3 9.5h13" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
@@ -156,7 +158,7 @@
         </article>
 
         <article class="panel" style="--panel:#F1E4CE;--panel-ink:#123B40" data-panel="automatisierung">
-          <div class="panel__image"><video src="../videos/panel-automatisierung.mp4" poster="../images/panel-automatisierung.jpg" autoplay loop muted playsinline aria-hidden="true"></video></div>
+          <div class="panel__image"><video src="../videos/panel-automatisierung.mp4" poster="../images/panel-automatisierung.jpg" loop muted playsinline preload="none" aria-hidden="true"></video></div>
           <div class="panel__band">
             <span class="panel__area">AI integration</span>
             <nav class="panel__links" aria-label="Automation">
@@ -289,14 +291,14 @@
       <h2 class="modal-title" id="modal-title">Websites &amp; Online Presence</h2>
       <div class="modal-price-card">
         <span class="modal-price">From €1,490 fixed price</span>
-        <span class="modal-pilot">+ €29 / month hosting &amp; care · 3 pilot spots free of charge</span>
+        <span class="modal-pilot">+ €29 / month hosting &amp; care · quick check free of charge</span>
       </div>
     </div>
     <p class="modal-section-title">What is included:</p>
     <ul class="modal-list">
-      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Custom &amp; modern:</strong> No bloated site builders. Handcrafted design tailored to your trade that builds immediate trust.</div></li>
-      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Under 1 second load time:</strong> Lightning fast on every smartphone so searching customers don't bounce.</div></li>
-      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>100% GDPR compliant:</strong> Local fonts, no tracking cookies, no annoying cookie banners needed.</div></li>
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Made for your business:</strong> No bloated site builders – a clear, high-quality design meant to build trust.</div></li>
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Fast on mobile:</strong> Built lean so the site loads quickly on the go and visitors don't give up.</div></li>
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Privacy-friendly by design:</strong> Local fonts, no tracking, no cookies – so no cookie banner is needed.</div></li>
       <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>One-tap calling:</strong> Phone number is tap-to-call immediately on mobile screens.</div></li>
     </ul>
     <div class="modal-benefit">
@@ -315,29 +317,30 @@
       <h2 class="modal-title" id="modal-title">Visible – Google Business &amp; Reviews</h2>
       <div class="modal-price-card">
         <span class="modal-price">€390 fixed price</span>
-        <span class="modal-pilot">One-time · 3 pilot spots for €99 in exchange for a review</span>
+        <span class="modal-pilot">One-time · Launch phase: 3 pilot places free of charge in exchange for a reference</span>
       </div>
     </div>
     <p class="modal-section-title">What is included:</p>
     <ul class="modal-list">
       <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Google Business Profile:</strong> Fully claimed and configured with correct address, operating hours, photos, and services.</div></li>
-      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Top of regional search:</strong> Your business gets found when locals search for your trade.</div></li>
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Get found more easily:</strong> The goal is for your business to show up in Maps and search when locals look for your trade.</div></li>
       <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Review QR cards:</strong> Printed cards for vehicles and job sites – happy clients scan and review in 10 seconds.</div></li>
-      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Before-and-after audit:</strong> Clear documentation of how your ranking improved.</div></li>
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Before-and-after report:</strong> We document your visibility before and after our work – honestly, even if little changes.</div></li>
     </ul>
     <div class="compare-demo">
+      <p class="compare-note">Example – a typical starting point and the goal of our work, not a promised result.</p>
       <div class="compare-tabs">
-        <button type="button" class="compare-tab is-active" data-target="nachher">✅ With Altun &amp; Riechert</button>
-        <button type="button" class="compare-tab" data-target="vorher">❌ Without Optimization</button>
+        <button type="button" class="compare-tab is-active" data-target="nachher">✅ Goal</button>
+        <button type="button" class="compare-tab" data-target="vorher">❌ Typical starting point</button>
       </div>
       <div class="compare-content">
         <div class="compare-view" data-view="nachher">
-          <div class="compare-item"><span>📍</span><span><strong>Top 3 in Google Maps:</strong> Immediate visibility in local search queries.</span></div>
-          <div class="compare-item"><span>⭐</span><span><strong>Consistent 5-star reviews:</strong> QR cards prompt happy clients right when work finishes.</span></div>
+          <div class="compare-item"><span>📍</span><span><strong>Higher up in Google Maps:</strong> A complete, well-kept profile improves your chances in local searches.</span></div>
+          <div class="compare-item"><span>⭐</span><span><strong>More recent reviews:</strong> QR cards let happy clients leave a review right after the job – voluntarily.</span></div>
           <div class="compare-item"><span>📞</span><span><strong>Direct phone calls:</strong> Potential clients call with one tap straight from search results.</span></div>
         </div>
         <div class="compare-view" data-view="vorher" hidden>
-          <div class="compare-item"><span>❌</span><span><strong>Not found:</strong> Hidden on page 3 of Google search results.</span></div>
+          <div class="compare-item"><span>❌</span><span><strong>Hard to find:</strong> The business barely shows up in local searches.</span></div>
           <div class="compare-item"><span>❌</span><span><strong>No recent reviews:</strong> Last entry several years old.</span></div>
           <div class="compare-item"><span>❌</span><span><strong>Incomplete profile:</strong> Opening hours and phone number missing or outdated.</span></div>
         </div>
@@ -384,14 +387,14 @@
     </div>
     <p class="modal-section-title">What the assistant does for you:</p>
     <ul class="modal-list">
-      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>24/7 customer front-desk:</strong> Answers inquiries regarding services, emergency call-outs, and scheduling around the clock.</div></li>
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Available around the clock:</strong> Answers inquiries regarding services, emergency call-outs, and scheduling around the clock.</div></li>
       <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Pre-qualifies inquiries:</strong> Automatically collects contact details, trade requirements, and urgency.</div></li>
       <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Trained on your business:</strong> Knows your working area, pricing guidelines, and schedule.</div></li>
     </ul>
     <div class="chat-demo">
       <div class="chat-demo__header">
         <span class="chat-demo__dot"></span>
-        <span>Live preview: How the AI answers on your website</span>
+        <span>Example preview with prepared answers from a fictitious business</span>
       </div>
       <div class="chat-demo__messages" id="modal-chat-msgs">
         <div class="chat-msg chat-msg--bot">Hello! How can I assist you today? Feel free to ask about our services or request an on-site appointment.</div>

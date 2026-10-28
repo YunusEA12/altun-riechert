@@ -300,17 +300,17 @@ a.lang__opt:hover { background: rgba(255, 255, 255, .15); }
 }
 
 /* Fixierter Hero – nur wenn site.js die Klasse setzt (Desktop, Bewegung erlaubt) */
-.hero-pin.is-pinned .hero { position: sticky; top: 0; height: 100vh; overflow: hidden; }
-.hero-pin.is-pinned .hero__main { position: absolute; inset: 0 auto 0 0; width: 86.1%; min-height: 0; padding: 60px 40px 60px var(--gutter); }
-.hero-pin.is-pinned .hero__bg,
-.hero-pin.is-pinned .hero__canvas,
-.hero-pin.is-pinned .hero__overlay { width: 100vw; }
-.hero-pin.is-pinned .hero__strip {
+.pin-ok .hero-pin .hero { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+.pin-ok .hero-pin .hero__main { position: absolute; inset: 0 auto 0 0; width: 86.1%; min-height: 0; padding: 60px 40px 60px var(--gutter); }
+.pin-ok .hero-pin .hero__bg,
+.pin-ok .hero-pin .hero__canvas,
+.pin-ok .hero-pin .hero__overlay { width: 100vw; }
+.pin-ok .hero-pin .hero__strip {
   position: absolute; top: 0; bottom: 0; left: 86.1%;
   overflow: visible; background: none; will-change: transform;
 }
-.hero-pin.is-pinned .panel { height: 100%; }
-.hero-pin.is-pinned .panel--last { display: block; background: var(--white); }
+.pin-ok .hero-pin .panel { height: 100%; }
+.pin-ok .hero-pin .panel--last { display: block; background: var(--white); }
 
 /* ---------- Über uns ---------- */
 .about { padding-top: 160px; }
@@ -596,6 +596,11 @@ a.lang__opt:hover { background: rgba(255, 255, 255, .15); }
 
 /* Interactive Compare Demo in Sichtbar */
 .compare-demo { background: var(--paper); border-radius: 10px; padding: 16px; margin-bottom: 24px; }
+.compare-note { margin: 0 0 12px; font-size: 13px; color: var(--grey); }
+
+/* Detail-Knöpfe brauchen JavaScript: ohne JS ausblenden, dafür bleibt der Kurz-Check-Link sichtbar */
+html:not(.js) [data-open-panel] { display: none; }
+html.js .panel__nojs-link { display: none; }
 .compare-tabs { display: flex; gap: 6px; margin-bottom: 12px; }
 .compare-tab {
   flex: 1; padding: 8px 10px; border-radius: 6px; font-size: 12px; font-weight: 600;

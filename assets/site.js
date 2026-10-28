@@ -1,5 +1,6 @@
 (function () {
   var root = document.documentElement;
+  root.classList.add("js");   // Bedienelemente, die nur mit JS funktionieren, werden erst jetzt gezeigt
   var desktop = window.matchMedia("(min-width: 1024px)");
   var calm = window.matchMedia("(prefers-reduced-motion: reduce)");
 
@@ -37,6 +38,7 @@
     // Bei wenig Höhe (kleines Fenster, Zoom) passt der fixierte Hero nicht → normale Scroll-Leiste
     var usePin = desktop.matches && !calm.matches && window.innerHeight >= 640;
     pin.classList.toggle("is-pinned", usePin);
+    root.classList.toggle("pin-ok", usePin);   // gleiche Entscheidung wie das Inline-Skript im <head>
     if (!usePin) {
       pin.style.height = "";
       strip.style.transform = "";
@@ -77,18 +79,20 @@
   }
 
   // Videos in den Panels: bei reduzierter Bewegung pausieren
+  // Videos laden erst, wenn ihr Panel sichtbar wird (preload="none"), und laufen nur dort –
+  // spart Datenvolumen auf dem Handy. Ohne JS bleibt das Vorschaubild stehen.
   var panelVideos = document.querySelectorAll(".panel__image video");
-  if (calm.matches) {
-    panelVideos.forEach(function (v) { v.pause(); });
+  function setVideo(v, on) {
+    if (on && !calm.matches) { v.play().catch(function () {}); } else { v.pause(); }
+  }
+  if ("IntersectionObserver" in window) {
+    var videoIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { e.target.dataset.visible = e.isIntersecting ? "1" : ""; setVideo(e.target, e.isIntersecting); });
+    }, { threshold: 0.25 });   // erst laden, wenn ein Viertel des Panels sichtbar ist
+    panelVideos.forEach(function (v) { videoIo.observe(v); });
   }
   calm.addEventListener("change", function () {
-    panelVideos.forEach(function (v) {
-      if (calm.matches) {
-        v.pause();
-      } else {
-        v.play().catch(function () {});
-      }
-    });
+    panelVideos.forEach(function (v) { setVideo(v, v.dataset.visible === "1"); });
   });
 
   // Hero-Hintergrund: Höhenlinien bewegen sich ruhig und weichen dem Mauszeiger aus.
@@ -251,7 +255,10 @@
   var modalContent = document.getElementById("modal-content");
   var modalClose = document.getElementById("modal-close");
 
+  var lastTrigger = null;   // Fokus kehrt nach dem Schließen hierher zurück
+
   function openPanelModal(panelId) {
+    lastTrigger = document.activeElement;
     var tmpl = document.getElementById("tmpl-panel-" + panelId);
     if (!tmpl || !modal || !modalContent) return;
     modalContent.textContent = "";
@@ -285,6 +292,7 @@
     });
     modal.addEventListener("close", function () {
       root.style.overflow = "";
+      if (lastTrigger && typeof lastTrigger.focus === "function") lastTrigger.focus();
     });
   }
 
@@ -310,7 +318,12 @@
     var chatMsgs = modalContent.querySelector("#modal-chat-msgs");
     var chips = modalContent.querySelectorAll(".chat-chip");
     if (chatMsgs && chips.length) {
-      var botAnswers = {
+      // Vorbereitete Beispiel-Antworten eines erfundenen Betriebs (keine echte KI-Anbindung)
+      var botAnswers = root.lang === "en" ? {
+        termin: "Sure! We still have free slots for an on-site visit next week. Which day suits you best? Just leave your name and phone number.",
+        angebot: "You usually receive a clear fixed-price quote within 24 to 48 hours after the site visit – no hidden costs.",
+        notfall: "Yes! For urgent emergencies you can call us directly, or leave your contact details here and we'll get back to you as soon as possible."
+      } : {
         termin: "Gerne! Für eine Besichtigung vor Ort haben wir nächste Woche noch freie Termine. Welcher Wochentag passt dir am besten? Hinterlasse mir einfach kurz deinen Namen und deine Telefonnummer.",
         angebot: "In der Regel erhältst du ein transparentes Festpreis-Angebot innerhalb von 24 bis 48 Stunden nach dem Besichtigungstermin – ohne versteckte Kosten.",
         notfall: "Ja! Bei dringenden Notfällen erreichst du uns direkt unter der Telefonnummer oder hinterlässt mir hier kurz deine Kontaktdaten – wir melden uns umgehend."

@@ -55,6 +55,41 @@
 
 Lighthouse Mobile 99/100/100/63, Desktop 100/100/100/63 (SEO nur wegen `noindex`, TBT 0 ms) · `unittest` 13 OK · Demo-Test PASS · Sicherheitscheck 0 Fehler · Export `--strict` 0/0.
 
+## Runde 2: nach Calvins Videos und Detail-Fenstern (Ziel Yunus: jede Kategorie über 70)
+
+Calvin hat auf `main` Videos für alle 5 Panels, Detail-Fenster pro Leistung und eine Chat-Demo ergänzt. Zusammengeführt mit dieser Runde, danach geprüft und überarbeitet:
+
+| Änderung | Grund |
+|----------|-------|
+| Erfolgsversprechen umformuliert: „Ganz oben in Maps“, „Top-3 in Google Maps“, „Regelmäßig 5 Sterne“, „Unter 1 Sekunde Ladezeit“, „100 % DSGVO-konform“ → Ziele statt Garantien; Vorher/Nachher als „Beispiel, kein Ergebnisversprechen“ gekennzeichnet | CLAUDE.md Regel 5 (keine Erfolgsgarantien), Abmahnrisiko |
+| EN: „€99 in exchange for a review“ → „free of charge in exchange for a reference“ | Bewertungen nie als Gegenleistung (LG Hildesheim, 11 O 12/21) |
+| Pilotplätze nur noch bei „Sichtbar“ (nicht bei Webseiten), „kostenlos gegen Referenz“ wie im Hero | CLAUDE.md Abschnitt 2 |
+| „Live-Vorschau“ → „Beispiel-Vorschau mit vorbereiteten Antworten eines erfundenen Betriebs“; Chat antwortet auf der EN-Seite englisch | keine Täuschung, Beispiele kennzeichnen |
+| Detail-Knöpfe erst mit JS sichtbar, ohne JS bleibt der Kurz-Check-Link; Fokus kehrt nach dem Schließen zum Knopf zurück | Regel 6 (ohne JS benutzbar), Tastaturbedienung |
+| Videos ohne Tonspur, 960 px, `faststart`: 10,1 MB → 1,9 MB; Vorschaubilder 2,1 MB → 0,2 MB; Videos laden erst, wenn ein Viertel des Panels sichtbar ist | Datenvolumen am Handy: Startgewicht 961 → 395 KiB |
+| Fixierter Hero wird schon im `<head>` entschieden | behebt Layoutverschiebung (Desktop CLS 0,126 → 0) |
+
+**Nicht übernommen:** Branch `test` (älterer Umbau mit Sie-Anrede, PHP-Kontaktformular, „Preise immer auf Anfrage“ – widerspricht den aktuellen Regeln). Darin steht die Domain `bal-mio.de` – mit dem Team klären.
+
+**Tests:** Lighthouse Mobile 95/100/100/63 (CLS 0), Desktop 100/100/100/63 · `unittest` 13 OK · Demo-Test PASS · Sicherheitscheck 0 Fehler · Export `--strict` 0/0 · Browser: Detail-Fenster DE/EN, Fokus, Beispiel-Hinweis, keine verbotenen Aussagen mehr im HTML, fixierter Hero.
+
+### Bewertung nach Runde 2
+
+| Kategorie | vorher | jetzt | Was die Zahl noch begrenzt |
+|-----------|-------:|------:|----------------------------|
+| Weg zur Anfrage | 90 | **92** | kein Telefon / WhatsApp |
+| Verständlichkeit & Angebot | 80 | **88** | KI-Umfang „auf Anfrage“ |
+| Vertrauen & Echtheit | 52 | **64** | keine Teamfotos, Gmail-Adresse, Impressum-Platzhalter, Hamza ohne Angaben |
+| Gestaltung & Markenbild | 82 | **86** | Team noch mit Initialen |
+| Mobile | 90 | **92** | – |
+| Technik/Performance/Barrierefreiheit | 93 | **95** | kein Test mit echtem Screenreader/Gerät |
+| Mehrsprachigkeit & Veröffentlichungsreife | 45 | **50** | Impressum unvollständig, Hoster/Domain offen, Repo öffentlich |
+| **Gesamt** | **~76** | **~81** | |
+
+**Ehrlich:** Zwei Kategorien liegen noch unter 70. Beide lassen sich nicht im Code heben, ohne Angaben zu erfinden:
+- **Vertrauen → über 70:** Teamfoto + Porträts (+6), Domain-E-Mail statt Gmail (+3), Hamzas Angaben (+2).
+- **Veröffentlichungsreife → über 70:** Impressum vollständig (+12), Hoster + Domain festgelegt und in der Datenschutzerklärung (+8), Repo privat (+3).
+
 ## Was für 90+ fehlt (nur mit dem Team)
 
 Echte Fotos · Impressum vollständig · eigene Domain + Domain-Mail · Telefonnummer · Hamzas Angaben · konkrete KI-Pakete · erste echte Referenz · Entscheidung Sie/Du.
