@@ -334,8 +334,6 @@
     io.observe(el);
   });
 
-  document.querySelectorAll(".line-label").forEach(function (el) { io.observe(el); });
-
   // Listen nacheinander erscheinen lassen
   [".pillars > .pillar", ".steps__list > .step", ".faq__item", ".team__list > .person", ".panel"].forEach(function (sel) {
     if (sel === ".panel" && window.matchMedia("(min-width: 1024px)").matches) return;   // Desktop: Panels fahren ohnehin herein
@@ -374,7 +372,7 @@
 
   // Welle beim Klick
   document.addEventListener("pointerdown", function (e) {
-    var t = e.target.closest(".btn, .topbar__cta, .menu-btn, .btn-circle, .chat-chip, .compare-tab");
+    var t = e.target.closest(".btn, .topbar__cta, .menu-btn, .btn-circle");
     if (!t) return;
     var r = t.getBoundingClientRect(), size = Math.max(r.width, r.height) * 2.2;
     var dot = document.createElement("span");
@@ -401,7 +399,7 @@
     el.addEventListener("pointerleave", function () { el.style.translate = ""; });
   });
 
-  // Mausbewegung als --mx/--my (-0,5 … 0,5) für Panels und Team
+  // Mausbewegung als --mx/--my (-0,5 … 0,5) für die Panels
   function track(sel) {
     document.querySelectorAll(sel).forEach(function (el) {
       el.addEventListener("pointermove", function (e) {
@@ -413,7 +411,6 @@
     });
   }
   track(".panel");
-  track(".person");
 
   // Mauszeiger-Begleiter
   var ring = document.createElement("div");
@@ -425,7 +422,7 @@
     if (e.pointerType !== "mouse") return;
     tx = e.clientX; ty = e.clientY;
     if (!ring.classList.contains("is-visible")) { cx = tx; cy = ty; ring.classList.add("is-visible"); }
-    ring.classList.toggle("is-hover", !!e.target.closest("a, button, .panel, [data-open-panel]"));
+    ring.classList.toggle("is-hover", !!e.target.closest("a, button, .panel"));
     if (!moving) { moving = true; requestAnimationFrame(follow); }
   });
   document.addEventListener("pointerleave", function () { ring.classList.remove("is-visible"); });
