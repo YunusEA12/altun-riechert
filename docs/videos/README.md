@@ -1,6 +1,6 @@
 # Videos: Herkunft und Neuerstellung
 
-Alle Videos aus der Runde vom 29.10.2026 sind **selbst erstellt**. Es gibt keine fremden Aufnahmen, keine Stock-Clips und keine Musik.
+Alle Videos aus der Runde vom 29.10.2026 sind **selbst erstellt**. Die drei Panel-Videos (Sichtbar, Fachkräfte, Automatisierung) bauen auf den bisherigen Panel-Bildern aus dem Repo auf (erstes Bild der alten Clips als `first-<name>.png`, gerendert mit `render-panels.html`). Es gibt keine fremden Aufnahmen, keine Stock-Clips und keine Musik.
 Damit gibt es auch keine Lizenz- oder Abmahnrisiken durch Dritte.
 
 | Datei | Inhalt | Entstehung |
@@ -9,6 +9,9 @@ Damit gibt es auch keine Lizenz- oder Abmahnrisiken durch Dritte.
 | `videos/ablauf.mp4` | E-Mail → Check-Liste → 15-Minuten-Gespräch | Canvas-Animation `scenes.js`, Szene `ablauf` |
 | `videos/kontakt.mp4` | Höhenlinien mit Amber-Puls am Gipfel | Canvas-Animation `scenes.js`, Szene `kontakt` |
 | `videos/beispiel-muster.mp4` | Durchscrollen der eigenen Muster-Website `beispiel/` | Bildschirmaufnahme `rec_beispiel.js` |
+| `videos/panel-sichtbar.mp4` | Handy im Transporter: Pin fällt auf die Karte, fünf Sterne füllen sich | Animation `scenes2.js` über Calvins Panel-Bild |
+| `videos/panel-fachkraefte.mp4` | Handwerker am Handy: Formular füllt sich, Bewerbungs-Karten steigen auf | Animation `scenes2.js` über Calvins Panel-Bild |
+| `videos/panel-automatisierung.mp4` | Laptop: Datenpakete laufen durch den Ablauf, Knoten leuchten | Animation `scenes2.js` über Calvins Panel-Bild |
 
 Jeweils auch in `videos/mobil/` (640 px). Vorschaubilder: `images/<name>.webp`.
 
