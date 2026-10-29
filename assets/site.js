@@ -242,121 +242,13 @@
     }
   });
 
-  // Panel Detail-Modal („Draufdrücken, dann kommt Beschreibung“)
-  var modal = document.getElementById("panel-modal");
-  var modalContent = document.getElementById("modal-content");
-  var modalClose = document.getElementById("modal-close");
-
-  function openPanelModal(panelId) {
-    var tmpl = document.getElementById("tmpl-panel-" + panelId);
-    if (!tmpl || !modal || !modalContent) return;
-    modalContent.textContent = "";
-    modalContent.appendChild(tmpl.content.cloneNode(true));
-    if (typeof modal.showModal === "function") {
-      modal.showModal();
-    } else {
-      modal.setAttribute("open", "");
-    }
-    root.style.overflow = "hidden";
-    bindModalInteractive(panelId);
-    if (modalClose) modalClose.focus();
-  }
-
-  function closePanelModal() {
-    if (!modal) return;
-    if (typeof modal.close === "function") {
-      modal.close();
-    } else {
-      modal.removeAttribute("open");
-    }
-    root.style.overflow = "";
-  }
-
-  if (modalClose) {
-    modalClose.addEventListener("click", closePanelModal);
-  }
-  if (modal) {
-    modal.addEventListener("click", function (e) {
-      if (e.target === modal) closePanelModal();
+  // Ganzes Panel anklickbar: führt zur Leistungs-Unterseite (die Links im Panel funktionieren auch ohne JS)
+  document.querySelectorAll(".panel[data-href]").forEach(function (panel) {
+    panel.addEventListener("click", function (e) {
+      if (e.target.closest("a, button")) return;
+      window.location.href = panel.getAttribute("data-href");
     });
-    modal.addEventListener("close", function () {
-      root.style.overflow = "";
-    });
-  }
-
-  // Interaktive Klicks auf Panels und Buttons
-  document.addEventListener("click", function (e) {
-    var trigger = e.target.closest("[data-open-panel]");
-    if (trigger) {
-      e.preventDefault();
-      openPanelModal(trigger.getAttribute("data-open-panel"));
-      return;
-    }
-    var panel = e.target.closest(".panel[data-panel]");
-    if (panel && !e.target.closest("a") && !e.target.closest("button")) {
-      openPanelModal(panel.getAttribute("data-panel"));
-    }
   });
-
-  // Interaktive Demos innerhalb des Modals
-  function bindModalInteractive(panelId) {
-    if (!modalContent) return;
-
-    // 1. KI-Assistent Mini-Chat Demo
-    var chatMsgs = modalContent.querySelector("#modal-chat-msgs");
-    var chips = modalContent.querySelectorAll(".chat-chip");
-    if (chatMsgs && chips.length) {
-      var botAnswers = {
-        termin: "Gerne! Für eine Besichtigung vor Ort haben wir nächste Woche noch freie Termine. Welcher Wochentag passt dir am besten? Hinterlasse mir einfach kurz deinen Namen und deine Telefonnummer.",
-        angebot: "In der Regel erhältst du ein transparentes Festpreis-Angebot innerhalb von 24 bis 48 Stunden nach dem Besichtigungstermin – ohne versteckte Kosten.",
-        notfall: "Ja! Bei dringenden Notfällen erreichst du uns direkt unter der Telefonnummer oder hinterlässt mir hier kurz deine Kontaktdaten – wir melden uns umgehend."
-      };
-      chips.forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          var qKey = btn.getAttribute("data-q");
-          var answer = botAnswers[qKey];
-          if (!answer) return;
-
-          var uMsg = document.createElement("div");
-          uMsg.className = "chat-msg chat-msg--user";
-          uMsg.textContent = btn.textContent.replace(/^[„"]|[“"]$/g, "");
-          chatMsgs.appendChild(uMsg);
-
-          var typing = document.createElement("div");
-          typing.className = "chat-msg chat-msg--bot chat-typing";
-          for (var i = 0; i < 3; i++) {
-            typing.appendChild(document.createElement("span"));
-          }
-          chatMsgs.appendChild(typing);
-          chatMsgs.scrollTop = chatMsgs.scrollHeight;
-
-          setTimeout(function () {
-            if (typing.parentNode) typing.parentNode.removeChild(typing);
-            var bMsg = document.createElement("div");
-            bMsg.className = "chat-msg chat-msg--bot";
-            bMsg.textContent = answer;
-            chatMsgs.appendChild(bMsg);
-            chatMsgs.scrollTop = chatMsgs.scrollHeight;
-          }, 600);
-        });
-      });
-    }
-
-    // 2. Sichtbar Vorher/Nachher Umschalter
-    var compareTabs = modalContent.querySelectorAll(".compare-tab");
-    var compareViews = modalContent.querySelectorAll(".compare-view");
-    if (compareTabs.length && compareViews.length) {
-      compareTabs.forEach(function (tab) {
-        tab.addEventListener("click", function () {
-          var target = tab.getAttribute("data-target");
-          compareTabs.forEach(function (t) { t.classList.toggle("is-active", t === tab); });
-          compareViews.forEach(function (v) {
-            v.hidden = (v.getAttribute("data-view") !== target);
-          });
-        });
-      });
-    }
-  }
 
   window.addEventListener("scroll", function () { onScrollHero(); onScrollHeader(); }, { passive: true });
   window.addEventListener("resize", function () { layoutHero(); onScrollHeader(); });

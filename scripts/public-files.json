@@ -35,5 +35,17 @@
   "videos/panel-automatisierung.mp4",
   "beispiel/index.html",
   "beispiel/fonts/bricolage-var.woff2",
-  "beispiel/fonts/OFL-Bricolage.txt"
+  "beispiel/fonts/OFL-Bricolage.txt",
+  "assets/leistung.css",
+  "assets/leistung.js",
+  "leistungen/webseiten.html",
+  "en/leistungen/webseiten.html",
+  "leistungen/sichtbar.html",
+  "en/leistungen/sichtbar.html",
+  "leistungen/fachkraefte.html",
+  "en/leistungen/fachkraefte.html",
+  "leistungen/ki-assistent.html",
+  "en/leistungen/ki-assistent.html",
+  "leistungen/automatisierung.html",
+  "en/leistungen/automatisierung.html"
 ]
