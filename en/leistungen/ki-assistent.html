@@ -50,7 +50,7 @@
   </div>
 </nav>
 
-<main id="inhalt">
+<main id="inhalt" tabindex="-1">
   <!-- Hero -->
   <section class="shero">
     <div class="shero__aurora" aria-hidden="true"></div>
@@ -70,9 +70,28 @@
           </div>
           <p class="shero__mail">Or email us directly: <a href="mailto:altunriechert@gmail.com?subject=Kurz-Check">altunriechert@gmail.com</a></p>
         </div>
-        <div class="shero__media" aria-hidden="true">
-          <div class="shero__frame"><video poster="../../images/grafik/panel-ki-assistent.svg" loop muted playsinline preload="metadata"><source src="../../videos/mobil/panel-ki-assistent.mp4" type="video/mp4" media="(max-width: 1023px)"><source src="../../videos/panel-ki-assistent.mp4" type="video/mp4"></video></div>
-          <span class="shero__badge">From €49 / month</span>
+        <div class="shero__media">
+          <div class="shero__frame"><video aria-hidden="true" poster="../../images/grafik/panel-ki-assistent.svg" loop muted playsinline preload="metadata"><source src="../../videos/mobil/panel-ki-assistent.mp4" type="video/mp4" media="(max-width: 1023px)"><source src="../../videos/panel-ki-assistent.mp4" type="video/mp4"></video></div>
+          <span class="shero__badge" aria-hidden="true">From €49 / month</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo / Visual -->
+  <section class="ssec ssec--dark">
+    <div class="ssec__in wrap">
+      <span class="eyebrow">Example</span>
+      <div class="vis vis--chat">
+        <div class="vis__text">
+          <h2 class="sec-title">Try it out</h2>
+          <p class="lead-s">Example dialogue with fixed answers. Your assistant is tuned to your business.</p>
+        </div>
+        <div class="chat">
+          <div class="chat__head"><span class="chat__dot"></span>Sample preview</div>
+          <div class="chat__msgs" id="chat-msgs" aria-live="polite"><div class="msg msg--bot">Hello! How can I help? Tell me what you need or when you would like an appointment.</div></div>
+          <p class="chat__label">Click a question to try it:</p>
+          <div class="chat__chips"><button type="button" class="chat-chip" data-a="Gladly! I just need your name, your town and a phone number. The business will then get back to you with suggested dates.">Do you have appointments next week?</button><button type="button" class="chat-chip" data-a="Best send us a few photos and a short description. The business will then get back to you with a quote.">How do I get a quote?</button><button type="button" class="chat-chip" data-a="For emergencies, please leave your number right away and briefly what happened. The message goes straight to the business.">Do you handle emergencies?</button></div>
         </div>
       </div>
     </div>
@@ -96,25 +115,6 @@
     <div class="ssec__in wrap">
       <span class="eyebrow eyebrow--inv">Why it pays off</span>
       <p class="why__text" data-reveal>Whoever has a question in the evening or at the weekend does not like waiting until Monday. With an assistant, the enquiry does not get lost and you see in the morning what came in.</p>
-    </div>
-  </section>
-
-  <!-- Demo / Visual -->
-  <section class="ssec ssec--dark">
-    <div class="ssec__in wrap">
-      <span class="eyebrow">Example</span>
-      <div class="vis vis--chat">
-        <div class="vis__text">
-          <h2 class="sec-title">Try it out</h2>
-          <p class="lead-s">Example dialogue with fixed answers. Your assistant is tuned to your business.</p>
-        </div>
-        <div class="chat">
-          <div class="chat__head"><span class="chat__dot"></span>Sample preview</div>
-          <div class="chat__msgs" id="chat-msgs" aria-live="polite"><div class="msg msg--bot">Hello! How can I help? Tell me what you need or when you would like an appointment.</div></div>
-          <p class="chat__label">Click a question to try it:</p>
-          <div class="chat__chips"><button type="button" class="chat-chip" data-a="Gladly! I just need your name, your town and a phone number. The business will then get back to you with suggested dates.">Do you have appointments next week?</button><button type="button" class="chat-chip" data-a="Best send us a few photos and a short description. The business will then get back to you with a quote.">How do I get a quote?</button><button type="button" class="chat-chip" data-a="For emergencies, please leave your number right away and briefly what happened. The message goes straight to the business.">Do you handle emergencies?</button></div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -147,7 +147,7 @@
 
 <footer class="footer" id="kontakt">
   <div class="footer__cta">
-    <img class="footer__bg" src="../../images/grafik/footer.svg" alt="" width="1600" height="1000" loading="lazy">
+    <video class="footer__bg" data-video poster="../../images/kontakt.webp" loop muted playsinline preload="none" aria-hidden="true"><source src="../../videos/mobil/kontakt.mp4" type="video/mp4" media="(max-width: 1023px)"><source src="../../videos/kontakt.mp4" type="video/mp4"></video>
     <div class="footer__ctaInner wrap">
       <h2 class="footer__title t-xxl">Ready for your quick check?</h2>
       <p class="sec__lead">One email is enough. We reply with your result on one page.</p>

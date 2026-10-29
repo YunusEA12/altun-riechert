@@ -50,7 +50,7 @@
   </div>
 </nav>
 
-<main id="inhalt">
+<main id="inhalt" tabindex="-1">
   <!-- Hero -->
   <section class="shero">
     <div class="shero__aurora" aria-hidden="true"></div>
@@ -70,10 +70,24 @@
           </div>
           <p class="shero__mail">Oder direkt per Mail: <a href="mailto:altunriechert@gmail.com?subject=Kurz-Check">altunriechert@gmail.com</a></p>
         </div>
-        <div class="shero__media" aria-hidden="true">
-          <div class="shero__frame"><video poster="../images/panel-automatisierung.webp" loop muted playsinline preload="metadata"><source src="../videos/mobil/panel-automatisierung.mp4" type="video/mp4" media="(max-width: 1023px)"><source src="../videos/panel-automatisierung.mp4" type="video/mp4"></video></div>
-          <span class="shero__badge">Preis auf Anfrage</span>
+        <div class="shero__media">
+          <div class="shero__frame"><!-- Video automatisierung: folgt (eigenes Video von Calvin), bis dahin die Übergangsgrafik --><img src="../images/grafik/panel-automatisierung.svg" alt="" width="1600" height="1280"></div>
+          <span class="shero__badge" aria-hidden="true">Preis auf Anfrage</span>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo / Visual -->
+  <section class="ssec ssec--dark">
+    <div class="ssec__in wrap">
+      <span class="eyebrow">Beispiel</span>
+      <div class="vis vis--flow">
+        <div class="vis__text">
+          <h2 class="sec-title">So läuft ein Beleg durch</h2>
+          <p class="lead-s">Beispiel-Ablauf. Welche Schritte sinnvoll sind, klären wir mit dir im Kurz-Check.</p>
+        </div>
+        <ol class="flow"><li class="node" style="--i:0"><span class="node__dot">1</span><strong>Eingang</strong><span>Rechnung per Mail</span></li><li class="node" style="--i:1"><span class="node__dot">2</span><strong>KI liest aus</strong><span>Betrag, Datum, Absender</span></li><li class="node" style="--i:2"><span class="node__dot">3</span><strong>Ablage</strong><span>Ordner und Buchhaltung</span></li><li class="node" style="--i:3"><span class="node__dot">4</span><strong>Erinnerung</strong><span>Kalender und Zahlungsziel</span></li></ol>
       </div>
     </div>
   </section>
@@ -97,20 +111,6 @@
     <div class="ssec__in wrap">
       <span class="eyebrow eyebrow--inv">Warum sich das lohnt</span>
       <p class="why__text" data-reveal>Viele Handwerker sitzen nach der Baustelle noch am Schreibtisch bei Zetteln und Rechnungen. Automatisierung kann dir einen Teil dieser Zeit zurückgeben.</p>
-    </div>
-  </section>
-
-  <!-- Demo / Visual -->
-  <section class="ssec ssec--dark">
-    <div class="ssec__in wrap">
-      <span class="eyebrow">Beispiel</span>
-      <div class="vis vis--flow">
-        <div class="vis__text">
-          <h2 class="sec-title">So läuft ein Beleg durch</h2>
-          <p class="lead-s">Beispiel-Ablauf. Welche Schritte sinnvoll sind, klären wir mit dir im Kurz-Check.</p>
-        </div>
-        <ol class="flow"><li class="node" style="--i:0"><span class="node__dot">1</span><strong>Eingang</strong><span>Rechnung per Mail</span></li><li class="node" style="--i:1"><span class="node__dot">2</span><strong>KI liest aus</strong><span>Betrag, Datum, Absender</span></li><li class="node" style="--i:2"><span class="node__dot">3</span><strong>Ablage</strong><span>Ordner und Buchhaltung</span></li><li class="node" style="--i:3"><span class="node__dot">4</span><strong>Erinnerung</strong><span>Kalender und Zahlungsziel</span></li></ol>
-      </div>
     </div>
   </section>
 
@@ -143,7 +143,7 @@
 
 <footer class="footer" id="kontakt">
   <div class="footer__cta">
-    <img class="footer__bg" src="../images/grafik/footer.svg" alt="" width="1600" height="1000" loading="lazy">
+    <video class="footer__bg" data-video poster="../images/kontakt.webp" loop muted playsinline preload="none" aria-hidden="true"><source src="../videos/mobil/kontakt.mp4" type="video/mp4" media="(max-width: 1023px)"><source src="../videos/kontakt.mp4" type="video/mp4"></video>
     <div class="footer__ctaInner wrap">
       <h2 class="footer__title t-xxl">Bereit für deinen <span class='nb'>Kurz-Check</span>?</h2>
       <p class="sec__lead">Eine Mail genügt. Wir melden uns mit deinem Ergebnis auf einer Seite.</p>

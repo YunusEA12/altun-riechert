@@ -50,7 +50,7 @@
   </div>
 </nav>
 
-<main id="inhalt">
+<main id="inhalt" tabindex="-1">
   <!-- Hero -->
   <section class="shero">
     <div class="shero__aurora" aria-hidden="true"></div>
@@ -70,9 +70,27 @@
           </div>
           <p class="shero__mail">Or email us directly: <a href="mailto:altunriechert@gmail.com?subject=Kurz-Check">altunriechert@gmail.com</a></p>
         </div>
-        <div class="shero__media" aria-hidden="true">
-          <div class="shero__frame"><video poster="../../images/panel-fachkraefte.webp" loop muted playsinline preload="metadata"><source src="../../videos/mobil/panel-fachkraefte.mp4" type="video/mp4" media="(max-width: 1023px)"><source src="../../videos/panel-fachkraefte.mp4" type="video/mp4"></video></div>
-          <span class="shero__badge">€990</span>
+        <div class="shero__media">
+          <div class="shero__frame"><!-- Video fachkraefte: folgt (eigenes Video von Calvin), bis dahin die Übergangsgrafik --><img src="../../images/grafik/panel-fachkraefte.svg" alt="" width="1600" height="1280"></div>
+          <span class="shero__badge" aria-hidden="true">€990</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo / Visual -->
+  <section class="ssec ssec--dark">
+    <div class="ssec__in wrap">
+      <span class="eyebrow">Example</span>
+      <div class="vis vis--job">
+        <div class="vis__text">
+          <h2 class="sec-title">Apply in a minute</h2>
+          <p class="lead-s">Example flow of a mobile application. Three details, one tap, done.</p>
+        </div>
+        <div class="jobphone" aria-hidden="true">
+          <div class="timer"><svg viewBox="0 0 120 120" width="120" height="120"><circle cx="60" cy="60" r="52" class="timer__bg"/><circle cx="60" cy="60" r="52" class="timer__fg"/></svg><span>60 s</span></div>
+          <div class="f-rows"><div class="f-row"><span>Name</span><b>Maria Beispiel</b></div><div class="f-row"><span>Phone</span><b>0171 2345678</b></div><div class="f-row"><span>Trade</span><b>Painter and decorator</b></div></div>
+          <span class="f-send">Send application</span>
         </div>
       </div>
     </div>
@@ -97,24 +115,6 @@
     <div class="ssec__in wrap">
       <span class="eyebrow eyebrow--inv">Why it pays off</span>
       <p class="why__text" data-reveal>Good journeymen and masters are usually already employed. They will not sit down at a PC in the evening to type cover letters. If applying takes one minute on the phone, they are more likely to get in touch.</p>
-    </div>
-  </section>
-
-  <!-- Demo / Visual -->
-  <section class="ssec ssec--dark">
-    <div class="ssec__in wrap">
-      <span class="eyebrow">Example</span>
-      <div class="vis vis--job">
-        <div class="vis__text">
-          <h2 class="sec-title">Apply in a minute</h2>
-          <p class="lead-s">Example flow of a mobile application. Three details, one tap, done.</p>
-        </div>
-        <div class="jobphone" aria-hidden="true">
-          <div class="timer"><svg viewBox="0 0 120 120" width="120" height="120"><circle cx="60" cy="60" r="52" class="timer__bg"/><circle cx="60" cy="60" r="52" class="timer__fg"/></svg><span>60 s</span></div>
-          <div class="f-rows"><div class="f-row"><span>Name</span><b>Maria Beispiel</b></div><div class="f-row"><span>Phone</span><b>0171 2345678</b></div><div class="f-row"><span>Trade</span><b>Painter and decorator</b></div></div>
-          <span class="f-send">Send application</span>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -147,7 +147,7 @@
 
 <footer class="footer" id="kontakt">
   <div class="footer__cta">
-    <img class="footer__bg" src="../../images/grafik/footer.svg" alt="" width="1600" height="1000" loading="lazy">
+    <video class="footer__bg" data-video poster="../../images/kontakt.webp" loop muted playsinline preload="none" aria-hidden="true"><source src="../../videos/mobil/kontakt.mp4" type="video/mp4" media="(max-width: 1023px)"><source src="../../videos/kontakt.mp4" type="video/mp4"></video>
     <div class="footer__ctaInner wrap">
       <h2 class="footer__title t-xxl">Ready for your quick check?</h2>
       <p class="sec__lead">One email is enough. We reply with your result on one page.</p>

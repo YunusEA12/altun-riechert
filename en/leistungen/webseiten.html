@@ -50,7 +50,7 @@
   </div>
 </nav>
 
-<main id="inhalt">
+<main id="inhalt" tabindex="-1">
   <!-- Hero -->
   <section class="shero">
     <div class="shero__aurora" aria-hidden="true"></div>
@@ -70,9 +70,27 @@
           </div>
           <p class="shero__mail">Or email us directly: <a href="mailto:altunriechert@gmail.com?subject=Kurz-Check">altunriechert@gmail.com</a></p>
         </div>
-        <div class="shero__media" aria-hidden="true">
-          <div class="shero__frame"><video poster="../../images/grafik/panel-webseiten.svg" loop muted playsinline preload="metadata"><source src="../../videos/mobil/panel-webseiten.mp4" type="video/mp4" media="(max-width: 1023px)"><source src="../../videos/panel-webseiten.mp4" type="video/mp4"></video></div>
-          <span class="shero__badge">From €1,490</span>
+        <div class="shero__media">
+          <div class="shero__frame"><video aria-hidden="true" poster="../../images/grafik/panel-webseiten.svg" loop muted playsinline preload="metadata"><source src="../../videos/mobil/panel-webseiten.mp4" type="video/mp4" media="(max-width: 1023px)"><source src="../../videos/panel-webseiten.mp4" type="video/mp4"></video></div>
+          <span class="shero__badge" aria-hidden="true">From €1,490</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo / Visual -->
+  <section class="ssec ssec--dark">
+    <div class="ssec__in wrap">
+      <span class="eyebrow">Fictional business</span>
+      <div class="vis vis--web">
+        <div class="vis__text">
+          <h2 class="sec-title">What it looks like</h2>
+          <p class="lead-s">Our sample website shows how a finished site for a trade business can look. Click through it.</p>
+          <a class="btn btn--accent btn--lg" href="../../beispiel/">View sample website</a>
+        </div>
+        <div class="devices" aria-hidden="true">
+          <div class="laptop"><div class="laptop__bar"><i></i><i></i><i></i></div><div class="laptop__screen"><span class="mock-h">Malerwerkstatt Musterle</span><span class="mock-t">Fresh walls, without you lifting a finger.</span><span class="mock-b">Request a quote with photos</span><span class="mock-line"></span><span class="mock-line s"></span><span class="mock-cards"><i></i><i></i><i></i></span></div></div>
+          <div class="phone"><div class="phone__screen"><span class="mock-h">Malerwerkstatt Musterle</span><span class="mock-t">Fresh walls, without you lifting a finger.</span><span class="mock-b">0123 456 789</span><span class="mock-cards"><i></i><i></i></span></div></div>
         </div>
       </div>
     </div>
@@ -97,24 +115,6 @@
     <div class="ssec__in wrap">
       <span class="eyebrow eyebrow--inv">Why it pays off</span>
       <p class="why__text" data-reveal>Customers mostly look for tradespeople on their phones. If the site looks outdated or is hard to use, they call the next business.</p>
-    </div>
-  </section>
-
-  <!-- Demo / Visual -->
-  <section class="ssec ssec--dark">
-    <div class="ssec__in wrap">
-      <span class="eyebrow">Fictional business</span>
-      <div class="vis vis--web">
-        <div class="vis__text">
-          <h2 class="sec-title">What it looks like</h2>
-          <p class="lead-s">Our sample website shows how a finished site for a trade business can look. Click through it.</p>
-          <a class="btn btn--accent btn--lg" href="../../beispiel/">View sample website</a>
-        </div>
-        <div class="devices" aria-hidden="true">
-          <div class="laptop"><div class="laptop__bar"><i></i><i></i><i></i></div><div class="laptop__screen"><span class="mock-h">Malerwerkstatt Musterle</span><span class="mock-t">Fresh walls, without you lifting a finger.</span><span class="mock-b">Request a quote with photos</span><span class="mock-line"></span><span class="mock-line s"></span><span class="mock-cards"><i></i><i></i><i></i></span></div></div>
-          <div class="phone"><div class="phone__screen"><span class="mock-h">Malerwerkstatt Musterle</span><span class="mock-t">Fresh walls, without you lifting a finger.</span><span class="mock-b">0123 456 789</span><span class="mock-cards"><i></i><i></i></span></div></div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -147,7 +147,7 @@
 
 <footer class="footer" id="kontakt">
   <div class="footer__cta">
-    <img class="footer__bg" src="../../images/grafik/footer.svg" alt="" width="1600" height="1000" loading="lazy">
+    <video class="footer__bg" data-video poster="../../images/kontakt.webp" loop muted playsinline preload="none" aria-hidden="true"><source src="../../videos/mobil/kontakt.mp4" type="video/mp4" media="(max-width: 1023px)"><source src="../../videos/kontakt.mp4" type="video/mp4"></video>
     <div class="footer__ctaInner wrap">
       <h2 class="footer__title t-xxl">Ready for your quick check?</h2>
       <p class="sec__lead">One email is enough. We reply with your result on one page.</p>

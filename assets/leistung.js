@@ -45,25 +45,31 @@
 
   // Hero-Video: startet erst mit diesem Skript, steht bei reduzierter Bewegung,
   // und der Pause-Knopf hält es an (WCAG 2.2.2). Ohne JS bleibt das Vorschaubild.
-  var video = document.querySelector(".shero__frame video");
-  if (video) {
+  // Weitere Videos (data-video, z. B. Hintergrund im Kontaktbereich) laufen nur, solange sie sichtbar sind.
+  var en = root.lang === "en";
+  document.querySelectorAll(".shero__frame video, video[data-video]").forEach(function (video) {
     var stopped = false;
-    var en = root.lang === "en";
+    var visible = !("IntersectionObserver" in window);
     var toggle = document.createElement("button");
     toggle.type = "button";
     toggle.className = "video-toggle";
     toggle.innerHTML = '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path class="video-toggle__pause" d="M5 3v10M11 3v10" stroke="currentColor" stroke-width="2"/><path class="video-toggle__play" d="M5 3l8 5-8 5z" fill="currentColor"/></svg>';
     var sync = function () {
-      if (calm.matches || stopped) video.pause(); else video.play().catch(function () {});
+      if (calm.matches || stopped || !visible) video.pause(); else video.play().catch(function () {});
       toggle.setAttribute("aria-pressed", String(stopped));
       toggle.setAttribute("aria-label", stopped ? (en ? "Play video" : "Video abspielen") : (en ? "Pause video" : "Video anhalten"));
       toggle.classList.toggle("is-paused", stopped);
     };
     toggle.addEventListener("click", function () { stopped = !stopped; sync(); });
     video.parentNode.appendChild(toggle);
+    if (!visible) {
+      new IntersectionObserver(function (entries) {
+        visible = entries[0].isIntersecting; sync();
+      }, { threshold: 0.25 }).observe(video);
+    }
     sync();
     calm.addEventListener("change", sync);
-  }
+  });
 
   // Sichtbar: Mit/ohne Profil
   var tabs = document.querySelectorAll(".cmp__tab");

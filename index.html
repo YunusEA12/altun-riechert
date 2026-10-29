@@ -122,7 +122,7 @@
         </article>
 
         <article class="panel" style="--panel:#1F5A60;--panel-ink:#FFFFFF" data-href="leistungen/sichtbar.html">
-          <div class="panel__image"><video poster="images/panel-sichtbar.webp" loop muted playsinline preload="none" aria-hidden="true"><source src="videos/mobil/panel-sichtbar.mp4" type="video/mp4" media="(max-width: 1023px)"><source src="videos/panel-sichtbar.mp4" type="video/mp4"></video></div>
+          <div class="panel__image"><!-- Video sichtbar: folgt (eigenes Video von Calvin), bis dahin die Übergangsgrafik --><img src="images/grafik/panel-sichtbar.svg" alt="" width="1600" height="1280" loading="lazy"></div>
           <div class="panel__band">
             <span class="panel__area">Online-Präsenz</span>
             <nav class="panel__links" aria-label="Sichtbar">
@@ -137,7 +137,7 @@
         </article>
 
         <article class="panel" style="--panel:#4E6A6D;--panel-ink:#FFFFFF" data-href="leistungen/fachkraefte.html">
-          <div class="panel__image"><video poster="images/panel-fachkraefte.webp" loop muted playsinline preload="none" aria-hidden="true"><source src="videos/mobil/panel-fachkraefte.mp4" type="video/mp4" media="(max-width: 1023px)"><source src="videos/panel-fachkraefte.mp4" type="video/mp4"></video></div>
+          <div class="panel__image"><!-- Video fachkraefte: folgt (eigenes Video von Calvin), bis dahin die Übergangsgrafik --><img src="images/grafik/panel-fachkraefte.svg" alt="" width="1600" height="1280" loading="lazy"></div>
           <div class="panel__band">
             <span class="panel__area">Online-Präsenz</span>
             <nav class="panel__links" aria-label="Fachkräfte">
@@ -168,7 +168,7 @@
         </article>
 
         <article class="panel" style="--panel:#F1E4CE;--panel-ink:#123B40" data-href="leistungen/automatisierung.html">
-          <div class="panel__image"><video poster="images/panel-automatisierung.webp" loop muted playsinline preload="none" aria-hidden="true"><source src="videos/mobil/panel-automatisierung.mp4" type="video/mp4" media="(max-width: 1023px)"><source src="videos/panel-automatisierung.mp4" type="video/mp4"></video></div>
+          <div class="panel__image"><!-- Video automatisierung: folgt (eigenes Video von Calvin), bis dahin die Übergangsgrafik --><img src="images/grafik/panel-automatisierung.svg" alt="" width="1600" height="1280" loading="lazy"></div>
           <div class="panel__band">
             <span class="panel__area">KI-Integration</span>
             <nav class="panel__links" aria-label="Automatisierung">
@@ -189,6 +189,7 @@
 
   <!-- 2 · Über uns (Werte als drei Pfeiler auf dunklem Grund) -->
   <section class="sec sec--dark about" id="ueber-uns">
+    <div class="sec__video"><video data-video poster="images/ueber-uns.webp" loop muted playsinline preload="none" aria-hidden="true"><source src="videos/mobil/ueber-uns.mp4" type="video/mp4" media="(max-width: 1023px)"><source src="videos/ueber-uns.mp4" type="video/mp4"></video></div>
     <div class="sec__in wrap">
       <header class="sec__head">
         <span class="eyebrow">Über uns</span>
@@ -219,11 +220,17 @@
   <!-- 3 · Ablauf -->
   <section class="sec sec--paper steps" id="ablauf">
     <div class="sec__in wrap">
-      <header class="sec__head">
-        <span class="eyebrow">Ablauf</span>
-        <h2 class="sec__title t-xxl" data-reveal>So läuft der Kurz-Check ab</h2>
-        <p class="sec__lead" data-reveal>Kostenlos und unverbindlich. Drei Schritte, mehr nicht.</p>
-      </header>
+      <div class="steps__top">
+        <header class="sec__head">
+          <span class="eyebrow">Ablauf</span>
+          <h2 class="sec__title t-xxl" data-reveal>So läuft der Kurz-Check ab</h2>
+          <p class="sec__lead" data-reveal>Kostenlos und unverbindlich. Drei Schritte, mehr nicht.</p>
+        </header>
+        <figure class="steps__film" data-reveal data-video-host>
+          <video data-video poster="images/ablauf.webp" loop muted playsinline preload="none" aria-hidden="true"><source src="videos/mobil/ablauf.mp4" type="video/mp4" media="(max-width: 1023px)"><source src="videos/ablauf.mp4" type="video/mp4"></video>
+          <figcaption class="visually-hidden">Animation: E-Mail schicken, Check bekommen, 15 Minuten sprechen</figcaption>
+        </figure>
+      </div>
       <ol class="steps__list">
         <li class="step" data-reveal style="--i:0">
           <span class="step__no" aria-hidden="true">1</span>
@@ -234,6 +241,8 @@
           <span class="step__no" aria-hidden="true">2</span>
           <h3 class="step__title">Du bekommst deinen Check</h3>
           <p>Wir prüfen deinen Online-Auftritt und schicken dir das Ergebnis übersichtlich auf einer Seite.</p>
+          <!-- Beispiel-Kurz-Check: erst füllen und hidden entfernen, wenn Calvins echtes Check-Format feststeht. Sichtbar als Beispiel kennzeichnen. -->
+          <figure class="step__example" hidden></figure>
         </li>
         <li class="step" data-reveal style="--i:2">
           <span class="step__no" aria-hidden="true">3</span>
@@ -269,11 +278,13 @@
           <ul class="chips"><li>Fürs Handy optimiert</li><li>Anrufen mit einem Tipp</li><li>Kein Tracking, keine Cookies</li></ul>
           <a class="btn btn--dark" href="beispiel/">Muster-Website ansehen</a>
         </div>
-        <a class="browser" href="beispiel/" data-reveal>
-          <span class="browser__bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser__url">Muster · fiktiver Betrieb</span></span>
-          <img src="images/beispiel-musterle.png" alt="Vorschau der Muster-Website Malerwerkstatt Musterle, oben als Muster gekennzeichnet" width="1600" height="1000" loading="lazy">
-          <span class="browser__cap">Malerwerkstatt Musterle · Muster-Website<span class="arrow-dot arrow-dot--light" aria-hidden="true"><svg viewBox="0 0 19 19" width="19" height="19" aria-hidden="true"><path d="M5 9.5h9M10 5l4.5 4.5L10 14" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></span></span>
-        </a>
+        <div class="browser-wrap" data-reveal data-video-host>
+          <a class="browser" href="beispiel/">
+            <span class="browser__bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser__url">Muster · fiktiver Betrieb</span></span>
+            <video class="browser__media" data-video poster="images/beispiel-muster.webp" loop muted playsinline preload="none" aria-hidden="true"><source src="videos/mobil/beispiel-muster.mp4" type="video/mp4" media="(max-width: 1023px)"><source src="videos/beispiel-muster.mp4" type="video/mp4"></video><span class="visually-hidden">Vorschau der Muster-Website Malerwerkstatt Musterle, oben als Muster gekennzeichnet</span>
+            <span class="browser__cap">Malerwerkstatt Musterle · Muster-Website<span class="arrow-dot arrow-dot--light" aria-hidden="true"><svg viewBox="0 0 19 19" width="19" height="19" aria-hidden="true"><path d="M5 9.5h9M10 5l4.5 4.5L10 14" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></span></span>
+          </a>
+        </div>
       </div>
 
       <!-- Echte Projekte: erst sichtbar schalten (hidden entfernen), wenn es sie gibt und der Betrieb zugestimmt hat -->
@@ -299,7 +310,7 @@
     </div>
   </section>
 
-  <!-- 5 · Team (Initialen-Grafiken werden durch echte Porträts ersetzt) -->
+  <!-- 5 · Team: Porträts 4:5 unter images/team/portrait-*.webp. Echtes Foto = Datei mit gleichem Namen überschreiben (800 × 1000). -->
   <section class="sec sec--mist team" id="team">
     <div class="sec__in wrap">
       <header class="sec__head">
@@ -309,7 +320,7 @@
       </header>
       <ul class="team__list">
         <li class="person" data-reveal style="--i:0">
-          <img class="person__photo" src="images/grafik/portrait-yunus.svg" alt="Initialen von Yunus Altun, Foto folgt" width="800" height="1000" loading="lazy">
+          <img class="person__photo" src="images/team/portrait-yunus.webp" alt="Yunus Altun" width="800" height="1000" loading="lazy">
           <div class="person__text">
             <h3 class="person__name">Yunus Altun</h3>
             <p class="person__role">Website und Online-Präsenz</p>
@@ -317,7 +328,7 @@
           </div>
         </li>
         <li class="person" data-reveal style="--i:1">
-          <img class="person__photo" src="images/grafik/portrait-calvin.svg" alt="Initialen von Calvin Riechert, Foto folgt" width="800" height="1000" loading="lazy">
+          <img class="person__photo" src="images/team/portrait-calvin.webp" alt="Calvin Riechert" width="800" height="1000" loading="lazy">
           <div class="person__text">
             <h3 class="person__name">Calvin Riechert</h3>
             <p class="person__role">Kundenkontakt und KI</p>
@@ -325,7 +336,7 @@
           </div>
         </li>
         <li class="person" data-reveal style="--i:2">
-          <img class="person__photo" src="images/grafik/portrait-hamza.svg" alt="Initial von Hamza, Foto folgt" width="800" height="1000" loading="lazy">
+          <img class="person__photo" src="images/team/portrait-hamza.webp" alt="Hamza" width="800" height="1000" loading="lazy">
           <div class="person__text">
             <h3 class="person__name">Hamza</h3>
             <!-- Nachname, Rolle und Kurzbeschreibung folgen, sobald Hamza sie bestätigt hat -->
@@ -353,7 +364,7 @@
 <!-- Footer -->
 <footer class="footer" id="kontakt">
   <div class="footer__cta">
-    <img class="footer__bg" src="images/grafik/footer.svg" alt="" width="1600" height="1000" loading="lazy">
+    <video class="footer__bg" data-video poster="images/kontakt.webp" loop muted playsinline preload="none" aria-hidden="true"><source src="videos/mobil/kontakt.mp4" type="video/mp4" media="(max-width: 1023px)"><source src="videos/kontakt.mp4" type="video/mp4"></video>
     <div class="footer__ctaInner wrap">
       <span class="eyebrow">Kontakt</span>
       <h2 class="footer__title t-xxl">Bereit für deinen Kurz-Check?</h2>

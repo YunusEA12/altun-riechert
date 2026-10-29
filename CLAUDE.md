@@ -190,14 +190,17 @@ Design-Vorlage ist die **Startseite von lpas.com** (Entscheidung Yunus, 25.10.20
 - Pflicht bleibt: Standbild ohne JS, stehendes Bild bei `prefers-reduced-motion`, Pause außerhalb des Bildschirms. Kommt das echte Teamfoto als Hero, wird die Animation entfernt oder z. B. auf den Footer verlegt (Absprache mit Yunus).
 
 ### Effekte (Block „Effekte“ am Ende von `assets/site.js` und `assets/site.css`)
-- Wortweise aufsteigende Überschriften, sich zeichnende Trennlinien, gestaffeltes Erscheinen, Fortschrittsbalken, Lichtstreifen und Welle auf Buttons, Puls am Header-Kurz-Check, federndes Detailfenster, gestaffeltes Menü.
-- Nur mit echter Maus: Magnet-Buttons, Amber-Mauszeiger-Ring (der normale Zeiger bleibt), Video- und Team-Neigung zur Maus.
+- **Mittelweg (Entscheidung Yunus, 29.10.2026):** Klickbare Elemente behalten ihre Effekte (Buttons, Panels, Muster-Website-Vorschau, Karten „Weitere Leistungen“, Menü, Mauszeiger-Ring, aufsteigende Überschriften). Nicht klickbare Karten (Pfeiler, Ablauf-Schritte, Team, „Das ist drin“) kippen und schweben **nicht**, auch nicht beim Hover. Kein Laufband.
+- Wortweise aufsteigende Überschriften, gestaffeltes Erscheinen, Fortschrittsbalken, Lichtstreifen und Welle auf Buttons, Puls am Header-Kurz-Check, gestaffeltes Menü.
+- Nur mit echter Maus: Magnet-Buttons, Amber-Mauszeiger-Ring (der normale Zeiger bleibt), Panel-Video folgt leicht der Maus.
 - Regeln: nur `transform`/`opacity`; alles hängt an der Klasse `.fx`, die nur mit JS und ohne `prefers-reduced-motion` gesetzt wird; ohne JS ist jeder Inhalt sichtbar. Geteilte Überschriften behalten ihren Text als `aria-label`.
 
 ### Videos (Panels und Leistungsseiten)
 - Kein `autoplay` im HTML: `site.js` bzw. `assets/leistung.js` startet die Videos, ohne JS bleibt das Vorschaubild (WebP). Panel-Videos laden erst, wenn ein Viertel des Panels sichtbar ist.
 - Zwei Fassungen: `videos/` (1280 px, volle Qualität, Entscheidung Yunus 28.10.) für Desktop, `videos/mobil/` (640 px) per `<source media="(max-width: 1023px)">` fürs Handy. Neues Video = beide Fassungen erzeugen und in `scripts/public-files.json` eintragen.
-- Jedes laufende Video hat einen Pause-Knopf (`.video-toggle`, WCAG 2.2.2).
+- Jedes laufende Video hat einen Pause-Knopf (`.video-toggle`, WCAG 2.2.2). Der Knopf liegt nie in einem Element mit `aria-hidden`; `aria-hidden` steht nur am Video selbst.
+- Fehlt ein Video (Sichtbar, Fachkräfte, Automatisierung, bis Calvin liefert), steht die Übergangsgrafik `images/grafik/panel-….svg` in der Fläche, nie eine leere Fläche.
+- **Sektions-Videos (29.10.2026):** Über uns, Ablauf, Beispiel (Bildschirmaufnahme der Muster-Website) und Kontakt (auch auf den Leistungsseiten) haben Videos mit `data-video`. Alle sind **selbst erstellt**, Herkunft und Neuerstellung in `docs/videos/README.md`. Keine Stock- oder KI-Clips von Dritten ohne geklärte Lizenz. Der Pause-Knopf landet über `data-video-host` nie innerhalb eines Links.
 
 ### Technische Vorgaben
 - **Keine CDNs.** Tailwind höchstens als lokaler Build (Ergebnis-CSS liegt im Repo), sonst eigenes CSS. Kein `cdn.tailwindcss.com`.
@@ -308,7 +311,7 @@ Design-Vorlage ist die **Startseite von lpas.com** (Entscheidung Yunus, 25.10.20
 
 **Noch offen:**
 - [ ] **Panels 50/50:** derzeit 3 × Online-Präsenz, 2 × KI. Drittes KI-Panel erst mit bestätigtem Paket (Yunus + Calvin)
-- [ ] **Fotos:** Teamfoto, 3 Porträts (4:5), 5 Panel-Motive, Footer-Motiv → in `brand_assets/` legen
+- [ ] **Fotos:** Teamfoto, 3 Porträts (4:5), 5 Panel-Motive, Footer-Motiv → in `brand_assets/` legen. Porträts sind vorbereitet: `images/team/portrait-yunus|calvin|hamza.webp` (800 × 1000) einfach durch das echte Foto mit gleichem Namen ersetzen. Teamfoto als Hero erst nach Absprache (ersetzt die Höhenlinien-Animation)
 - [ ] **`_briefe/` aus der Git-Historie bzw. von GitHub entfernen** oder Repo privat machen – der Index-Eintrag ist weg, aber die Daten liegen noch in alten Commits und auf GitHub (Yunus + Calvin). Kein Push, kein Umschreiben der Historie ohne Absprache
 - [ ] **Briefgenerator** (Calvin): absoluter Fontpfad in alte `/tmp/claude-0/…`-Umgebung, festes Datum
 - [ ] **Obsidian-Vault:** in einem privaten Repo, nicht im Website-Repo
@@ -317,8 +320,8 @@ Design-Vorlage ist die **Startseite von lpas.com** (Entscheidung Yunus, 25.10.20
 - [ ] **KI-Pakete:** Inhalte und Preise
 - [ ] **Briefe:** Sie siezen, die Website duzt. So gewollt?
 - [ ] **Impressum:** Telefonnummer, Rechtsform, ggf. USt-IdNr. Impressum und Datenschutz nennen bereits „GbR“, obwohl die Rechtsform offen ist – klären. Hamza im Team heißt nicht automatisch Gesellschafter
-- [ ] **Hosting & Domain** (GitHub Pages, Netlify, Vercel …). Der Hoster muss in die Datenschutzerklärung.
+- [ ] **Hosting & Domain:** Die Seite liegt bei IONOS (bal-mio.de), die Datenschutzerklärung nennt seit 29.10. IONOS statt GitHub Pages. Offen: Auftragsverarbeitungsvertrag im IONOS-Kundenbereich abschließen; Domain-Zuordnung.
 - [ ] **Teamfotos** und Rollentitel
 - [ ] **Echte Referenzen** aus den Pilotprojekten
-- [ ] **Beispiel-Kurz-Check** zeigen (als Beispiel markiert), sobald Calvins echtes Check-Format feststeht
+- [ ] **Beispiel-Kurz-Check** zeigen (als Beispiel markiert), sobald Calvins echtes Check-Format feststeht. Platz ist vorbereitet: `<figure class="step__example" hidden>` in Ablauf-Schritt 2 (DE + EN)
 - [ ] **Gewerberecht:** Dürfen Preise öffentlich stehen, solange das Gewerbe nicht angemeldet ist? (Rechts-Chat)

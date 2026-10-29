@@ -75,8 +75,8 @@ p { margin: 0; }
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; min-width: 0; }
 .brand-tile {
   width: 44px; height: 44px; flex: none; background: var(--tile); color: var(--tile-fg);
-  display: grid; place-items: center; position: relative;
-  font-family: var(--font-display); font-weight: 820; font-stretch: 108%; font-size: 16px;
+  display: flex; align-items: center; justify-content: center; padding-bottom: 6px; position: relative; white-space: nowrap;   /* A&R in einer Zeile */
+  font-family: var(--font-display); font-weight: 820; font-stretch: 108%; font-size: 15px; letter-spacing: -0.02em;
 }
 .amp { color: var(--signal); }
 .brand-tile::after {

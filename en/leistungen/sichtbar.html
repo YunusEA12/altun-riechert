@@ -50,7 +50,7 @@
   </div>
 </nav>
 
-<main id="inhalt">
+<main id="inhalt" tabindex="-1">
   <!-- Hero -->
   <section class="shero">
     <div class="shero__aurora" aria-hidden="true"></div>
@@ -70,9 +70,33 @@
           </div>
           <p class="shero__mail">Or email us directly: <a href="mailto:altunriechert@gmail.com?subject=Kurz-Check">altunriechert@gmail.com</a></p>
         </div>
-        <div class="shero__media" aria-hidden="true">
-          <div class="shero__frame"><video poster="../../images/panel-sichtbar.webp" loop muted playsinline preload="metadata"><source src="../../videos/mobil/panel-sichtbar.mp4" type="video/mp4" media="(max-width: 1023px)"><source src="../../videos/panel-sichtbar.mp4" type="video/mp4"></video></div>
-          <span class="shero__badge">€390</span>
+        <div class="shero__media">
+          <div class="shero__frame"><!-- Video sichtbar: folgt (eigenes Video von Calvin), bis dahin die Übergangsgrafik --><img src="../../images/grafik/panel-sichtbar.svg" alt="" width="1600" height="1280"></div>
+          <span class="shero__badge" aria-hidden="true">€390</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo / Visual -->
+  <section class="ssec ssec--dark">
+    <div class="ssec__in wrap">
+      <span class="eyebrow">Example</span>
+      <div class="vis vis--cmp">
+        <div class="vis__text">
+          <h2 class="sec-title">With and without a profile</h2>
+          <p class="lead-s">Illustration only. How a listing performs depends on your business and your customers.</p>
+        </div>
+        <div class="cmp">
+          <div class="cmp__tabs" role="tablist">
+            <button type="button" class="cmp__tab is-active" role="tab" aria-selected="true" data-target="good">With a complete profile</button>
+            <button type="button" class="cmp__tab" role="tab" aria-selected="false" data-target="bad">Without upkeep</button>
+          </div>
+          <div class="cmp__card">
+            <div class="cmp__map" aria-hidden="true"><span class="pin"></span><span class="stars">★★★★★</span></div>
+            <ul class="cmp__list" data-view="good"><li><span class="ic ic--ok"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span><strong>Complete details</strong> Address, opening hours and phone number are correct.</span></li><li><span class="ic ic--ok"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span><strong>Photos and services</strong> Visitors see right away what you do.</span></li><li><span class="ic ic--ok"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span><strong>Reviews</strong> Happy customers can review you in seconds.</span></li></ul>
+            <ul class="cmp__list" data-view="bad" hidden><li><span class="ic ic--no"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg></span><span><strong>Patchy profile</strong> Opening hours or phone number are missing or outdated.</span></li><li><span class="ic ic--no"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg></span><span><strong>No photos</strong> Visitors cannot judge what you can do.</span></li><li><span class="ic ic--no"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg></span><span><strong>Few reviews</strong> There is no proof that customers are satisfied.</span></li></ul>
+          </div>
         </div>
       </div>
     </div>
@@ -98,30 +122,6 @@
     <div class="ssec__in wrap">
       <span class="eyebrow eyebrow--inv">Why it pays off</span>
       <p class="why__text" data-reveal>Whoever searches for your trade in your area often decides in seconds. A complete profile with reviews looks trustworthy.</p>
-    </div>
-  </section>
-
-  <!-- Demo / Visual -->
-  <section class="ssec ssec--dark">
-    <div class="ssec__in wrap">
-      <span class="eyebrow">Example</span>
-      <div class="vis vis--cmp">
-        <div class="vis__text">
-          <h2 class="sec-title">With and without a profile</h2>
-          <p class="lead-s">Illustration only. How a listing performs depends on your business and your customers.</p>
-        </div>
-        <div class="cmp">
-          <div class="cmp__tabs" role="tablist">
-            <button type="button" class="cmp__tab is-active" role="tab" aria-selected="true" data-target="good">With a complete profile</button>
-            <button type="button" class="cmp__tab" role="tab" aria-selected="false" data-target="bad">Without upkeep</button>
-          </div>
-          <div class="cmp__card">
-            <div class="cmp__map" aria-hidden="true"><span class="pin"></span><span class="stars">★★★★★</span></div>
-            <ul class="cmp__list" data-view="good"><li><span class="ic ic--ok"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span><strong>Complete details</strong> Address, opening hours and phone number are correct.</span></li><li><span class="ic ic--ok"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span><strong>Photos and services</strong> Visitors see right away what you do.</span></li><li><span class="ic ic--ok"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span><strong>Reviews</strong> Happy customers can review you in seconds.</span></li></ul>
-            <ul class="cmp__list" data-view="bad" hidden><li><span class="ic ic--no"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg></span><span><strong>Patchy profile</strong> Opening hours or phone number are missing or outdated.</span></li><li><span class="ic ic--no"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg></span><span><strong>No photos</strong> Visitors cannot judge what you can do.</span></li><li><span class="ic ic--no"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg></span><span><strong>Few reviews</strong> There is no proof that customers are satisfied.</span></li></ul>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -154,7 +154,7 @@
 
 <footer class="footer" id="kontakt">
   <div class="footer__cta">
-    <img class="footer__bg" src="../../images/grafik/footer.svg" alt="" width="1600" height="1000" loading="lazy">
+    <video class="footer__bg" data-video poster="../../images/kontakt.webp" loop muted playsinline preload="none" aria-hidden="true"><source src="../../videos/mobil/kontakt.mp4" type="video/mp4" media="(max-width: 1023px)"><source src="../../videos/kontakt.mp4" type="video/mp4"></video>
     <div class="footer__ctaInner wrap">
       <h2 class="footer__title t-xxl">Ready for your quick check?</h2>
       <p class="sec__lead">One email is enough. We reply with your result on one page.</p>
