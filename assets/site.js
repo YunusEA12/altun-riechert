@@ -78,13 +78,37 @@
     document.querySelectorAll("[data-reveal]").forEach(function (el) { io.observe(el); });
   }
 
-  // Videos in den Panels: bei reduzierter Bewegung pausieren
   // Videos laden erst, wenn ihr Panel sichtbar wird (preload="none"), und laufen nur dort –
   // spart Datenvolumen auf dem Handy. Ohne JS bleibt das Vorschaubild stehen.
   var panelVideos = document.querySelectorAll(".panel__image video");
+  var videosStopped = false;   // Pause-Knopf: hält alle Panel-Videos an (WCAG 2.2.2)
   function setVideo(v, on) {
-    if (on && !calm.matches) { v.play().catch(function () {}); } else { v.pause(); }
+    if (on && !calm.matches && !videosStopped) { v.play().catch(function () {}); } else { v.pause(); }
   }
+  var en = root.lang === "en";
+  var pauseLabel = en ? "Pause videos" : "Videos anhalten", playLabel = en ? "Play videos" : "Videos abspielen";
+  var toggles = [];
+  function syncToggles() {
+    toggles.forEach(function (b) {
+      b.setAttribute("aria-pressed", String(videosStopped));
+      b.setAttribute("aria-label", videosStopped ? playLabel : pauseLabel);
+      b.classList.toggle("is-paused", videosStopped);
+    });
+  }
+  panelVideos.forEach(function (v) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "video-toggle";
+    b.innerHTML = '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path class="video-toggle__pause" d="M5 3v10M11 3v10" stroke="currentColor" stroke-width="2"/><path class="video-toggle__play" d="M5 3l8 5-8 5z" fill="currentColor"/></svg>';
+    b.addEventListener("click", function () {
+      videosStopped = !videosStopped;
+      panelVideos.forEach(function (x) { setVideo(x, x.dataset.visible === "1"); });
+      syncToggles();
+    });
+    v.parentNode.appendChild(b);
+    toggles.push(b);
+  });
+  syncToggles();
   if ("IntersectionObserver" in window) {
     var videoIo = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) { e.target.dataset.visible = e.isIntersecting ? "1" : ""; setVideo(e.target, e.isIntersecting); });
@@ -250,130 +274,13 @@
     }
   });
 
-  // Panel Detail-Modal („Draufdrücken, dann kommt Beschreibung“)
-  var modal = document.getElementById("panel-modal");
-  var modalContent = document.getElementById("modal-content");
-  var modalClose = document.getElementById("modal-close");
-
-  var lastTrigger = null;   // Fokus kehrt nach dem Schließen hierher zurück
-
-  function openPanelModal(panelId) {
-    lastTrigger = document.activeElement;
-    var tmpl = document.getElementById("tmpl-panel-" + panelId);
-    if (!tmpl || !modal || !modalContent) return;
-    modalContent.textContent = "";
-    modalContent.appendChild(tmpl.content.cloneNode(true));
-    if (typeof modal.showModal === "function") {
-      modal.showModal();
-    } else {
-      modal.setAttribute("open", "");
-    }
-    root.style.overflow = "hidden";
-    bindModalInteractive(panelId);
-    if (modalClose) modalClose.focus();
-  }
-
-  function closePanelModal() {
-    if (!modal) return;
-    if (typeof modal.close === "function") {
-      modal.close();
-    } else {
-      modal.removeAttribute("open");
-    }
-    root.style.overflow = "";
-  }
-
-  if (modalClose) {
-    modalClose.addEventListener("click", closePanelModal);
-  }
-  if (modal) {
-    modal.addEventListener("click", function (e) {
-      if (e.target === modal) closePanelModal();
+  // Ganzes Panel anklickbar: führt zur Leistungs-Unterseite (die Links im Panel funktionieren auch ohne JS)
+  document.querySelectorAll(".panel[data-href]").forEach(function (panel) {
+    panel.addEventListener("click", function (e) {
+      if (e.target.closest("a, button")) return;
+      window.location.href = panel.getAttribute("data-href");
     });
-    modal.addEventListener("close", function () {
-      root.style.overflow = "";
-      if (lastTrigger && typeof lastTrigger.focus === "function") lastTrigger.focus();
-    });
-  }
-
-  // Interaktive Klicks auf Panels und Buttons
-  document.addEventListener("click", function (e) {
-    var trigger = e.target.closest("[data-open-panel]");
-    if (trigger) {
-      e.preventDefault();
-      openPanelModal(trigger.getAttribute("data-open-panel"));
-      return;
-    }
-    var panel = e.target.closest(".panel[data-panel]");
-    if (panel && !e.target.closest("a") && !e.target.closest("button")) {
-      openPanelModal(panel.getAttribute("data-panel"));
-    }
   });
-
-  // Interaktive Demos innerhalb des Modals
-  function bindModalInteractive(panelId) {
-    if (!modalContent) return;
-
-    // 1. KI-Assistent Mini-Chat Demo
-    var chatMsgs = modalContent.querySelector("#modal-chat-msgs");
-    var chips = modalContent.querySelectorAll(".chat-chip");
-    if (chatMsgs && chips.length) {
-      // Vorbereitete Beispiel-Antworten eines erfundenen Betriebs (keine echte KI-Anbindung)
-      var botAnswers = root.lang === "en" ? {
-        termin: "Sure! We still have free slots for an on-site visit next week. Which day suits you best? Just leave your name and phone number.",
-        angebot: "You usually receive a clear fixed-price quote within 24 to 48 hours after the site visit – no hidden costs.",
-        notfall: "Yes! For urgent emergencies you can call us directly, or leave your contact details here and we'll get back to you as soon as possible."
-      } : {
-        termin: "Gerne! Für eine Besichtigung vor Ort haben wir nächste Woche noch freie Termine. Welcher Wochentag passt dir am besten? Hinterlasse mir einfach kurz deinen Namen und deine Telefonnummer.",
-        angebot: "In der Regel erhältst du ein transparentes Festpreis-Angebot innerhalb von 24 bis 48 Stunden nach dem Besichtigungstermin – ohne versteckte Kosten.",
-        notfall: "Ja! Bei dringenden Notfällen erreichst du uns direkt unter der Telefonnummer oder hinterlässt mir hier kurz deine Kontaktdaten – wir melden uns umgehend."
-      };
-      chips.forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          var qKey = btn.getAttribute("data-q");
-          var answer = botAnswers[qKey];
-          if (!answer) return;
-
-          var uMsg = document.createElement("div");
-          uMsg.className = "chat-msg chat-msg--user";
-          uMsg.textContent = btn.textContent.replace(/^[„"]|[“"]$/g, "");
-          chatMsgs.appendChild(uMsg);
-
-          var typing = document.createElement("div");
-          typing.className = "chat-msg chat-msg--bot chat-typing";
-          for (var i = 0; i < 3; i++) {
-            typing.appendChild(document.createElement("span"));
-          }
-          chatMsgs.appendChild(typing);
-          chatMsgs.scrollTop = chatMsgs.scrollHeight;
-
-          setTimeout(function () {
-            if (typing.parentNode) typing.parentNode.removeChild(typing);
-            var bMsg = document.createElement("div");
-            bMsg.className = "chat-msg chat-msg--bot";
-            bMsg.textContent = answer;
-            chatMsgs.appendChild(bMsg);
-            chatMsgs.scrollTop = chatMsgs.scrollHeight;
-          }, 600);
-        });
-      });
-    }
-
-    // 2. Sichtbar Vorher/Nachher Umschalter
-    var compareTabs = modalContent.querySelectorAll(".compare-tab");
-    var compareViews = modalContent.querySelectorAll(".compare-view");
-    if (compareTabs.length && compareViews.length) {
-      compareTabs.forEach(function (tab) {
-        tab.addEventListener("click", function () {
-          var target = tab.getAttribute("data-target");
-          compareTabs.forEach(function (t) { t.classList.toggle("is-active", t === tab); });
-          compareViews.forEach(function (v) {
-            v.hidden = (v.getAttribute("data-view") !== target);
-          });
-        });
-      });
-    }
-  }
 
   window.addEventListener("scroll", function () { onScrollHero(); onScrollHeader(); }, { passive: true });
   window.addEventListener("resize", function () { layoutHero(); onScrollHeader(); });
@@ -421,7 +328,8 @@
     split(heroTitle);
     setTimeout(function () { heroTitle.classList.add("is-in"); }, 950);   // nach dem Ladebildschirm
   }
-  document.querySelectorAll(".about__title, .steps__title, .team__title, .projects__header h2").forEach(function (el) {
+  document.querySelectorAll(".sec__title, .footer__title").forEach(function (el) {
+    el.removeAttribute("data-reveal");   // die Wörter steigen selbst auf
     split(el);
     io.observe(el);
   });
@@ -429,7 +337,7 @@
   document.querySelectorAll(".line-label").forEach(function (el) { io.observe(el); });
 
   // Listen nacheinander erscheinen lassen
-  [".steps__list > .step", ".faq__item", ".team__list > .person", ".panel"].forEach(function (sel) {
+  [".pillars > .pillar", ".steps__list > .step", ".faq__item", ".team__list > .person", ".panel"].forEach(function (sel) {
     if (sel === ".panel" && window.matchMedia("(min-width: 1024px)").matches) return;   // Desktop: Panels fahren ohnehin herein
     document.querySelectorAll(sel).forEach(function (el, i) {
       el.removeAttribute("data-reveal");
@@ -445,7 +353,7 @@
   bar.className = "scroll-progress";
   bar.setAttribute("aria-hidden", "true");
   document.body.appendChild(bar);
-  var feature = document.querySelector(".feature img");
+  var feature = document.querySelector(".browser img");
   var ticking = false;
   function onScroll() {
     if (ticking) return;
@@ -456,7 +364,7 @@
       if (feature) {   // Parallaxe der Muster-Website-Vorschau
         var r = feature.parentNode.getBoundingClientRect();
         var p = (r.top + r.height / 2 - window.innerHeight / 2) / window.innerHeight;
-        feature.style.setProperty("--py", (p * -40).toFixed(1) + "px");
+        feature.style.setProperty("--py", (p * -20).toFixed(1) + "px");
       }
       ticking = false;
     });

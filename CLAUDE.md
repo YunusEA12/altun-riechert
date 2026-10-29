@@ -194,6 +194,11 @@ Design-Vorlage ist die **Startseite von lpas.com** (Entscheidung Yunus, 25.10.20
 - Nur mit echter Maus: Magnet-Buttons, Amber-Mauszeiger-Ring (der normale Zeiger bleibt), Video- und Team-Neigung zur Maus.
 - Regeln: nur `transform`/`opacity`; alles hängt an der Klasse `.fx`, die nur mit JS und ohne `prefers-reduced-motion` gesetzt wird; ohne JS ist jeder Inhalt sichtbar. Geteilte Überschriften behalten ihren Text als `aria-label`.
 
+### Videos (Panels und Leistungsseiten)
+- Kein `autoplay` im HTML: `site.js` bzw. `assets/leistung.js` startet die Videos, ohne JS bleibt das Vorschaubild (WebP). Panel-Videos laden erst, wenn ein Viertel des Panels sichtbar ist.
+- Zwei Fassungen: `videos/` (1280 px, volle Qualität, Entscheidung Yunus 28.10.) für Desktop, `videos/mobil/` (640 px) per `<source media="(max-width: 1023px)">` fürs Handy. Neues Video = beide Fassungen erzeugen und in `scripts/public-files.json` eintragen.
+- Jedes laufende Video hat einen Pause-Knopf (`.video-toggle`, WCAG 2.2.2).
+
 ### Technische Vorgaben
 - **Keine CDNs.** Tailwind höchstens als lokaler Build (Ergebnis-CSS liegt im Repo), sonst eigenes CSS. Kein `cdn.tailwindcss.com`.
 - **Platzhalter-Bilder lokal** unter `images/placeholder/` (z. B. selbst erzeugte SVGs), **kein** `placehold.co` oder andere externe Bilddienste.
@@ -276,6 +281,7 @@ Design-Vorlage ist die **Startseite von lpas.com** (Entscheidung Yunus, 25.10.20
 - Nach jeder Phase das Ergebnis im Browser-Pane zeigen.
 - Es gibt einen zweiten Chat, der die Seite **rechtlich prüft und mit den Briefen abgleicht**. Nach größeren Änderungen eine kurze Liste schreiben, was sich geändert hat, damit der Nutzer sie dorthin weitergeben kann.
 - **Zusammenarbeit mit Codex:** Aufgaben stehen in `docs/agenten-zusammenarbeit.md`. Vor Änderungen prüfen, ob jemand anderes die Datei geändert hat; nichts Fremdes zurücksetzen. Nach jeder Runde einen datierten Bericht `docs/claude-bericht-JJJJ-MM-TT-….md` mit geänderten Dateien, Tests und offenen Punkten. Eigene Fixes nie selbst als „behoben“ abhaken – das macht Codex nach der Nachprüfung.
+- **Git:** Kein Force-Push auf `main`. Änderungen über einen Branch und einen PR, vorher den aktuellen `origin/main` hineinmergen (am 29.10. hat ein Force-Push PR #4 von GitHub entfernt).
 - Diese Datei aktuell halten.
 
 ---
@@ -314,3 +320,5 @@ Design-Vorlage ist die **Startseite von lpas.com** (Entscheidung Yunus, 25.10.20
 - [ ] **Hosting & Domain** (GitHub Pages, Netlify, Vercel …). Der Hoster muss in die Datenschutzerklärung.
 - [ ] **Teamfotos** und Rollentitel
 - [ ] **Echte Referenzen** aus den Pilotprojekten
+- [ ] **Beispiel-Kurz-Check** zeigen (als Beispiel markiert), sobald Calvins echtes Check-Format feststeht
+- [ ] **Gewerberecht:** Dürfen Preise öffentlich stehen, solange das Gewerbe nicht angemeldet ist? (Rechts-Chat)
