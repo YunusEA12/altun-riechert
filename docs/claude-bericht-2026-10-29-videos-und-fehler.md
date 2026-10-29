@@ -64,3 +64,8 @@ Regeln eingehalten: kein `autoplay` im HTML, `preload="none"`, Start erst bei Si
 - **Panels Sichtbar, Fachkräfte, Automatisierung:** Videos entfernt, Bildfläche bleibt leer (nur Bandfarbe). Calvin liefert eigene Videos. Stellen im HTML: Kommentar `Video <name>: folgt`. Betroffen: Startseite DE/EN (Panels) und die drei Leistungsseiten DE/EN (Hero-Rahmen). Alte Videos und WebP-Vorschaubilder gelöscht und aus `scripts/public-files.json` genommen.
 - **Beispiel-Video:** zeigt jetzt einen Rundgang mit sichtbarem Mauszeiger (Regler ziehen, Button, Arbeiten anklicken, Name/Telefon/Ort tippen, Demo absenden). Nur Beispieldaten, die Muster-Website verschickt nichts.
 - Neues Video einbauen: `<video poster=… loop muted playsinline preload="none" aria-hidden="true">` mit `videos/mobil/…` (`media="(max-width: 1023px)"`) und `videos/…`, beide Dateien in `scripts/public-files.json`.
+
+## Nachtrag 2: Calvins Videos eingebaut
+
+- `videos/panel-fachkraefte.mp4` und `videos/panel-automatisierung.mp4` (+ `videos/mobil/`, Vorschaubilder `images/panel-*.webp`) aus Calvins Gemini-Videos, Ton entfernt. Eingebaut in Startseite DE/EN und die beiden Leistungsseiten DE/EN. **Sichtbar** bleibt vorerst leer.
+- Zu prüfen (Rechts-Chat): Beide Videos zeigen KI-generierte Personen mit Gesicht (`docs/bild-video-prompts.md` sah „keine erkennbaren Gesichter“ vor) und sind KI-generiert (Kennzeichnung „Symbolbilder: KI-generiert“ ist geplant). Im Automatisierungs-Video erscheint das Gmail-Logo und eingeblendeter deutscher Text („Kurz-Check anfragen – Kostenlos!“), der auch auf den englischen Seiten läuft.
