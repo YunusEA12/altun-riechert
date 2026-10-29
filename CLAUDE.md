@@ -198,6 +198,7 @@ Design-Vorlage ist die **Startseite von lpas.com** (Entscheidung Yunus, 25.10.20
 - Kein `autoplay` im HTML: `site.js` bzw. `assets/leistung.js` startet die Videos, ohne JS bleibt das Vorschaubild (WebP). Panel-Videos laden erst, wenn ein Viertel des Panels sichtbar ist.
 - Zwei Fassungen: `videos/` (1280 px, volle Qualität, Entscheidung Yunus 28.10.) für Desktop, `videos/mobil/` (640 px) per `<source media="(max-width: 1023px)">` fürs Handy. Neues Video = beide Fassungen erzeugen und in `scripts/public-files.json` eintragen.
 - Jedes laufende Video hat einen Pause-Knopf (`.video-toggle`, WCAG 2.2.2).
+- **Sektions-Videos (29.10.2026):** Über uns, Ablauf, Beispiel (Bildschirmaufnahme der Muster-Website) und Kontakt (auch auf den Leistungsseiten) haben Videos mit `data-video`. Alle sind **selbst erstellt**, Herkunft und Neuerstellung in `docs/videos/README.md`. Keine Stock- oder KI-Clips von Dritten ohne geklärte Lizenz. Der Pause-Knopf landet über `data-video-host` nie innerhalb eines Links.
 
 ### Technische Vorgaben
 - **Keine CDNs.** Tailwind höchstens als lokaler Build (Ergebnis-CSS liegt im Repo), sonst eigenes CSS. Kein `cdn.tailwindcss.com`.
@@ -317,7 +318,7 @@ Design-Vorlage ist die **Startseite von lpas.com** (Entscheidung Yunus, 25.10.20
 - [ ] **KI-Pakete:** Inhalte und Preise
 - [ ] **Briefe:** Sie siezen, die Website duzt. So gewollt?
 - [ ] **Impressum:** Telefonnummer, Rechtsform, ggf. USt-IdNr. Impressum und Datenschutz nennen bereits „GbR“, obwohl die Rechtsform offen ist – klären. Hamza im Team heißt nicht automatisch Gesellschafter
-- [ ] **Hosting & Domain** (GitHub Pages, Netlify, Vercel …). Der Hoster muss in die Datenschutzerklärung.
+- [ ] **Hosting & Domain:** Die Seite liegt bei IONOS (bal-mio.de), die Datenschutzerklärung nennt seit 29.10. IONOS statt GitHub Pages. Offen: Auftragsverarbeitungsvertrag im IONOS-Kundenbereich abschließen; Domain-Zuordnung.
 - [ ] **Teamfotos** und Rollentitel
 - [ ] **Echte Referenzen** aus den Pilotprojekten
 - [ ] **Beispiel-Kurz-Check** zeigen (als Beispiel markiert), sobald Calvins echtes Check-Format feststeht

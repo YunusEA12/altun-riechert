@@ -189,6 +189,7 @@
 
   <!-- 2 · Über uns (Werte als drei Pfeiler auf dunklem Grund) -->
   <section class="sec sec--dark about" id="ueber-uns">
+    <div class="sec__video" aria-hidden="true"><video data-video poster="images/ueber-uns.webp" loop muted playsinline preload="none" aria-hidden="true"><source src="videos/mobil/ueber-uns.mp4" type="video/mp4" media="(max-width: 1023px)"><source src="videos/ueber-uns.mp4" type="video/mp4"></video></div>
     <div class="sec__in wrap">
       <header class="sec__head">
         <span class="eyebrow"><b>01</b>Über uns</span>
@@ -222,11 +223,17 @@
   <!-- 3 · Ablauf -->
   <section class="sec sec--paper steps" id="ablauf">
     <div class="sec__in wrap">
-      <header class="sec__head">
-        <span class="eyebrow"><b>02</b>Ablauf</span>
-        <h2 class="sec__title t-xxl" data-reveal>So läuft der Kurz-Check ab</h2>
-        <p class="sec__lead" data-reveal>Kostenlos und unverbindlich. Drei Schritte, mehr nicht.</p>
-      </header>
+      <div class="steps__top">
+        <header class="sec__head">
+          <span class="eyebrow"><b>02</b>Ablauf</span>
+          <h2 class="sec__title t-xxl" data-reveal>So läuft der Kurz-Check ab</h2>
+          <p class="sec__lead" data-reveal>Kostenlos und unverbindlich. Drei Schritte, mehr nicht.</p>
+        </header>
+        <figure class="steps__film" data-reveal data-video-host>
+          <video data-video poster="images/ablauf.webp" loop muted playsinline preload="none" aria-hidden="true"><source src="videos/mobil/ablauf.mp4" type="video/mp4" media="(max-width: 1023px)"><source src="videos/ablauf.mp4" type="video/mp4"></video>
+          <figcaption class="visually-hidden">Animation: E-Mail schicken, Check bekommen, 15 Minuten sprechen</figcaption>
+        </figure>
+      </div>
       <ol class="steps__list">
         <li class="step" data-reveal style="--i:0">
           <span class="step__no" aria-hidden="true">1</span>
@@ -272,11 +279,13 @@
           <ul class="chips"><li>Fürs Handy optimiert</li><li>Anrufen mit einem Tipp</li><li>Kein Tracking, keine Cookies</li></ul>
           <a class="btn btn--dark" href="beispiel/">Muster-Website ansehen</a>
         </div>
-        <a class="browser" href="beispiel/" data-reveal>
-          <span class="browser__bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser__url">Muster · fiktiver Betrieb</span></span>
-          <img src="images/beispiel-musterle.png" alt="Vorschau der Muster-Website Malerwerkstatt Musterle, oben als Muster gekennzeichnet" width="1600" height="1000" loading="lazy">
-          <span class="browser__cap">Malerwerkstatt Musterle · Muster-Website<span class="arrow-dot arrow-dot--light" aria-hidden="true"><svg viewBox="0 0 19 19" width="19" height="19" aria-hidden="true"><path d="M5 9.5h9M10 5l4.5 4.5L10 14" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></span></span>
-        </a>
+        <div class="browser-wrap" data-reveal data-video-host>
+          <a class="browser" href="beispiel/">
+            <span class="browser__bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser__url">Muster · fiktiver Betrieb</span></span>
+            <video class="browser__media" data-video poster="images/beispiel-muster.webp" loop muted playsinline preload="none" aria-hidden="true"><source src="videos/mobil/beispiel-muster.mp4" type="video/mp4" media="(max-width: 1023px)"><source src="videos/beispiel-muster.mp4" type="video/mp4"></video><span class="visually-hidden">Vorschau der Muster-Website Malerwerkstatt Musterle, oben als Muster gekennzeichnet</span>
+            <span class="browser__cap">Malerwerkstatt Musterle · Muster-Website<span class="arrow-dot arrow-dot--light" aria-hidden="true"><svg viewBox="0 0 19 19" width="19" height="19" aria-hidden="true"><path d="M5 9.5h9M10 5l4.5 4.5L10 14" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></span></span>
+          </a>
+        </div>
       </div>
 
       <!-- Echte Projekte: erst sichtbar schalten (hidden entfernen), wenn es sie gibt und der Betrieb zugestimmt hat -->
@@ -356,7 +365,7 @@
 <!-- Footer -->
 <footer class="footer" id="kontakt">
   <div class="footer__cta">
-    <img class="footer__bg" src="images/grafik/footer.svg" alt="" width="1600" height="1000" loading="lazy">
+    <video class="footer__bg" data-video poster="images/kontakt.webp" loop muted playsinline preload="none" aria-hidden="true"><source src="videos/mobil/kontakt.mp4" type="video/mp4" media="(max-width: 1023px)"><source src="videos/kontakt.mp4" type="video/mp4"></video>
     <div class="footer__ctaInner wrap">
       <span class="eyebrow"><b>05</b>Kontakt</span>
       <h2 class="footer__title t-xxl">Bereit für deinen Kurz-Check?</h2>
