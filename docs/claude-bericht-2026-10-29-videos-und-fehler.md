@@ -59,11 +59,8 @@ Regeln eingehalten: kein `autoplay` im HTML, `preload="none"`, Start erst bei Si
 1. Datenschutz Abschnitt 2: Hoster jetzt IONOS SE (Montabaur) statt GitHub Pages. Auftragsverarbeitungsvertrag im IONOS-Kundenbereich abschließen.
 2. Neue Videos sind eigene Animationen bzw. eine Aufnahme der eigenen Muster-Website, keine Rechte Dritter, keine externen Einbindungen.
 
-## Nachtrag: Panel-Videos Sichtbar, Fachkräfte, Automatisierung
+## Nachtrag (Wunsch Calvin)
 
-Die bisherigen Clips waren fast Standbilder (nur leichter Zoom). Neu gerendert mit echter Bewegung auf denselben Bildern (`docs/videos/scenes2.js`):
-- **Sichtbar:** Pin fällt auf die Karte und pulsiert, fünf Sterne füllen sich nacheinander, Sonnenlicht und Staub.
-- **Fachkräfte:** Formular füllt sich, Button pulsiert, Bewerbungs-Karten steigen auf (nur Symbole, kein Text – passt für DE und EN).
-- **Automatisierung:** Datenpakete laufen über das Diagramm auf dem Laptop, Knoten leuchten, Blätterschatten bewegen sich.
-
-Größen: Desktop 594–718 KB, Handy 161–243 KB (vorher ähnlich). Dateinamen unverändert, daher keine HTML-Änderung nötig.
+- **Panels Sichtbar, Fachkräfte, Automatisierung:** Videos entfernt, Bildfläche bleibt leer (nur Bandfarbe). Calvin liefert eigene Videos. Stellen im HTML: Kommentar `Video <name>: folgt`. Betroffen: Startseite DE/EN (Panels) und die drei Leistungsseiten DE/EN (Hero-Rahmen). Alte Videos und WebP-Vorschaubilder gelöscht und aus `scripts/public-files.json` genommen.
+- **Beispiel-Video:** zeigt jetzt einen Rundgang mit sichtbarem Mauszeiger (Regler ziehen, Button, Arbeiten anklicken, Name/Telefon/Ort tippen, Demo absenden). Nur Beispieldaten, die Muster-Website verschickt nichts.
+- Neues Video einbauen: `<video poster=… loop muted playsinline preload="none" aria-hidden="true">` mit `videos/mobil/…` (`media="(max-width: 1023px)"`) und `videos/…`, beide Dateien in `scripts/public-files.json`.
