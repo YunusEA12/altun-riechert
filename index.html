@@ -20,6 +20,7 @@
 <link rel="preload" href="fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="brand_assets/tokens.css">
 <link rel="stylesheet" href="assets/site.css">
+<script>(function (d) { d.classList.add("js"); var m = function (q) { return window.matchMedia(q).matches; }; if (m("(min-width: 1024px)") && !m("(prefers-reduced-motion: reduce)") && window.innerHeight >= 640) d.classList.add("pin-ok"); })(document.documentElement);</script>
 </head>
 <body>
 
@@ -89,18 +90,20 @@
             <a class="btn btn--accent" href="mailto:altunriechert@gmail.com?subject=Kurz-Check&amp;body=Hallo%20Altun%20%26%20Riechert%2C%0D%0A%0D%0Aich%20h%C3%A4tte%20gern%20einen%20kostenlosen%20Kurz-Check.%0D%0A%0D%0ABetrieb%3A%20%0D%0AOrt%3A%20%0D%0AWebsite%20(falls%20vorhanden)%3A%20%0D%0A">Kurz-Check anfragen</a>
             <span class="hero__note">Startphase: Kurz-Check und 3 Pilotplätze kostenlos</span>
           </div>
+          <p class="hero__mail">Oder direkt per Mail: <a href="mailto:altunriechert@gmail.com?subject=Kurz-Check">altunriechert@gmail.com</a></p>
         </div>
       </div>
 
       <div class="hero__strip">
         <!-- Online-Präsenz: Petrol-Töne -->
         <article class="panel" style="--panel:#123B40;--panel-ink:#FFFFFF" data-panel="webseiten">
-          <div class="panel__image"><video src="videos/panel-webseiten.mp4" poster="images/grafik/panel-webseiten.svg" autoplay loop muted playsinline aria-hidden="true"></video></div>
+          <div class="panel__image"><video src="videos/panel-webseiten.mp4" poster="images/grafik/panel-webseiten.svg" loop muted playsinline preload="none" aria-hidden="true"></video></div>
           <div class="panel__band">
             <span class="panel__area">Online-Präsenz</span>
             <nav class="panel__links" aria-label="Webseiten">
               <a href="beispiel/">Muster-Website ansehen</a>
               <button type="button" class="panel__details-link" data-open-panel="webseiten">Details ansehen</button>
+              <a class="panel__nojs-link" href="mailto:altunriechert@gmail.com?subject=Kurz-Check%3A%20Webseiten">Kurz-Check anfragen</a>
             </nav>
             <button type="button" class="btn-circle panel__plus" data-open-panel="webseiten" aria-label="Details zu Webseiten ansehen"><svg viewBox="0 0 19 19" width="19" height="19" aria-hidden="true"><path d="M9.5 3v13M3 9.5h13" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
             <h2 class="panel__title t-xxl">Webseiten</h2>
@@ -110,7 +113,7 @@
         </article>
 
         <article class="panel" style="--panel:#1F5A60;--panel-ink:#FFFFFF" data-panel="sichtbar">
-          <div class="panel__image"><video src="videos/panel-sichtbar.mp4" poster="images/panel-sichtbar.jpg" autoplay loop muted playsinline aria-hidden="true"></video></div>
+          <div class="panel__image"><video src="videos/panel-sichtbar.mp4" poster="images/panel-sichtbar.jpg" loop muted playsinline preload="none" aria-hidden="true"></video></div>
           <div class="panel__band">
             <span class="panel__area">Online-Präsenz</span>
             <nav class="panel__links" aria-label="Sichtbar">
@@ -125,7 +128,7 @@
         </article>
 
         <article class="panel" style="--panel:#4E6A6D;--panel-ink:#FFFFFF" data-panel="fachkraefte">
-          <div class="panel__image"><video src="videos/panel-fachkraefte.mp4" poster="images/panel-fachkraefte.jpg" autoplay loop muted playsinline aria-hidden="true"></video></div>
+          <div class="panel__image"><video src="videos/panel-fachkraefte.mp4" poster="images/panel-fachkraefte.jpg" loop muted playsinline preload="none" aria-hidden="true"></video></div>
           <div class="panel__band">
             <span class="panel__area">Online-Präsenz</span>
             <nav class="panel__links" aria-label="Fachkräfte">
@@ -141,11 +144,11 @@
 
         <!-- KI-Integration: Amber-Töne -->
         <article class="panel" style="--panel:#E39A2D;--panel-ink:#111111" data-panel="ki-assistent">
-          <div class="panel__image"><video src="videos/panel-ki-assistent.mp4" poster="images/grafik/panel-ki-assistent.svg" autoplay loop muted playsinline aria-hidden="true"></video></div>
+          <div class="panel__image"><video src="videos/panel-ki-assistent.mp4" poster="images/grafik/panel-ki-assistent.svg" loop muted playsinline preload="none" aria-hidden="true"></video></div>
           <div class="panel__band">
             <span class="panel__area">KI-Integration</span>
             <nav class="panel__links" aria-label="KI-Assistent">
-              <button type="button" class="panel__details-link" data-open-panel="ki-assistent">Details &amp; Live-Demo</button>
+              <button type="button" class="panel__details-link" data-open-panel="ki-assistent">Details &amp; Beispiel-Chat</button>
               <a href="mailto:altunriechert@gmail.com?subject=Anfrage%3A%20KI-Assistent">Anfrage stellen</a>
             </nav>
             <button type="button" class="btn-circle panel__plus" data-open-panel="ki-assistent" aria-label="Details zum KI-Assistenten ansehen"><svg viewBox="0 0 19 19" width="19" height="19" aria-hidden="true"><path d="M9.5 3v13M3 9.5h13" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
@@ -156,7 +159,7 @@
         </article>
 
         <article class="panel" style="--panel:#F1E4CE;--panel-ink:#123B40" data-panel="automatisierung">
-          <div class="panel__image"><video src="videos/panel-automatisierung.mp4" poster="images/panel-automatisierung.jpg" autoplay loop muted playsinline aria-hidden="true"></video></div>
+          <div class="panel__image"><video src="videos/panel-automatisierung.mp4" poster="images/panel-automatisierung.jpg" loop muted playsinline preload="none" aria-hidden="true"></video></div>
           <div class="panel__band">
             <span class="panel__area">KI-Integration</span>
             <nav class="panel__links" aria-label="Automatisierung">
@@ -277,19 +280,19 @@
         <img class="person__photo" src="images/grafik/portrait-yunus.svg" alt="Initialen von Yunus Altun, Foto folgt" width="800" height="1000" loading="lazy">
         <h3 class="person__name">Yunus Altun</h3>
         <p class="person__role">Website und Online-Präsenz</p>
-        <p class="person__bio">Informatiker (B.Sc.), studiert KI und Data Science (M.Sc.) an der Universität Stuttgart.</p>
+        <p class="person__bio">Informatiker (B.Sc.), studiert KI und Data Science (M.Sc.) an der Universität Stuttgart. Kümmert sich darum, dass dein Betrieb online gut gefunden wird.</p>
       </li>
       <li class="person" data-reveal>
         <img class="person__photo" src="images/grafik/portrait-calvin.svg" alt="Initialen von Calvin Riechert, Foto folgt" width="800" height="1000" loading="lazy">
         <h3 class="person__name">Calvin Riechert</h3>
         <p class="person__role">Kundenkontakt und KI</p>
-        <p class="person__bio">KI-Lösungen, Automatisierungen, KI-Agenten und 3D-Websites mit Blender.</p>
+        <p class="person__bio">Automatisiert wiederkehrende Büroarbeit und baut KI-Lösungen – bis hin zu KI-Agenten und 3D-Websites.</p>
       </li>
       <li class="person" data-reveal>
         <img class="person__photo" src="images/grafik/portrait-hamza.svg" alt="Initiale von Hamza, Foto folgt" width="800" height="1000" loading="lazy">
         <h3 class="person__name">Hamza</h3>
         <!-- Nachname, Rolle und Kurzbeschreibung folgen, sobald Hamza sie bestätigt hat -->
-        <p class="person__role">Steckbrief folgt</p>
+        <p class="person__role">Teil des Teams Altun &amp; Riechert</p>
       </li>
     </ul>
   </section>
@@ -324,14 +327,14 @@
       <h2 class="modal-title" id="modal-title">Webseiten &amp; Online-Auftritt</h2>
       <div class="modal-price-card">
         <span class="modal-price">Ab 1.490 € Festpreis</span>
-        <span class="modal-pilot">+ 29 € / Monat Hosting &amp; Pflege · 3 Pilotplätze kostenlos</span>
+        <span class="modal-pilot">+ 29 € / Monat Hosting &amp; Pflege · Kurz-Check kostenlos</span>
       </div>
     </div>
     <p class="modal-section-title">Was im Paket enthalten ist:</p>
     <ul class="modal-list">
-      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Maßgeschneidert &amp; modern:</strong> Kein schwerfälliger Baukasten, sondern klares, hochwertiges Design, das Vertrauen stiftet.</div></li>
-      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Unter 1 Sekunde Ladezeit:</strong> Startet extrem schnell auf jedem Smartphone. Wer sucht, springt nicht genervt ab.</div></li>
-      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>100 % DSGVO-konform:</strong> Alle Schriften lokal gehostet, keine Cookies, kein lästiges Banner.</div></li>
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Passend zu deinem Betrieb:</strong> Kein schwerfälliger Baukasten, sondern klares, hochwertiges Design, das Vertrauen schaffen soll.</div></li>
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Schnell auf dem Handy:</strong> Schlank gebaut, damit die Seite auch unterwegs zügig lädt und niemand genervt abspringt.</div></li>
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Datensparsam gebaut:</strong> Schriften lokal, kein Tracking, keine Cookies – darum braucht es kein Cookie-Banner.</div></li>
       <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Sofort-Anruf:</strong> Deine Telefonnummer ist mit einem Daumen-Tipp erreichbar.</div></li>
     </ul>
     <div class="modal-benefit">
@@ -350,29 +353,30 @@
       <h2 class="modal-title" id="modal-title">Sichtbar – Google &amp; Bewertungen</h2>
       <div class="modal-price-card">
         <span class="modal-price">390 € Festpreis</span>
-        <span class="modal-pilot">Einmalig · 3 Pilotplätze für 99 € gegen Referenz</span>
+        <span class="modal-pilot">Einmalig · Startphase: 3 Pilotplätze kostenlos gegen Referenz</span>
       </div>
     </div>
     <p class="modal-section-title">Was im Paket enthalten ist:</p>
     <ul class="modal-list">
       <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Google Unternehmensprofil:</strong> Vollständig eingerichtet mit korrekter Adresse, Öffnungszeiten, Leistungen und Fotos.</div></li>
-      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Ganz oben in Maps &amp; Suche:</strong> Dein Betrieb wird gefunden, wenn jemand in der Region nach deinem Handwerk sucht.</div></li>
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Besser gefunden werden:</strong> Ziel ist, dass dein Betrieb in Maps und Suche auftaucht, wenn jemand in der Region nach deinem Handwerk sucht.</div></li>
       <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Bewertungs-QR-Karten:</strong> Gedruckte Karten fürs Fahrzeug – zufriedene Kunden scannen den Code und bewerten in 10 Sekunden.</div></li>
-      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Vorher-nachher-Bericht:</strong> Wir dokumentieren deine Sichtbarkeit vor und nach unserer Optimierung schwarz auf weiß.</div></li>
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Vorher-nachher-Bericht:</strong> Wir halten deine Sichtbarkeit vor und nach unserer Arbeit schwarz auf weiß fest – ehrlich, auch wenn sich wenig ändert.</div></li>
     </ul>
     <div class="compare-demo">
+      <p class="compare-note">Beispiel – typische Ausgangslage und das Ziel unserer Arbeit, kein Ergebnisversprechen.</p>
       <div class="compare-tabs">
-        <button type="button" class="compare-tab is-active" data-target="nachher">✅ Mit Altun &amp; Riechert</button>
-        <button type="button" class="compare-tab" data-target="vorher">❌ Ohne Optimierung</button>
+        <button type="button" class="compare-tab is-active" data-target="nachher">✅ Ziel</button>
+        <button type="button" class="compare-tab" data-target="vorher">❌ Typische Ausgangslage</button>
       </div>
       <div class="compare-content">
         <div class="compare-view" data-view="nachher">
-          <div class="compare-item"><span>📍</span><span><strong>Top-3 in Google Maps:</strong> Sofort sichtbar bei regionalen Suchen.</span></div>
-          <div class="compare-item"><span>⭐</span><span><strong>Regelmäßig 5 Sterne:</strong> Dank QR-Karten bewerten Kunden direkt nach getaner Arbeit.</span></div>
+          <div class="compare-item"><span>📍</span><span><strong>Weiter oben in Google Maps:</strong> Ein vollständiges, gepflegtes Profil verbessert die Chancen bei regionalen Suchen.</span></div>
+          <div class="compare-item"><span>⭐</span><span><strong>Mehr aktuelle Bewertungen:</strong> Mit QR-Karten können zufriedene Kunden direkt nach getaner Arbeit bewerten – freiwillig.</span></div>
           <div class="compare-item"><span>📞</span><span><strong>Direkte Anrufe:</strong> Potenzielle Kunden rufen mit 1 Klick aus den Suchergebnissen an.</span></div>
         </div>
         <div class="compare-view" data-view="vorher" hidden>
-          <div class="compare-item"><span>❌</span><span><strong>Nicht auffindbar:</strong> Erst ab Seite 3 in den Google-Ergebnissen.</span></div>
+          <div class="compare-item"><span>❌</span><span><strong>Schwer zu finden:</strong> Der Betrieb taucht bei regionalen Suchen kaum auf.</span></div>
           <div class="compare-item"><span>❌</span><span><strong>Keine aktuellen Bewertungen:</strong> Letzter Eintrag vor mehreren Jahren.</span></div>
           <div class="compare-item"><span>❌</span><span><strong>Unvollständiges Profil:</strong> Öffnungszeiten und Telefonnummer fehlen oder sind veraltet.</span></div>
         </div>
@@ -419,14 +423,14 @@
     </div>
     <p class="modal-section-title">Was der Assistent für dich tut:</p>
     <ul class="modal-list">
-      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>24/7 Kundenkontakt:</strong> Beantwortet Fragen zu Leistungen, Terminen und Notfällen auch nach Feierabend und am Wochenende.</div></li>
+      <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Rund um die Uhr erreichbar:</strong> Beantwortet Fragen zu Leistungen, Terminen und Notfällen auch nach Feierabend und am Wochenende.</div></li>
       <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Anfragen vorfiltern:</strong> Erfasst Kontaktdaten, Schadensart und Dringlichkeit automatisch.</div></li>
       <li class="modal-item"><span class="modal-check" aria-hidden="true">✓</span><div><strong>Auf deinen Betrieb trainiert:</strong> Kennt deine Preise, Öffnungszeiten und Fachgebiete – kein Fachchinesisch.</div></li>
     </ul>
     <div class="chat-demo">
       <div class="chat-demo__header">
         <span class="chat-demo__dot"></span>
-        <span>Live-Vorschau: So antwortet die KI auf deiner Website</span>
+        <span>Beispiel-Vorschau mit vorbereiteten Antworten eines erfundenen Betriebs</span>
       </div>
       <div class="chat-demo__messages" id="modal-chat-msgs">
         <div class="chat-msg chat-msg--bot">Hallo! Wie kann ich dir heute weiterhelfen? Gerne kannst du mir dein Anliegen oder einen Wunschtermin schreiben.</div>

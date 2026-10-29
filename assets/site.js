@@ -1,5 +1,6 @@
 (function () {
   var root = document.documentElement;
+  root.classList.add("js");   // Bedienelemente, die nur mit JS funktionieren, werden erst jetzt gezeigt
   var desktop = window.matchMedia("(min-width: 1024px)");
   var calm = window.matchMedia("(prefers-reduced-motion: reduce)");
 
@@ -37,6 +38,7 @@
     // Bei wenig Höhe (kleines Fenster, Zoom) passt der fixierte Hero nicht → normale Scroll-Leiste
     var usePin = desktop.matches && !calm.matches && window.innerHeight >= 640;
     pin.classList.toggle("is-pinned", usePin);
+    root.classList.toggle("pin-ok", usePin);   // gleiche Entscheidung wie das Inline-Skript im <head>
     if (!usePin) {
       pin.style.height = "";
       strip.style.transform = "";
@@ -77,18 +79,20 @@
   }
 
   // Videos in den Panels: bei reduzierter Bewegung pausieren
+  // Videos laden erst, wenn ihr Panel sichtbar wird (preload="none"), und laufen nur dort –
+  // spart Datenvolumen auf dem Handy. Ohne JS bleibt das Vorschaubild stehen.
   var panelVideos = document.querySelectorAll(".panel__image video");
-  if (calm.matches) {
-    panelVideos.forEach(function (v) { v.pause(); });
+  function setVideo(v, on) {
+    if (on && !calm.matches) { v.play().catch(function () {}); } else { v.pause(); }
+  }
+  if ("IntersectionObserver" in window) {
+    var videoIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { e.target.dataset.visible = e.isIntersecting ? "1" : ""; setVideo(e.target, e.isIntersecting); });
+    }, { threshold: 0.25 });   // erst laden, wenn ein Viertel des Panels sichtbar ist
+    panelVideos.forEach(function (v) { videoIo.observe(v); });
   }
   calm.addEventListener("change", function () {
-    panelVideos.forEach(function (v) {
-      if (calm.matches) {
-        v.pause();
-      } else {
-        v.play().catch(function () {});
-      }
-    });
+    panelVideos.forEach(function (v) { setVideo(v, v.dataset.visible === "1"); });
   });
 
   // Hero-Hintergrund: Höhenlinien bewegen sich ruhig und weichen dem Mauszeiger aus.
@@ -190,8 +194,12 @@
       ctx.fill();
     }
 
+    // Auf Touch-Geräten nur jedes zweite Bild zeichnen (~30 fps) – schont den Akku
+    var coarse = window.matchMedia("(pointer: coarse)").matches, tick = 0;
+
     function frame(now) {
       if (!onScreen || document.hidden || calm.matches) { running = false; return; }
+      if (coarse && (tick++ & 1)) { requestAnimationFrame(frame); return; }
       mouse.active += (mouse.target - mouse.active) * 0.06;
       mouse.x += (mouse.tx - mouse.x) * 0.12;
       mouse.y += (mouse.ty - mouse.y) * 0.12;
@@ -247,7 +255,10 @@
   var modalContent = document.getElementById("modal-content");
   var modalClose = document.getElementById("modal-close");
 
+  var lastTrigger = null;   // Fokus kehrt nach dem Schließen hierher zurück
+
   function openPanelModal(panelId) {
+    lastTrigger = document.activeElement;
     var tmpl = document.getElementById("tmpl-panel-" + panelId);
     if (!tmpl || !modal || !modalContent) return;
     modalContent.textContent = "";
@@ -281,6 +292,7 @@
     });
     modal.addEventListener("close", function () {
       root.style.overflow = "";
+      if (lastTrigger && typeof lastTrigger.focus === "function") lastTrigger.focus();
     });
   }
 
@@ -306,7 +318,12 @@
     var chatMsgs = modalContent.querySelector("#modal-chat-msgs");
     var chips = modalContent.querySelectorAll(".chat-chip");
     if (chatMsgs && chips.length) {
-      var botAnswers = {
+      // Vorbereitete Beispiel-Antworten eines erfundenen Betriebs (keine echte KI-Anbindung)
+      var botAnswers = root.lang === "en" ? {
+        termin: "Sure! We still have free slots for an on-site visit next week. Which day suits you best? Just leave your name and phone number.",
+        angebot: "You usually receive a clear fixed-price quote within 24 to 48 hours after the site visit – no hidden costs.",
+        notfall: "Yes! For urgent emergencies you can call us directly, or leave your contact details here and we'll get back to you as soon as possible."
+      } : {
         termin: "Gerne! Für eine Besichtigung vor Ort haben wir nächste Woche noch freie Termine. Welcher Wochentag passt dir am besten? Hinterlasse mir einfach kurz deinen Namen und deine Telefonnummer.",
         angebot: "In der Regel erhältst du ein transparentes Festpreis-Angebot innerhalb von 24 bis 48 Stunden nach dem Besichtigungstermin – ohne versteckte Kosten.",
         notfall: "Ja! Bei dringenden Notfällen erreichst du uns direkt unter der Telefonnummer oder hinterlässt mir hier kurz deine Kontaktdaten – wir melden uns umgehend."
@@ -364,4 +381,150 @@
   calm.addEventListener("change", layoutHero);
   layoutHero();
   onScrollHeader();
+})();
+
+// Effekte: Überschriften, Staffelung, Fortschritt, Magnet-Buttons, Mauszeiger, Neigung, Parallaxe.
+// Nur mit JS und ohne prefers-reduced-motion; Inhalte bleiben ohne JS unverändert sichtbar.
+(function () {
+  var root = document.documentElement;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
+  root.classList.add("fx");
+  var fine = window.matchMedia("(pointer: fine)").matches;
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
+    });
+  }, { rootMargin: "0px 0px -12% 0px" });
+
+  // Überschriften in Wörter teilen; Screenreader lesen weiter den ganzen Satz
+  function split(el) {
+    var text = el.textContent.trim();
+    el.setAttribute("aria-label", text);
+    el.removeAttribute("data-reveal");
+    el.textContent = "";
+    text.split(/\s+/).forEach(function (word, i) {
+      var outer = document.createElement("span");
+      outer.className = "split-word";
+      outer.setAttribute("aria-hidden", "true");
+      var inner = document.createElement("span");
+      inner.textContent = word;
+      inner.style.setProperty("--i", i);
+      outer.appendChild(inner);
+      el.appendChild(outer);
+      el.appendChild(document.createTextNode(" "));
+    });
+    el.classList.add("is-split");
+  }
+  var heroTitle = document.querySelector(".hero__title");
+  if (heroTitle) {
+    split(heroTitle);
+    setTimeout(function () { heroTitle.classList.add("is-in"); }, 950);   // nach dem Ladebildschirm
+  }
+  document.querySelectorAll(".about__title, .steps__title, .team__title, .projects__header h2").forEach(function (el) {
+    split(el);
+    io.observe(el);
+  });
+
+  document.querySelectorAll(".line-label").forEach(function (el) { io.observe(el); });
+
+  // Listen nacheinander erscheinen lassen
+  [".steps__list > .step", ".faq__item", ".team__list > .person", ".panel"].forEach(function (sel) {
+    if (sel === ".panel" && window.matchMedia("(min-width: 1024px)").matches) return;   // Desktop: Panels fahren ohnehin herein
+    document.querySelectorAll(sel).forEach(function (el, i) {
+      el.removeAttribute("data-reveal");
+      el.setAttribute("data-stagger", "");
+      el.style.setProperty("--i", sel === ".panel" ? 0 : i);
+      io.observe(el);
+    });
+  });
+  document.querySelectorAll(".menu__list li").forEach(function (li, i) { li.style.setProperty("--i", i); });
+
+  // Fortschrittsbalken
+  var bar = document.createElement("div");
+  bar.className = "scroll-progress";
+  bar.setAttribute("aria-hidden", "true");
+  document.body.appendChild(bar);
+  var feature = document.querySelector(".feature img");
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.transform = "scaleX(" + (max > 0 ? window.scrollY / max : 0) + ")";
+      if (feature) {   // Parallaxe der Muster-Website-Vorschau
+        var r = feature.parentNode.getBoundingClientRect();
+        var p = (r.top + r.height / 2 - window.innerHeight / 2) / window.innerHeight;
+        feature.style.setProperty("--py", (p * -40).toFixed(1) + "px");
+      }
+      ticking = false;
+    });
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  // Welle beim Klick
+  document.addEventListener("pointerdown", function (e) {
+    var t = e.target.closest(".btn, .topbar__cta, .menu-btn, .btn-circle, .chat-chip, .compare-tab");
+    if (!t) return;
+    var r = t.getBoundingClientRect(), size = Math.max(r.width, r.height) * 2.2;
+    var dot = document.createElement("span");
+    dot.className = "fx-ripple";
+    dot.style.width = dot.style.height = size + "px";
+    dot.style.left = (e.clientX - r.left - size / 2) + "px";
+    dot.style.top = (e.clientY - r.top - size / 2) + "px";
+    if (getComputedStyle(t).position === "static") t.style.position = "relative";
+    t.style.overflow = "hidden";
+    t.appendChild(dot);
+    setTimeout(function () { dot.remove(); }, 650);
+  });
+
+  if (!fine) return;   // Ab hier nur mit echter Maus
+
+  // Magnet-Buttons
+  document.querySelectorAll(".btn--accent, .topbar__cta, .btn-circle, .btn-arrow__icon").forEach(function (el) {
+    el.classList.add("fx-magnet");
+    el.addEventListener("pointermove", function (e) {
+      var r = el.getBoundingClientRect();
+      var x = (e.clientX - r.left - r.width / 2) / r.width, y = (e.clientY - r.top - r.height / 2) / r.height;
+      el.style.translate = (x * 10).toFixed(1) + "px " + (y * 8).toFixed(1) + "px";
+    });
+    el.addEventListener("pointerleave", function () { el.style.translate = ""; });
+  });
+
+  // Mausbewegung als --mx/--my (-0,5 … 0,5) für Panels und Team
+  function track(sel) {
+    document.querySelectorAll(sel).forEach(function (el) {
+      el.addEventListener("pointermove", function (e) {
+        var r = el.getBoundingClientRect();
+        el.style.setProperty("--mx", ((e.clientX - r.left) / r.width - 0.5).toFixed(3));
+        el.style.setProperty("--my", ((e.clientY - r.top) / r.height - 0.5).toFixed(3));
+      });
+      el.addEventListener("pointerleave", function () { el.style.setProperty("--mx", 0); el.style.setProperty("--my", 0); });
+    });
+  }
+  track(".panel");
+  track(".person");
+
+  // Mauszeiger-Begleiter
+  var ring = document.createElement("div");
+  ring.className = "fx-cursor";
+  ring.setAttribute("aria-hidden", "true");
+  document.body.appendChild(ring);
+  var cx = 0, cy = 0, tx = 0, ty = 0, moving = false;
+  document.addEventListener("pointermove", function (e) {
+    if (e.pointerType !== "mouse") return;
+    tx = e.clientX; ty = e.clientY;
+    if (!ring.classList.contains("is-visible")) { cx = tx; cy = ty; ring.classList.add("is-visible"); }
+    ring.classList.toggle("is-hover", !!e.target.closest("a, button, .panel, [data-open-panel]"));
+    if (!moving) { moving = true; requestAnimationFrame(follow); }
+  });
+  document.addEventListener("pointerleave", function () { ring.classList.remove("is-visible"); });
+  function follow() {
+    cx += (tx - cx) * 0.2; cy += (ty - cy) * 0.2;
+    ring.style.transform = "translate(" + cx.toFixed(1) + "px," + cy.toFixed(1) + "px)";
+    if (Math.abs(tx - cx) > 0.3 || Math.abs(ty - cy) > 0.3) requestAnimationFrame(follow);
+    else moving = false;
+  }
 })();
