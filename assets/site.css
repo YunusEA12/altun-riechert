@@ -786,3 +786,44 @@ html:not(.js) video::-webkit-media-controls-enclosure { display: none !important
 /* Download-Link zum Ratgeber unter den Kontakt-Buttons */
 .footer__guide { margin: 4px 0 0; font-size: 15px; }
 .footer__guide .btn-line { color: rgba(255, 255, 255, .88); }
+
+/* ===================================================================
+   Anfrage-Formular (assets/anfrage.js, sendet an kontakt.php)
+   =================================================================== */
+.anfrage { width: min(560px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); padding: 0; border: 0; border-radius: 20px; background: var(--white, #fff); color: var(--ink, #10282B);
+  box-shadow: 0 2px 6px rgba(12, 42, 46, .18), 0 30px 80px rgba(12, 42, 46, .35); overflow: auto; }
+.anfrage::backdrop { background: rgba(12, 42, 46, .62); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
+.anfrage[open] { animation: anfrage-in .35s cubic-bezier(.2, .9, .25, 1.1) both; }
+@keyframes anfrage-in { from { opacity: 0; transform: translateY(24px) scale(.97); } to { opacity: 1; transform: none; } }
+.anfrage__form { position: relative; display: grid; gap: 14px; padding: 28px 26px 26px; }
+.anfrage__close { position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(18, 59, 64, .18); background: #fff; color: var(--petrol, #123B40);
+  display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: transform .2s ease, background-color .2s ease; }
+.anfrage__close:hover { background: #F3F6F5; transform: rotate(90deg); }
+.anfrage__close:focus-visible { outline: 2px solid var(--amber, #E39A2D); outline-offset: 2px; }
+.anfrage__close:active { transform: scale(.94); }
+.anfrage__title { margin: 0; padding-right: 44px; font-size: 26px; line-height: 1.15; letter-spacing: -.02em; color: var(--petrol, #123B40); }
+.anfrage__lead { margin: -4px 0 0; color: #4E6A6D; }
+.anfrage__topic { margin: 0; justify-self: start; padding: 5px 12px; border-radius: 999px; background: #F6EBD8; color: #8A5A10; font-size: 13px; font-weight: 700; }
+.anfrage__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.anfrage__full { grid-column: 1 / -1; }
+.anfrage__field { display: grid; gap: 5px; font-size: 13px; font-weight: 700; color: var(--petrol, #123B40); }
+.anfrage__field input, .anfrage__field textarea { width: 100%; padding: 11px 12px; border: 1px solid #C9D5D3; border-radius: 10px; font: inherit; font-weight: 400; font-size: 16px; color: #10282B; background: #fff;
+  transition: border-color .2s ease, box-shadow .2s ease; }
+.anfrage__field input:focus, .anfrage__field textarea:focus { outline: none; border-color: var(--petrol, #123B40); box-shadow: 0 0 0 3px rgba(227, 154, 45, .35); }
+.anfrage__field textarea { resize: vertical; min-height: 84px; }
+.anfrage__hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.anfrage__consent { display: grid; grid-template-columns: 20px 1fr; gap: 10px; align-items: start; font-size: 13.5px; line-height: 1.5; color: #4E6A6D; }
+.anfrage__consent input { width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--petrol, #123B40); }
+.anfrage__consent a { color: var(--petrol, #123B40); }
+.anfrage__state { margin: 0; min-height: 1em; font-size: 14px; }
+.anfrage__state.is-err { color: #A23B1E; font-weight: 600; }
+.anfrage__state.is-ok { padding: 14px 16px; border-radius: 12px; background: #E7F1EF; color: var(--petrol, #123B40); font-weight: 600; }
+.anfrage__send { justify-self: start; }
+.anfrage__send:disabled { opacity: .7; cursor: progress; }
+.anfrage__form.is-done .anfrage__grid, .anfrage__form.is-done .anfrage__consent, .anfrage__form.is-done .anfrage__lead, .anfrage__form.is-done .anfrage__topic { display: none; }
+@media (max-width: 560px) {
+  .anfrage__grid { grid-template-columns: 1fr; }
+  .anfrage__form { padding: 24px 18px 20px; }
+  .anfrage__title { font-size: 22px; }
+}
+@media (prefers-reduced-motion: reduce) { .anfrage[open] { animation: none; } }

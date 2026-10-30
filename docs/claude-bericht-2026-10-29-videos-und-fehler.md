@@ -73,3 +73,12 @@ Regeln eingehalten: kein `autoplay` im HTML, `preload="none"`, Start erst bei Si
 ## Nachtrag 3 (30.10., Entscheidung Calvin)
 
 Die KI-Videos mit Personen bei **Fachkräfte** und **Automatisierung** sind wieder raus (Gesichter, Gmail-Logo, eingebrannter deutscher Text). Stattdessen stehen die früheren ruhigen Bilder ohne Gesicht als `<img>` (`images/panel-fachkraefte.webp`, `images/panel-automatisierung.webp`, Alt-Text „Symbolbild“). Videodateien gelöscht, `scripts/public-files.json` angepasst. **Sichtbar** bleibt leer.
+
+## Nachtrag 4 (30.10., Wunsch Calvin): Anfrage-Formular
+
+- `assets/anfrage.js` + Styles in `assets/site.css`: Klick auf jeden Anfrage-Button (mailto mit Betreff) öffnet ein Formular-Fenster (`<dialog>`), DE/EN, Thema aus dem Button (z. B. „Sichtbar“). Ohne JS bleibt der mailto-Link, bei Sendefehler öffnet sich das Mailprogramm.
+- `kontakt.php` (IONOS): Mail `[Website-Anfrage] …` an altunriechert@gmail.com (Reply-To Kunde; Feldformat passt zu `parse_inquiry` im Postfach-Abgleich des Brains) und feste Eingangsbestätigung an den Kunden ohne Formularinhalte (kein Missbrauch als Spam-Relay). Honeypot, Mindestzeit, 3 Anfragen/10 min je IP.
+- Gmail-Label `A&R/Website-Anfragen` angelegt; Filter muss in Gmail einmal angelegt werden (Betreff enthält `[Website-Anfrage]` → Label anwenden, Posteingang nicht überspringen).
+- Datenschutz Abschnitt 4 und CLAUDE.md (Abschnitt 10) angepasst.
+- Lokal getestet mit `php -S` und `AR_KONTAKT_TEST=1` (Mails in Datei): DE, EN, Leistungsseite, Panel-Link, Escape. Security-Check: neue Warnung HTML_SINK in `anfrage.js` – `innerHTML` enthält nur feste Texte und die Skript-URL, Nutzereingaben werden nur per `textContent` gesetzt.
+- Offen: echter Versand auf IONOS testen (Absender `website@<domain>`, SPF der Domain); Postfach-Abgleich im Brain muss aktiv sein, damit Anfragen automatisch als Kontakt erscheinen.
