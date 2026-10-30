@@ -7,9 +7,9 @@ LOGO = '''<svg viewBox="0 0 520 96" width="260" height="48" xmlns="http://www.w3
 <text x="121" y="78" font-family="Archivo" font-size="13" letter-spacing="1.6" fill="{s}">DIGITAL FÜR BETRIEBE · REGION STUTTGART</text></svg>'''
 MAIL = 'mailto:altunriechert@gmail.com?subject=Kurz-Check'
 
-c_luecke = hbar([('Gesell:innen', 78.9, PET), ('Fortbildungsabsolvent:innen', 10.3, PET), ('Meister:innen', 8.15, PET)], 85, unit=' Tsd.', label_w=200)
-c_nutzung = vbar([('2024','Unternehmen ab 20 MA',20,PET),('2025','Unternehmen ab 20 MA',36,PET),('2026','Unternehmen ab 20 MA',57,PET),('2025','Handwerksbetriebe',4,AMB)], 60)
-c_groesse = hbar([('10–49 Beschäftigte',17,PET),('50–249 Beschäftigte',28,PET),('250 und mehr',48,PET)], 55, label_w=170)
+c_luecke = hbar([('Alle Berufe', 369.5, PET), ('davon Handwerk', 97.3, AMB)], 400, unit=' Tsd.', label_w=150, fmt=lambda v: f'{v:.1f}'.replace('.',','))
+c_nutzung = vbar([('2024','Unternehmen ab 20 MA',20,PET),('2025','Unternehmen ab 20 MA',36,PET),('2026','Unternehmen ab 20 MA',57,PET),('2025','Handwerksbetriebe',4,AMB)], 60, height=185)
+c_groesse = hbar([('10–49 Beschäftigte',17,PET),('50–249 Beschäftigte',28,PET),('250 und mehr',48,PET)], 55, label_w=170, bar=16, gap=9)
 c_effekte = effects([
   ('Texte schreiben – benötigte Zeit [10]', -40, '−40 %', PET),
   ('Texte schreiben – Qualität [10]', 18, '+18 %', PET),
@@ -24,7 +24,7 @@ c_hemm = hbar([('Fehlendes technisches Know-how',85,PET),('Rechtsunsicherheit, u
 c_matrix = matrix([
   ('Anfragen sortieren und beantworten',0.24,0.82,20,'start'),
   ('Angebots- und Leistungstexte',0.46,0.88,20,'start'),
-  ('Baustellen-Doku per Sprache',0.30,0.60,20,'start'),
+  ('Berichte per Sprachnotiz',0.30,0.60,20,'start'),
   ('Stellenanzeigen, Social Media',0.12,0.40,20,'start'),
   ('Belege und Rechnungen vorbereiten',0.72,0.70,-20,'end'),
   ('Telefon- und Terminassistent',0.84,0.50,-20,'end'),
@@ -32,7 +32,7 @@ c_matrix = matrix([
 c_time = timeline([('01.08.2024','KI-Verordnung|tritt in Kraft',False),('02.02.2025','Verbote und|KI-Kompetenz (Art. 4)',False),('27.07.2026','Digital-Omnibus:|Art. 4 abgeschwächt',False),('02.08.2026','Transparenz-|pflichten (Art. 50)',True),('02.12.2027','Hochrisiko-|Regeln (Anhang III)',False)])
 c_flow = flow([('1  Anfrage kommt','E-Mail, Formular|oder Anrufnotiz','ki'),('2  KI bereitet vor','sortiert, fasst zusammen,|schreibt einen Entwurf','ki'),('3  Mensch prüft','ergänzt Preis, Termin,|Fachwissen','mensch'),('4  Antwort geht raus','der Betrieb sendet –|nicht die KI','mensch')], height=110)
 
-HTML = f'''<!doctype html><html lang="de"><head><meta charset="utf-8"><title>KI im Handwerksbetrieb – A&amp;R Praxiswissen 01</title>
+HTML = f'''<!doctype html><html lang="de"><head><meta charset="utf-8"><title>KI im Betrieb – A&amp;R Praxiswissen 01</title>
 <style>
 @font-face{{font-family:Archivo;src:url(archivo-var.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%}}
 @page{{size:A4;margin:20mm 18mm 20mm 18mm}}
@@ -48,7 +48,7 @@ p{{margin:0 0 7pt}} a{{color:#123B40}}
 .ref{{font-size:7pt;color:#8A5A10;font-weight:700}}
 .eyebrow{{font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#8A5A10;font-weight:800;margin-bottom:4pt}}
 .lead{{font-size:11.5pt;color:#2E4446}}
-figure{{margin:10pt 0 12pt;padding:12pt 14pt 10pt;border:1px solid #DCE5E3;border-radius:10pt;break-inside:avoid;background:#fff}}
+figure{{margin:8pt 0 10pt;padding:10pt 14pt 8pt;border:1px solid #DCE5E3;border-radius:10pt;break-inside:avoid;background:#fff}}
 figcaption{{font-size:8.4pt;color:#4E6A6D;margin-top:6pt;line-height:1.45}}
 figcaption b{{color:#123B40}}
 .fig-title{{font-size:10pt;font-weight:800;color:#123B40;margin-bottom:6pt}}
@@ -71,7 +71,7 @@ tr:nth-child(even) td{{background:#F7F9F9}}
 .step i{{counter-increment:s;width:24pt;height:24pt;border-radius:50%;background:#123B40;color:#fff;font-style:normal;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:11pt;box-shadow:0 0 0 2pt #fff,0 0 0 3.5pt #E39A2D}}
 .step i::before{{content:counter(s)}}
 .step b{{color:#123B40}}
-.sources{{font-size:8.1pt;line-height:1.42;padding-left:20pt}} .sources li{{margin-bottom:4pt;word-break:break-word}}
+.sources{{font-size:7.7pt;line-height:1.36;padding-left:20pt}} .sources li{{margin-bottom:4pt;word-break:break-word}}
 .small{{font-size:8.3pt;color:#4E6A6D}}
 /* Titelseite */
 .cover{{height:297mm;width:210mm;background:#0C2A2E;color:#fff;position:relative;overflow:hidden;padding:22mm 20mm}}
@@ -95,12 +95,12 @@ tr:nth-child(even) td{{background:#F7F9F9}}
   <div class="in">
     {LOGO.format(c='#FFFFFF', s='#9FB4B2')}
     <div class="issue">A&amp;R Praxiswissen · Ausgabe 01 · November 2026</div>
-    <h1>KI im Handwerks&shy;betrieb</h1>
-    <p class="sub">Was heute schon funktioniert, was die Forschung über den Nutzen sagt und wo die Grenzen liegen. Ein Überblick mit Zahlen, Quellen und einem Fahrplan für den Einstieg.</p>
+    <h1>KI im kleinen Betrieb</h1>
+    <p class="sub">Was heute schon funktioniert, was die Forschung über den Nutzen sagt und wo die Grenzen liegen. Ein Überblick für kleine und mittlere Unternehmen aller Branchen – mit Zahlen, Quellen und einem Fahrplan für den Einstieg.</p>
     <div class="kf">
       <div><b>57 %</b><span>der Unternehmen ab 20 Beschäftigten nutzen KI (2026){S(4)}</span></div>
-      <div><b>4 %</b><span>der Handwerksbetriebe nutzten KI im Jahr 2025{S(6)}</span></div>
-      <div><b>≈ 97.000</b><span>Stellen im Handwerk ohne passend qualifizierte Arbeitslose (2025){S(1)}</span></div>
+      <div><b>17 %</b><span>der kleinen Unternehmen (10–49 Beschäftigte) nutzten 2024 KI{S(7)}</span></div>
+      <div><b>≈ 370.000</b><span>Stellen für Fachkräfte ohne passend qualifizierte Arbeitslose (2025){S(17)}</span></div>
     </div>
     <div class="foot"><span>Altun &amp; Riechert · Achardweg 17 · 70435 Stuttgart</span><span>Kostenlos · Weitergabe erwünscht</span></div>
   </div>
@@ -110,41 +110,41 @@ tr:nth-child(even) td{{background:#F7F9F9}}
   <div class="eyebrow">Auf einen Blick</div>
   <h2>Die fünf wichtigsten Punkte</h2>
   <div class="steps">
-    <div class="step"><i></i><div><b>Die Lücke ist groß.</b> Unter Unternehmen ab 20 Beschäftigten ist KI inzwischen Mehrheitsthema (57 % im Jahr 2026){S(4)}. Im Handwerk nutzten 2025 nur 4 % der Betriebe KI{S(6)}. Wer jetzt anfängt, ist nicht spät, sondern früh.</div></div>
-    <div class="step"><i></i><div><b>Der Nutzen ist belegt, aber begrenzt.</b> In kontrollierten Studien wurden Schreib- und Büroaufgaben deutlich schneller erledigt, zum Teil mit besserer Qualität{S(10)}{S(11)}{S(12)}. Auf der Baustelle ersetzt KI keine Hand – sie entlastet das Büro.</div></div>
-    <div class="step"><i></i><div><b>Der Engpass ist Zeit, nicht Technik.</b> Fachkräfte fehlen{S(1)}, Dokumentationspflichten wachsen{S(2)}. Jede Stunde, die KI im Büro spart, kann auf die Baustelle oder zum Kunden.</div></div>
+    <div class="step"><i></i><div><b>Kleine Betriebe liegen zurück.</b> Unter Unternehmen ab 20 Beschäftigten ist KI inzwischen Mehrheitsthema (57 % im Jahr 2026){S(4)}. Bei kleinen Unternehmen sind es deutlich weniger, im Handwerk nutzten 2025 nur 4 % der Betriebe KI{S(6)}{S(7)}. Wer jetzt anfängt, ist nicht spät, sondern früh.</div></div>
+    <div class="step"><i></i><div><b>Der Nutzen ist belegt, aber begrenzt.</b> In kontrollierten Studien wurden Schreib- und Büroaufgaben deutlich schneller erledigt, zum Teil mit besserer Qualität{S(10)}{S(11)}{S(12)}. KI ersetzt keine Fachkraft beim Kunden – sie entlastet das Büro.</div></div>
+    <div class="step"><i></i><div><b>Der Engpass ist Zeit, nicht Technik.</b> Fachkräfte fehlen in vielen Branchen{S(17)}{S(1)}, Dokumentationspflichten wachsen{S(2)}. Jede Stunde, die KI im Büro spart, kann in Aufträge und Kunden fließen.</div></div>
     <div class="step"><i></i><div><b>Klein anfangen schlägt Großprojekt.</b> Ein einzelner, häufiger Ablauf – etwa Anfragen beantworten oder Angebotstexte – ist der beste Einstieg. Die Kontrolle bleibt beim Menschen.</div></div>
     <div class="step"><i></i><div><b>Datenschutz und Recht sind lösbar.</b> Mit den richtigen Werkzeugen, klaren Regeln im Team und Grundwissen zur KI-Verordnung{S(13)}{S(14)} lassen sich die größten Hürden{S(4)} vermeiden.</div></div>
   </div>
   <h3>Inhalt</h3>
   <ul class="toc">
-    <li><b>1</b>Ausgangslage im Handwerk</li><li><b>2</b>Wo die Betriebe bei KI stehen</li><li><b>3</b>Was die Forschung zum Nutzen sagt</li><li><b>4</b>Sechs Einsatzfelder im Betrieb</li>
+    <li><b>1</b>Ausgangslage in kleinen Betrieben</li><li><b>2</b>Wo die Betriebe bei KI stehen</li><li><b>3</b>Was die Forschung zum Nutzen sagt</li><li><b>4</b>Sechs Einsatzfelder im Betrieb</li>
     <li><b>5</b>Grenzen und Risiken</li><li><b>6</b>Rechtlicher Rahmen</li><li><b>7</b>In vier Schritten starten</li><li><b>8</b>So helfen wir bei der Automatisierung</li>
     <li><b>9</b>Quellen und Hinweise</li>
   </ul>
-  <div class="box" style="margin-top:14pt"><h3>Für wen ist dieser Ratgeber?</h3><p style="margin:0">Für Inhaberinnen und Inhaber kleiner und mittlerer Betriebe – besonders im Handwerk –, die wissen wollen, ob sich KI für sie lohnt, ohne sich durch Fachliteratur zu arbeiten. Alle Zahlen sind belegt; die Quellen stehen am Ende. Wo wir selbst einschätzen statt messen, sagen wir das dazu.</p></div>
+  <div class="box" style="margin-top:14pt"><h3>Für wen ist dieser Ratgeber?</h3><p style="margin:0">Für Inhaberinnen und Inhaber kleiner und mittlerer Betriebe aller Branchen – vom Handwerk über Dienstleistung und Handel bis zu Praxen und Büros –, die wissen wollen, ob sich KI für sie lohnt, ohne sich durch Fachliteratur zu arbeiten. Alle Zahlen sind belegt; die Quellen stehen am Ende. Wo wir selbst einschätzen statt messen, sagen wir das dazu.</p></div>
 </section>
 
 <section class="page">
-  <h2><span class="no">1</span>Ausgangslage im Handwerk</h2>
-  <p class="lead">Viele Betriebe haben mehr Aufträge als Hände. Gleichzeitig wächst der Aufwand im Büro.</p>
-  <p>Das Kompetenzzentrum Fachkräftesicherung (KOFA) beziffert die Fachkräftelücke im Handwerk für 2025 auf rund 97.300 Stellen – also offene Stellen, für die es bundesweit keine passend qualifizierten Arbeitslosen gibt{S(1)}. Damit konnte fast jede zweite offene Stelle im Handwerk rechnerisch nicht besetzt werden. Von 115 untersuchten Handwerksberufen waren 59 von Engpässen betroffen, 35 davon schon seit mindestens zehn Jahren. Am größten ist die Lücke in der Bauelektrik; auch Sanitär-, Heizungs- und Klimatechnik, Dachdeckerei, Metallbau und Kfz-Technik zählen zu den Engpassberufen{S(1)}.</p>
-  <figure><div class="fig-title">Abb. 1 · Fachkräftelücke im Handwerk 2025 nach Qualifikation</div>{c_luecke}
-  <figcaption><b>Lesehilfe:</b> Offene Stellen, für die keine passend qualifizierten Arbeitslosen zur Verfügung standen, Jahresdurchschnitt 2025, gerundet. Summe ≈ 97.300. Quelle: KOFA/IW (2026){S(1)}; eigene Darstellung.</figcaption></figure>
-  <h3>Mehr Verwaltung, weniger Zeit für Kunden</h3>
-  <p>In einer Umfrage des Zentralverbands des Deutschen Handwerks (ZDH) mit über 10.600 Betrieben nannten 76 % die ständige Anpassung an neue Vorschriften als größte Belastung, 54 % die Nachweis- und Dokumentationspflichten; 74 % gaben an, die Bürokratie sei in den letzten fünf Jahren gewachsen{S(2)}. In Baden-Württemberg berichteten rund 64 % der befragten Betriebe, dass ihnen dadurch weniger Zeit für Kunden bleibt{S(3)}.</p>
+  <h2><span class="no">1</span>Ausgangslage in kleinen Betrieben</h2>
+  <p class="lead">Viele Betriebe haben mehr Arbeit als Leute. Gleichzeitig wächst der Aufwand im Büro.</p>
+  <p>Das Kompetenzzentrum Fachkräftesicherung (KOFA) beziffert die Fachkräftelücke in Deutschland für 2025 auf rund 369.500 Stellen – offene Stellen für Fachkräfte, für die es keine passend qualifizierten Arbeitslosen gibt. Das ist rund ein Drittel aller offenen Fachkräftestellen; gegenüber 2024 ging die Lücke wegen der schwachen Konjunktur um 24 % zurück{S(17)}. Besonders angespannt ist das Handwerk: Dort blieb mit rund 97.300 Stellen fast jede zweite offene Stelle rechnerisch unbesetzbar{S(1)}. Von 115 untersuchten Handwerksberufen waren 59 von Engpässen betroffen, 35 davon schon seit mindestens zehn Jahren. Am größten ist die Lücke in der Bauelektrik; auch Sanitär-, Heizungs- und Klimatechnik, Dachdeckerei, Metallbau und Kfz-Technik zählen zu den Engpassberufen{S(1)}.</p>
+  <figure><div class="fig-title">Abb. 1 · Fachkräftelücke 2025 in Deutschland</div>{c_luecke}
+  <figcaption><b>Lesehilfe:</b> Offene Stellen für Fachkräfte, für die keine passend qualifizierten Arbeitslosen zur Verfügung standen, Jahresdurchschnitt 2025, in Tausend. Quellen: KOFA/IW (2026){S(17)}{S(1)}; eigene Darstellung.</figcaption></figure>
+  <h3>Mehr Verwaltung, weniger Zeit für Kunden – Beispiel Handwerk</h3>
+  <p>Wie stark Verwaltung kleine Betriebe bindet, ist im Handwerk besonders gut untersucht. In einer Umfrage des Zentralverbands des Deutschen Handwerks (ZDH) mit über 10.600 Betrieben nannten 76 % die ständige Anpassung an neue Vorschriften als größte Belastung, 54 % die Nachweis- und Dokumentationspflichten; 74 % gaben an, die Bürokratie sei in den letzten fünf Jahren gewachsen{S(2)}. In Baden-Württemberg berichteten rund 64 % der befragten Betriebe, dass ihnen dadurch weniger Zeit für Kunden bleibt{S(3)}.</p>
   <div class="facts">
     <div class="fact"><b>≈ 47 %</b><span>der offenen Stellen im Handwerk rechnerisch nicht besetzbar (2025){S(1)}</span></div>
     <div class="fact"><b>54 %</b><span>empfinden Nachweis- und Dokumentationspflichten als Belastung{S(2)}</span></div>
     <div class="fact"><b>≈ 64 %</b><span>der Betriebe in Baden-Württemberg haben weniger Zeit für Kunden{S(3)}</span></div>
   </div>
-  <p><b>Was das für KI bedeutet:</b> Künstliche Intelligenz kann keine Fachkraft auf dem Dach ersetzen. Sie kann aber Aufgaben im Büro verkürzen – genau dort, wo Inhaber und Meister heute Abende und Wochenenden verlieren.</p>
+  <p><b>Was das für KI bedeutet:</b> Künstliche Intelligenz ersetzt keine Fachkraft beim Kunden, auf der Baustelle oder im Laden. Sie kann aber Aufgaben im Büro verkürzen – genau dort, wo Inhaberinnen und Inhaber heute Abende und Wochenenden verlieren.</p>
 </section>
 
 <section class="page">
   <h2><span class="no">2</span>Wo die Betriebe bei KI stehen</h2>
-  <p class="lead">In größeren Unternehmen ist KI in drei Jahren vom Experiment zur Normalität geworden. Das Handwerk steht noch am Anfang.</p>
-  <p>Nach repräsentativen Befragungen des Digitalverbands Bitkom nutzten 2024 noch 20 % der Unternehmen ab 20 Beschäftigten KI, 2025 bereits 36 % und 2026 erstmals eine Mehrheit von 57 %{S(4)}{S(5)}. Nur noch 4 % halten KI 2026 für kein Thema{S(4)}. Im Handwerk sah es 2025 anders aus: 4 % der Betriebe nutzten KI, weitere 9 % planten es{S(6)}. Gleichzeitig sehen 89 % der Handwerksbetriebe die Digitalisierung als Chance und 35 % erwarten einen Wettbewerbsvorteil für diejenigen, die KI früh einsetzen{S(6)}.</p>
+  <p class="lead">In größeren Unternehmen ist KI in drei Jahren vom Experiment zur Normalität geworden. Viele kleine Betriebe stehen noch am Anfang.</p>
+  <p>Nach repräsentativen Befragungen des Digitalverbands Bitkom nutzten 2024 noch 20 % der Unternehmen ab 20 Beschäftigten KI, 2025 bereits 36 % und 2026 erstmals eine Mehrheit von 57 %{S(4)}{S(5)}. Nur noch 4 % halten KI 2026 für kein Thema{S(4)}. Bei kleinen Betrieben sieht es anders aus – am deutlichsten im Handwerk: Dort nutzten 2025 nur 4 % der Betriebe KI, weitere 9 % planten es{S(6)}. Gleichzeitig sehen 89 % der Handwerksbetriebe die Digitalisierung als Chance und 35 % erwarten einen Wettbewerbsvorteil für diejenigen, die KI früh einsetzen{S(6)}.</p>
   <figure><div class="fig-title">Abb. 2 · Anteil der Unternehmen, die KI nutzen</div>{c_nutzung}
   <figcaption><b>Methodischer Hinweis:</b> Die ersten drei Werte beziehen sich auf Unternehmen ab 20 Beschäftigten (Bitkom, n ≈ 600 je Jahr){S(4)}{S(5)}, der vierte auf Handwerksbetriebe ab einem Beschäftigten (Bitkom, n = 504, 2025){S(6)}. Die Gruppen sind nicht direkt vergleichbar – kleinere Betriebe nutzen neue Technik generell seltener. Die Größenordnung des Abstands ist dennoch deutlich. Eigene Darstellung.</figcaption></figure>
   <h3>Je kleiner der Betrieb, desto seltener KI</h3>
@@ -160,10 +160,10 @@ tr:nth-child(even) td{{background:#F7F9F9}}
   <p><b>Kundenservice:</b> Bei 5.179 Servicemitarbeitenden stieg die Zahl gelöster Anfragen pro Stunde mit einem KI-Assistenten im Schnitt um 14 %, bei weniger erfahrenen Mitarbeitenden um 34 % (Brynjolfsson, Li &amp; Raymond, <i>Quarterly Journal of Economics</i> 2025){S(11)}.</p>
   <p><b>Beratung:</b> 758 Beraterinnen und Berater der Boston Consulting Group erledigten mit GPT-4 12,2 % mehr Aufgaben, 25,1 % schneller und mit über 40 % höherer Qualität – solange die Aufgabe innerhalb der Fähigkeiten der KI lag. Bei einer Aufgabe außerhalb dieser „gezackten Grenze“ kamen KI-Nutzende um 19 Prozentpunkte seltener zur richtigen Lösung (Dell’Acqua et al. 2023){S(12)}.</p>
   <figure><div class="fig-title">Abb. 4 · Gemessene Effekte von KI-Assistenten in drei Studien</div>{c_effekte}
-  <figcaption>Veränderung gegenüber Kontrollgruppen ohne KI. Balken nach links: weniger benötigte Zeit bzw. weniger richtige Lösungen (Pp. = Prozentpunkte). Studien aus Büro- und Wissensarbeit in den USA; die Effekte lassen sich nicht eins zu eins auf Handwerksbetriebe übertragen. Quellen: [10], [11], [12]; eigene Darstellung.</figcaption></figure>
+  <figcaption>Veränderung gegenüber Kontrollgruppen ohne KI. Balken nach links: weniger benötigte Zeit bzw. weniger richtige Lösungen (Pp. = Prozentpunkte). Studien aus Büro- und Wissensarbeit in den USA; die Effekte lassen sich nicht eins zu eins auf kleine Betriebe übertragen. Quellen: [10], [11], [12]; eigene Darstellung.</figcaption></figure>
   <div class="box"><h3 style="font-size:11pt">Was das für Betriebe heißt</h3>
   <ul style="margin:0">
-    <li>Die Studien messen <b>Büroarbeit</b>: Texte, Antworten, Analysen. Genau diese Aufgaben gibt es auch im Handwerk – Anfragen, Angebote, Berichte, Stellenanzeigen.</li>
+    <li>Die Studien messen <b>Büroarbeit</b>: Texte, Antworten, Analysen. Genau diese Aufgaben gibt es in jedem Betrieb – Anfragen, Angebote, Berichte, Stellenanzeigen.</li>
     <li>Der Nutzen ist bei <b>wiederkehrenden, gut beschriebenen</b> Aufgaben am größten, und Einsteiger profitieren besonders{S(11)}{S(12)}.</li>
     <li>Außerhalb der Stärken der KI drohen <b>Fehler mit überzeugender Sprache</b>{S(12)}. Deshalb prüft immer ein Mensch, bevor etwas den Betrieb verlässt.</li>
   </ul></div>
@@ -176,7 +176,7 @@ tr:nth-child(even) td{{background:#F7F9F9}}
     <tr><th style="width:23%">Einsatzfeld</th><th style="width:33%">Was die KI übernimmt</th><th style="width:24%">Was beim Menschen bleibt</th><th>Datenschutz-Hinweis</th></tr>
     <tr><td><b>1 · Anfragen</b></td><td>sortiert E-Mails, fasst zusammen, fragt fehlende Angaben (Maße, Fotos, Termin) ab, schreibt Antwortentwürfe</td><td>Freigabe, Preis, Zusage</td><td>Kundendaten nur in Werkzeugen mit Vertrag zur Auftragsverarbeitung</td></tr>
     <tr><td><b>2 · Angebots- und Leistungstexte</b></td><td>formuliert Positionen und Beschreibungen aus Stichworten, prüft auf Vollständigkeit</td><td>Mengen, Preise, Fachentscheidung</td><td>gering, wenn ohne Personenbezug gearbeitet wird</td></tr>
-    <tr><td><b>3 · Baustellen-Dokumentation</b></td><td>macht aus Sprachnotizen und Fotos einen strukturierten Bericht</td><td>Kontrolle der Fakten</td><td>Fotos ohne erkennbare Personen bevorzugen</td></tr>
+    <tr><td><b>3 · Dokumentation und Berichte</b></td><td>macht aus Sprachnotizen und Fotos einen strukturierten Bericht – nach Baustelle, Kundentermin oder Beratung</td><td>Kontrolle der Fakten</td><td>Fotos ohne erkennbare Personen bevorzugen</td></tr>
     <tr><td><b>4 · Stellenanzeigen, Social Media</b></td><td>Entwürfe für Anzeigen, Posts und Antworten auf Bewertungen</td><td>Ton, Wahrheit, Freigabe</td><td>keine Bewerberdaten in frei zugängliche Werkzeuge</td></tr>
     <tr><td><b>5 · Belege und Rechnungen</b></td><td>liest Belege aus, ordnet zu, bereitet Buchungen vor</td><td>Prüfung, Freigabe, Steuerberatung</td><td>nur geprüfte Lösungen, Aufbewahrungspflichten beachten</td></tr>
     <tr><td><b>6 · Telefon und Termine</b></td><td>nimmt Anliegen auf, schlägt Termine vor, erinnert</td><td>Zusage, Sonderfälle</td><td>Hinweis auf KI im Gespräch nötig (Art. 50 KI-VO){S(13)}</td></tr>
@@ -213,7 +213,7 @@ tr:nth-child(even) td{{background:#F7F9F9}}
     <li><b>Hochrisiko-Anwendungen</b> (z. B. automatisierte Auswahl von Bewerbenden) unterliegen strengen Regeln; die Fristen wurden auf Dezember 2027 bzw. August 2028 verschoben{S(14)}. Für die typischen Einsatzfelder aus Kapitel 4 spielt das in der Regel keine Rolle, solange die KI keine Personalentscheidungen trifft.</li>
     <li><b>DSGVO</b> gilt unabhängig von der KI-VO weiter – für Kundendaten, Bewerbungen und Fotos von Personen{S(16)}.</li>
   </ul>
-  <p class="small">Dieser Überblick ersetzt keine Rechtsberatung. Bei Einzelfragen helfen Handwerkskammern, Fachverbände sowie Rechtsanwältinnen und Rechtsanwälte.</p>
+  <p class="small">Dieser Überblick ersetzt keine Rechtsberatung. Bei Einzelfragen helfen IHK, Handwerkskammern, Fachverbände sowie Rechtsanwältinnen und Rechtsanwälte.</p>
 </section>
 
 <section class="page">
@@ -267,6 +267,7 @@ tr:nth-child(even) td{{background:#F7F9F9}}
     <li>KPMG Austria (2026): Digital Omnibus on AI (Insights, Juli 2026). https://kpmg.com/at/de/insights/2026/07/digital-omnibus-on-ai.html</li>
     <li>Fraunhofer Academy (2026): EU AI Act Art. 50 – Transparenzpflichten kommen ab 2. August 2026 hinzu (Blogbeitrag). https://blog.academy.fraunhofer.de/blogbeitraege/transparenzpflicht/</li>
     <li>Datenschutzkonferenz (DSK) (2024): Orientierungshilfe „Künstliche Intelligenz und Datenschutz“, Version 1.0, Mai 2024. https://www.datenschutzkonferenz-online.de</li>
+    <li>Tiedemann, J.; Kunath, G.; Risius, P. (2026): <i>Jahresrückblick 2025: Schwacher Arbeitsmarkt, erste Impulse durch Sondervermögen.</i> KOFA Kompakt 3/2026, Institut der deutschen Wirtschaft. https://www.iwkoeln.de/studien/jurek-tiedemann-gero-kunath-paula-risius-jahresrueckblick-2025-schwacher-arbeitsmarkt-erste-impulse-durch-sondervermoegen.html</li>
   </ol>
   <p class="small">Alle Internetquellen abgerufen am 30.10.2026. Alle Abbildungen sind eigene Darstellungen auf Grundlage der genannten Zahlen; es wurden keine fremden Grafiken übernommen.</p>
   <div class="two" style="margin-top:10pt">
