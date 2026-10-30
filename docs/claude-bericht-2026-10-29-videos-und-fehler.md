@@ -69,3 +69,7 @@ Regeln eingehalten: kein `autoplay` im HTML, `preload="none"`, Start erst bei Si
 
 - `videos/panel-fachkraefte.mp4` und `videos/panel-automatisierung.mp4` (+ `videos/mobil/`, Vorschaubilder `images/panel-*.webp`) aus Calvins Gemini-Videos, Ton entfernt. Eingebaut in Startseite DE/EN und die beiden Leistungsseiten DE/EN. **Sichtbar** bleibt vorerst leer.
 - Zu prüfen (Rechts-Chat): Beide Videos zeigen KI-generierte Personen mit Gesicht (`docs/bild-video-prompts.md` sah „keine erkennbaren Gesichter“ vor) und sind KI-generiert (Kennzeichnung „Symbolbilder: KI-generiert“ ist geplant). Im Automatisierungs-Video erscheint das Gmail-Logo und eingeblendeter deutscher Text („Kurz-Check anfragen – Kostenlos!“), der auch auf den englischen Seiten läuft.
+
+## Nachtrag 3 (30.10., Entscheidung Calvin)
+
+Die KI-Videos mit Personen bei **Fachkräfte** und **Automatisierung** sind wieder raus (Gesichter, Gmail-Logo, eingebrannter deutscher Text). Stattdessen stehen die früheren ruhigen Bilder ohne Gesicht als `<img>` (`images/panel-fachkraefte.webp`, `images/panel-automatisierung.webp`, Alt-Text „Symbolbild“). Videodateien gelöscht, `scripts/public-files.json` angepasst. **Sichtbar** bleibt leer.
