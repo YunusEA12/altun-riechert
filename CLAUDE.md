@@ -38,6 +38,7 @@ Eine **kurze, knappe, knackige Website** für **Altun & Riechert**. Sie soll vor
 | **KI-Integration** | [PLATZHALTER: Preis] | [PLATZHALTER: z. B. Automatisierungen, KI-Agenten] |
 
 Preise nur aus dieser Tabelle übernehmen. Ändern sie sich, zuerst hier anpassen.
+**Entscheidung Calvin (30.10.2026): Auf der Website stehen keine Preise, überall „Preis auf Anfrage“ / „Price on request“.** Die Tabelle ist nur noch interne Orientierung für Angebote.
 **Bis zur Gewerbeanmeldung nehmen wir kein Geld**, nur kostenlose Kurz-Checks und Pilotprojekte. Die Seite darf nichts anderes versprechen.
 
 ### Vertriebsweg (Kontext für Texte)
