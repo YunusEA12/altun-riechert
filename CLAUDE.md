@@ -38,6 +38,7 @@ Eine **kurze, knappe, knackige Website** für **Altun & Riechert**. Sie soll vor
 | **KI-Integration** | [PLATZHALTER: Preis] | [PLATZHALTER: z. B. Automatisierungen, KI-Agenten] |
 
 Preise nur aus dieser Tabelle übernehmen. Ändern sie sich, zuerst hier anpassen.
+**Entscheidung Calvin (30.10.2026): Auf der Website stehen keine Preise, überall „Preis auf Anfrage“ / „Price on request“.** Die Tabelle ist nur noch interne Orientierung für Angebote.
 **Bis zur Gewerbeanmeldung nehmen wir kein Geld**, nur kostenlose Kurz-Checks und Pilotprojekte. Die Seite darf nichts anderes versprechen.
 
 ### Vertriebsweg (Kontext für Texte)
@@ -198,6 +199,7 @@ Design-Vorlage ist die **Startseite von lpas.com** (Entscheidung Yunus, 25.10.20
 - Kein `autoplay` im HTML: `site.js` bzw. `assets/leistung.js` startet die Videos, ohne JS bleibt das Vorschaubild (WebP). Panel-Videos laden erst, wenn ein Viertel des Panels sichtbar ist.
 - Zwei Fassungen: `videos/` (1280 px, volle Qualität, Entscheidung Yunus 28.10.) für Desktop, `videos/mobil/` (640 px) per `<source media="(max-width: 1023px)">` fürs Handy. Neues Video = beide Fassungen erzeugen und in `scripts/public-files.json` eintragen.
 - Jedes laufende Video hat einen Pause-Knopf (`.video-toggle`, WCAG 2.2.2).
+- **Sektions-Videos (29.10.2026):** Über uns, Ablauf, Beispiel (Bildschirmaufnahme der Muster-Website) und Kontakt (auch auf den Leistungsseiten) haben Videos mit `data-video`. Alle sind **selbst erstellt**, Herkunft und Neuerstellung in `docs/videos/README.md`. Keine Stock- oder KI-Clips von Dritten ohne geklärte Lizenz. Der Pause-Knopf landet über `data-video-host` nie innerhalb eines Links.
 
 ### Technische Vorgaben
 - **Keine CDNs.** Tailwind höchstens als lokaler Build (Ergebnis-CSS liegt im Repo), sonst eigenes CSS. Kein `cdn.tailwindcss.com`.
@@ -240,7 +242,7 @@ Design-Vorlage ist die **Startseite von lpas.com** (Entscheidung Yunus, 25.10.20
 - **Keine Cookies, kein Tracking, keine externen Einbindungen** (Fonts, Icons, Karten, Videos, Formular-Dienste). Sonst müssen Banner und Datenschutzerklärung angepasst werden.
 - **Impressum nach § 5 DDG.** Es fehlen noch Telefonnummer, Rechtsform und ggf. USt-IdNr. **Ohne diese Angaben geht die Seite nicht online.**
 - **Datenschutzerklärung:** Der Abschnitt nach **Art. 14 DSGVO** für angeschriebene Firmen (Quellen, Zweck, Speicherdauer, Widerspruch) **muss bleiben**. Der Hoster muss genannt sein.
-- **Kein Kontaktformular**, nur Mail-Button.
+- **Anfrage-Formular (Entscheidung Calvin, 30.10.2026):** Klick auf „Kurz-Check anfragen“/„Anfrage stellen“ öffnet ein Formular (`assets/anfrage.js`), das an `kontakt.php` auf dem eigenen Webserver (IONOS) sendet: Mail mit Betreff `[Website-Anfrage] …` an altunriechert@gmail.com (wird vom Postfach-Abgleich des Systems als Kontakt angelegt) plus feste Eingangsbestätigung an den Absender ohne Formularinhalte. Ohne JavaScript oder bei Fehlern bleibt der mailto-Link. Kein fremder Formular-Dienst. Datenschutz Abschnitt 4 beschreibt das.
 - **Öffentliches Repo = öffentliche Daten.** Mit `.nojekyll` liefert GitHub Pages **jede** Datei im Repo aus, auch `_briefe/` und einen Obsidian-Vault. Firmenlisten, Briefe, Ansprechpartner und interne Notizen gehören in ein **privates** Repo. Die Datenschutzerklärung verspricht ein „privates, nicht öffentliches Repository“, das muss stimmen.
 - **Bewertungen nie als Gegenleistung verlangen** (LG Hildesheim, 11 O 12/21). Pilotplätze gibt es „gegen Referenz“, nicht gegen Bewertung.
 - Beispiele immer als Beispiel kennzeichnen. Die Muster-Website behält Hinweisleiste und `noindex`.
@@ -288,7 +290,7 @@ Design-Vorlage ist die **Startseite von lpas.com** (Entscheidung Yunus, 25.10.20
 
 ## 13. Offene Punkte
 
-**Geklärt:** Repo wird übernommen · Hamza gehört dazu · Anrede Du · Englisch ja · Web und KI 50/50 · Mail-Button, kein Formular · Schriften lokal, keine externen Dienste · WhatsApp später · Hosting kommt nach der Entwicklung.
+**Geklärt:** Repo wird übernommen · Hamza gehört dazu · Anrede Du · Englisch ja · Web und KI 50/50 · Anfrage-Formular mit mailto-Rückfall (30.10.) · Schriften lokal, keine externen Dienste · WhatsApp später · Hosting kommt nach der Entwicklung.
 
 **Erledigt (25.10.2026):**
 - [x] Referenz-Website: **lpas.com** (Startseite), Analyse in `docs/referenz-analyse.md`
@@ -317,7 +319,7 @@ Design-Vorlage ist die **Startseite von lpas.com** (Entscheidung Yunus, 25.10.20
 - [ ] **KI-Pakete:** Inhalte und Preise
 - [ ] **Briefe:** Sie siezen, die Website duzt. So gewollt?
 - [ ] **Impressum:** Telefonnummer, Rechtsform, ggf. USt-IdNr. Impressum und Datenschutz nennen bereits „GbR“, obwohl die Rechtsform offen ist – klären. Hamza im Team heißt nicht automatisch Gesellschafter
-- [ ] **Hosting & Domain** (GitHub Pages, Netlify, Vercel …). Der Hoster muss in die Datenschutzerklärung.
+- [ ] **Hosting & Domain:** Die Seite liegt bei IONOS (bal-mio.de), die Datenschutzerklärung nennt seit 29.10. IONOS statt GitHub Pages. Offen: Auftragsverarbeitungsvertrag im IONOS-Kundenbereich abschließen; Domain-Zuordnung.
 - [ ] **Teamfotos** und Rollentitel
 - [ ] **Echte Referenzen** aus den Pilotprojekten
 - [ ] **Beispiel-Kurz-Check** zeigen (als Beispiel markiert), sobald Calvins echtes Check-Format feststeht

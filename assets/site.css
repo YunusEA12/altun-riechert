@@ -334,7 +334,7 @@ a.lang__opt:hover { background: rgba(255, 255, 255, .15); }
   background: currentColor;
   color: var(--panel);
 }
-.panel__title { position: absolute; left: 30px; bottom: 57px; max-width: calc(100% - 300px); hyphens: auto; overflow-wrap: break-word; }
+.panel__title { position: absolute; left: 30px; bottom: 57px; max-width: calc(100% - 300px); font-size: min(56px, 3.5vw); }   /* „Automatisierung“ passt ab 1024 px ohne Umbruch */
 .panel__count { position: absolute; left: 30px; bottom: 30px; font-size: 12px; }
 .panel__subtitle {
   position: absolute; right: 30px; bottom: 57px; max-width: 240px;
@@ -448,7 +448,7 @@ a.lang__opt:hover { background: rgba(255, 255, 255, .15); }
 .browser__bar i { width: 11px; height: 11px; border-radius: 50%; background: rgba(255, 255, 255, .28); }
 .browser__bar i:first-child { background: var(--amber); }
 .browser__url { margin-left: 10px; padding: 3px 14px; border-radius: 999px; background: rgba(255, 255, 255, .12); color: var(--white); font-size: 12px; }
-.browser img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
+.browser img, .browser__media { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; background: var(--dark); }
 .browser__cap { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px; background: var(--petrol); color: var(--white); font-size: 14px; }
 .browser:hover .arrow-dot { transform: translateX(3px); }
 
@@ -653,9 +653,10 @@ a.lang__opt:hover { background: rgba(255, 255, 255, .15); }
 
 /* Ablauf-Karten */
 .step { transition: transform .45s var(--ease), box-shadow .45s var(--ease); }
-.step__no { transition: color .3s var(--ease), transform .45s var(--ease); display: inline-block; }
+/* Nummer bleibt zentriert im Kreis; beim Hover leuchtet sie in Amber und wächst leicht */
+.step__no { transition: color .3s var(--ease), transform .45s var(--ease); }
 .step:hover { transform: translateY(-6px); box-shadow: 0 2px 4px rgba(18, 59, 64, .06), 0 18px 40px rgba(18, 59, 64, .14); }
-.step:hover .step__no { color: var(--amber); transform: translateX(4px); }
+.step:hover .step__no { color: var(--amber); transform: translateY(-50%) scale(1.08); }
 .fx [data-stagger].step.is-in:hover { transform: translateY(-6px); }
 
 /* Buttons: Lichtstreifen, Welle, Magnet */
@@ -699,7 +700,7 @@ a.lang__opt:hover { background: rgba(255, 255, 255, .15); }
 }
 
 /* Muster-Website: Parallaxe */
-.fx .browser img { transform: scale(1.06) translateY(var(--py, 0px)); transition: none; }
+.fx .browser img, .fx .browser__media { transform: scale(1.06) translateY(var(--py, 0px)); transition: none; }
 
 /* Team: 3D-Neigung */
 .person__photo { transition: transform .5s var(--ease), box-shadow .5s var(--ease); transform-style: preserve-3d; }
@@ -731,7 +732,98 @@ a.lang__opt:hover { background: rgba(255, 255, 255, .15); }
   .fx .split-word > span, .fx [data-stagger] { opacity: 1; transform: none; }
   .fx .line-label { border-bottom-color: var(--line); }
   .fx .line-label::after { display: none; }
-  .fx .panel__image video, .fx .panel__image img, .fx .browser img { transform: none; }
+  .fx .panel__image video, .fx .panel__image img, .fx .browser img, .fx .browser__media { transform: none; }
 }
-=======
+
 .nb { white-space: nowrap; }
+
+
+/* ===================================================================
+   Videos in Über uns, Ablauf, Beispiel und Kontakt (eigene Animationen
+   bzw. Bildschirmaufnahme der Muster-Website, keine fremden Inhalte).
+   Start/Stopp und Pause-Knopf: assets/site.js. Ohne JS bleibt das WebP.
+   =================================================================== */
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* Über uns: Region als Karte, Betriebe leuchten auf */
+.sec__video { position: absolute; inset: 0; pointer-events: none; }
+.sec__video video { width: 100%; height: 100%; object-fit: cover; opacity: .9; }
+.sec__video::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(12, 42, 46, .92) 0%, rgba(12, 42, 46, .55) 55%, rgba(12, 42, 46, .25) 100%), linear-gradient(to top, rgba(12, 42, 46, .85), transparent 45%); }
+.sec__video .video-toggle { pointer-events: auto; z-index: 3; bottom: calc(var(--sec-radius) + 16px); right: 20px; }   /* über der Rundung der nächsten Sektion */
+.about.sec--dark::before { display: none; }
+.about .sec__in { z-index: 1; }
+.about .pillar { background: rgba(12, 42, 46, .55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+
+/* Ablauf: Überschrift links, Erklärfilm rechts */
+.steps__top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; margin-bottom: 56px; }
+.steps__top .sec__head { margin-bottom: 0; }
+.steps__film { position: relative; margin: 0; border-radius: 20px; overflow: hidden; background: var(--dark); aspect-ratio: 16 / 9;
+  box-shadow: 0 0 0 1px rgba(18, 59, 64, .08), 0 2px 4px rgba(18, 59, 64, .08), 0 24px 60px rgba(18, 59, 64, .22); }
+.steps__film video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.steps__top + .steps__list { margin-top: 44px; }
+
+/* Beispiel: Pause-Knopf sitzt neben dem Link, nicht darin */
+.browser-wrap { position: relative; }
+.browser-wrap > .video-toggle { top: 6px; right: 10px; bottom: auto; z-index: 3; width: 30px; height: 30px; }   /* sitzt in der Browser-Leiste */
+
+/* Kontakt: Video statt Grafik */
+video.footer__bg { opacity: .85; }
+.footer__cta > .video-toggle { z-index: 3; }
+
+@media (max-width: 1023px) {
+  .steps__top { grid-template-columns: 1fr; gap: 28px; margin-bottom: 36px; }
+  .sec__video::after { background: linear-gradient(to bottom, rgba(12, 42, 46, .6), rgba(12, 42, 46, .88)); }
+  .browser-wrap > .video-toggle { top: 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about .pillar { backdrop-filter: none; -webkit-backdrop-filter: none; }
+}
+
+/* Ohne JavaScript blendet der Browser sonst Wiedergabe-Steuerelemente über das Vorschaubild */
+html:not(.js) video::-webkit-media-controls,
+html:not(.js) video::-webkit-media-controls-enclosure { display: none !important; }
+
+/* Download-Link zum Ratgeber unter den Kontakt-Buttons */
+.footer__guide { margin: 4px 0 0; font-size: 15px; }
+.footer__guide .btn-line { color: rgba(255, 255, 255, .88); }
+
+/* ===================================================================
+   Anfrage-Formular (assets/anfrage.js, sendet an kontakt.php)
+   =================================================================== */
+.anfrage { width: min(560px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); padding: 0; border: 0; border-radius: 20px; background: var(--white, #fff); color: var(--ink, #10282B);
+  box-shadow: 0 2px 6px rgba(12, 42, 46, .18), 0 30px 80px rgba(12, 42, 46, .35); overflow: auto; }
+.anfrage::backdrop { background: rgba(12, 42, 46, .62); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
+.anfrage[open] { animation: anfrage-in .35s cubic-bezier(.2, .9, .25, 1.1) both; }
+@keyframes anfrage-in { from { opacity: 0; transform: translateY(24px) scale(.97); } to { opacity: 1; transform: none; } }
+.anfrage__form { position: relative; display: grid; gap: 14px; padding: 28px 26px 26px; }
+.anfrage__close { position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(18, 59, 64, .18); background: #fff; color: var(--petrol, #123B40);
+  display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: transform .2s ease, background-color .2s ease; }
+.anfrage__close:hover { background: #F3F6F5; transform: rotate(90deg); }
+.anfrage__close:focus-visible { outline: 2px solid var(--amber, #E39A2D); outline-offset: 2px; }
+.anfrage__close:active { transform: scale(.94); }
+.anfrage__title { margin: 0; padding-right: 44px; font-size: 26px; line-height: 1.15; letter-spacing: -.02em; color: var(--petrol, #123B40); }
+.anfrage__lead { margin: -4px 0 0; color: #4E6A6D; }
+.anfrage__topic { margin: 0; justify-self: start; padding: 5px 12px; border-radius: 999px; background: #F6EBD8; color: #8A5A10; font-size: 13px; font-weight: 700; }
+.anfrage__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.anfrage__full { grid-column: 1 / -1; }
+.anfrage__field { display: grid; gap: 5px; font-size: 13px; font-weight: 700; color: var(--petrol, #123B40); }
+.anfrage__field input, .anfrage__field textarea { width: 100%; padding: 11px 12px; border: 1px solid #C9D5D3; border-radius: 10px; font: inherit; font-weight: 400; font-size: 16px; color: #10282B; background: #fff;
+  transition: border-color .2s ease, box-shadow .2s ease; }
+.anfrage__field input:focus, .anfrage__field textarea:focus { outline: none; border-color: var(--petrol, #123B40); box-shadow: 0 0 0 3px rgba(227, 154, 45, .35); }
+.anfrage__field textarea { resize: vertical; min-height: 84px; }
+.anfrage__hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.anfrage__consent { display: grid; grid-template-columns: 20px 1fr; gap: 10px; align-items: start; font-size: 13.5px; line-height: 1.5; color: #4E6A6D; }
+.anfrage__consent input { width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--petrol, #123B40); }
+.anfrage__consent a { color: var(--petrol, #123B40); }
+.anfrage__state { margin: 0; min-height: 1em; font-size: 14px; }
+.anfrage__state.is-err { color: #A23B1E; font-weight: 600; }
+.anfrage__state.is-ok { padding: 14px 16px; border-radius: 12px; background: #E7F1EF; color: var(--petrol, #123B40); font-weight: 600; }
+.anfrage__send { justify-self: start; }
+.anfrage__send:disabled { opacity: .7; cursor: progress; }
+.anfrage__form.is-done .anfrage__grid, .anfrage__form.is-done .anfrage__consent, .anfrage__form.is-done .anfrage__lead, .anfrage__form.is-done .anfrage__topic { display: none; }
+@media (max-width: 560px) {
+  .anfrage__grid { grid-template-columns: 1fr; }
+  .anfrage__form { padding: 24px 18px 20px; }
+  .anfrage__title { font-size: 22px; }
+}
+@media (prefers-reduced-motion: reduce) { .anfrage[open] { animation: none; } }
