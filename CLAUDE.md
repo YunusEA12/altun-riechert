@@ -245,6 +245,10 @@ Design-Vorlage ist die **Startseite von lpas.com** (Entscheidung Yunus, 25.10.20
 - **Impressum nach § 5 DDG.** Es fehlen noch Telefonnummer, Rechtsform und ggf. USt-IdNr. **Ohne diese Angaben geht die Seite nicht online.**
 - **Datenschutzerklärung:** Der Abschnitt nach **Art. 14 DSGVO** für angeschriebene Firmen (Quellen, Zweck, Speicherdauer, Widerspruch) **muss bleiben**. Der Hoster muss genannt sein.
 - **Anfrage-Formular (Entscheidung Calvin, 30.10.2026):** Klick auf „Kurz-Check anfragen“/„Anfrage stellen“ öffnet ein Formular (`assets/anfrage.js`), das an `kontakt.php` auf dem eigenen Webserver (IONOS) sendet: Mail mit Betreff `[Website-Anfrage] …` an altunriechert@gmail.com (wird vom Postfach-Abgleich des Systems als Kontakt angelegt) plus feste Eingangsbestätigung an den Absender ohne Formularinhalte. Ohne JavaScript oder bei Fehlern bleibt der mailto-Link. Kein fremder Formular-Dienst. Datenschutz Abschnitt 4 beschreibt das.
+- **Formular-Schutz (01.11.2026):** `kontakt.php` nimmt nur Absendungen mit Zeitstempel und passender Herkunft an, sendet von der festen Adresse `website@bal-mio.de` (bei Domain-Wechsel die Konstante `ABSENDER` ändern) und begrenzt auf 40 Anfragen und 20 Eingangsbestätigungen pro Tag. Die Bestätigung duzt.
+- **Sicherheits-Header:** `.htaccess` (CSP, X-Frame-Options, nosniff, Referrer-Policy, Permissions-Policy, HSTS). Neue externe Quellen (Skripte, Bilder, Videos, Formulardienste) funktionieren erst nach Anpassung der CSP – und sind ohnehin nicht erlaubt. Der Export übernimmt `.htaccess` erst, wenn Codex das freigibt.
+- **Medien nur mit geklärter Herkunft:** Videos und Bilder, deren Herkunft/Lizenz nicht in `docs/videos/README.md` steht, werden nicht veröffentlicht (Abmahnrisiko §§ 72, 97 UrhG). KI-Bilder tragen im Alt-Text „KI-generiertes Symbolbild“.
+- **Keine Hinweise auf fremde Vorlagen** im öffentlichen Code (Kommentare, Dateinamen).
 - **Öffentliches Repo = öffentliche Daten.** Mit `.nojekyll` liefert GitHub Pages **jede** Datei im Repo aus, auch `_briefe/` und einen Obsidian-Vault. Firmenlisten, Briefe, Ansprechpartner und interne Notizen gehören in ein **privates** Repo. Die Datenschutzerklärung verspricht ein „privates, nicht öffentliches Repository“, das muss stimmen.
 - **Bewertungen nie als Gegenleistung verlangen** (LG Hildesheim, 11 O 12/21). Pilotplätze gibt es „gegen Referenz“, nicht gegen Bewertung.
 - Beispiele immer als Beispiel kennzeichnen. Die Muster-Website behält Hinweisleiste und `noindex`.
@@ -326,3 +330,6 @@ Design-Vorlage ist die **Startseite von lpas.com** (Entscheidung Yunus, 25.10.20
 - [ ] **Echte Referenzen** aus den Pilotprojekten
 - [ ] **Beispiel-Kurz-Check** zeigen (als Beispiel markiert), sobald Calvins echtes Check-Format feststeht. Platz ist vorbereitet: `<figure class="step__example" hidden>` in Ablauf-Schritt 2 (DE + EN)
 - [ ] **Gewerberecht:** Dürfen Preise öffentlich stehen, solange das Gewerbe nicht angemeldet ist? (Rechts-Chat)
+- [ ] **Videos `panel-webseiten.mp4` und `panel-ki-assistent.mp4`:** Herkunft/Lizenz von Calvin klären. Bis dahin stehen die Übergangsgrafiken; die Dateien liegen im Repo, sind aber nicht im Export
+- [ ] **KI-Ratgeber (PDF):** am 01.11. von der Website genommen (Entscheidung Yunus). Quellen in `docs/ratgeber/`. Vor einer Veröffentlichung jede Quelle prüfen (§ 5 UWG, KI-VO Art. 50 Abs. 4)
+- [ ] **Repo privat stellen** (GitHub → Settings → Change visibility): `_briefe/make_letters.py` mit Firmendaten liegt in allen Branches öffentlich (Commit `2823bb1`)

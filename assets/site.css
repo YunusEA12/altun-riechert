@@ -1,4 +1,4 @@
-/* Altun & Riechert – Layout nach Referenz (lpas.com, Startseite), eigener Code und eigene Inhalte.
+/* Altun & Riechert – eigener Code und eigene Inhalte.
    Marken-Tokens und Schrift kommen aus brand_assets/tokens.css (wird vor dieser Datei geladen).
    Grundsatz: Inhalte funktionieren ohne JavaScript, Effekte (fixierter Hero, Einblenden)
    schaltet assets/site.js nur zusätzlich ein. */
@@ -734,9 +734,6 @@ video.footer__bg { opacity: .85; }
 html:not(.js) video::-webkit-media-controls,
 html:not(.js) video::-webkit-media-controls-enclosure { display: none !important; }
 
-/* Download-Link zum Ratgeber unter den Kontakt-Buttons */
-.footer__guide { margin: 4px 0 0; font-size: 15px; }
-.footer__guide .btn-line { color: rgba(255, 255, 255, .88); }
 
 /* ===================================================================
    Anfrage-Formular (assets/anfrage.js, sendet an kontakt.php)

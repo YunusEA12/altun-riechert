@@ -46,7 +46,7 @@
       return;
     }
     var vw = window.innerWidth;
-    // Ende wie in der Referenz: das letzte Panel steht bei ca. 21 % vom linken Rand
+    // Ende: das letzte Panel steht bei ca. 21 % vom linken Rand
     distance = strip.offsetLeft + panels.length * panels[0].offsetWidth - vw * 0.748;
     pin.style.height = window.innerHeight + distance * 0.85 + "px";
     onScrollHero();

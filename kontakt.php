@@ -8,8 +8,10 @@
  * 2. Eine kurze Eingangsbestätigung an die angegebene Adresse. Sie enthält bewusst KEINEN Text aus
  *    dem Formular, damit niemand das Formular nutzen kann, um fremden Leuten Inhalte zu schicken.
  *
- * Gespeichert wird nichts außer einer kurzen Sperre gegen Massen-Absendungen (IP-Hash, 10 Minuten).
- * Spam-Schutz: verstecktes Feld (Honeypot), Mindest-Ausfüllzeit, Längenbegrenzung, Sendelimit je IP,
+ * Gespeichert wird nichts außer einer kurzen Sperre gegen Massen-Absendungen (IP-Hash, 10 Minuten)
+ * und zwei Tageszählern (nur Anzahlen).
+ * Spam-Schutz: verstecktes Feld (Honeypot), Pflicht-Zeitstempel mit Mindest-Ausfüllzeit, Längenbegrenzung,
+ * Sendelimit je IP und pro Tag, Herkunftsprüfung (Origin), feste Absender-Adresse,
  * Schutz gegen Header-Injection (Zeilenumbrüche werden aus allen Kopfzeilen entfernt).
  */
 
@@ -20,6 +22,10 @@ const BETREFF_PREFIX = '[Website-Anfrage]';
 const MAX_JE_IP = 3;          // Anfragen je IP ...
 const SPERRFENSTER = 600;     // ... in 10 Minuten
 const MIN_SEKUNDEN = 3;       // schneller ausgefüllt = Bot
+const MAX_JE_TAG = 40;        // Anfragen insgesamt pro Tag (Schutz vor Massen-Absendungen über viele IPs)
+const MAX_BESTAETIGUNG_TAG = 20;   // Eingangsbestätigungen pro Tag, damit niemand fremde Postfächer zuschüttet
+// Feste Absender-Domain statt Host aus der Anfrage. Bei einem Domain-Wechsel nur hier ändern.
+const ABSENDER = 'website@bal-mio.de';
 
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
@@ -54,6 +60,29 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
     antwort(405, ['ok' => false, 'fehler' => 'Nur POST.']);
 }
 
+// Nur Absendungen von der eigenen Seite: Schickt der Browser eine Herkunft mit, muss sie zu diesem Host passen.
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+if ($origin !== '') {
+    $herkunft = strtolower((string) parse_url($origin, PHP_URL_HOST));
+    $eigener = strtolower(explode(':', $_SERVER['HTTP_HOST'] ?? '')[0]);
+    if ($herkunft === '' || $herkunft !== $eigener) {
+        antwort(403, ['ok' => false, 'fehler' => 'Nicht erlaubt.']);
+    }
+}
+
+// Tageszähler (nur Anzahlen, keine personenbezogenen Daten)
+function tageszaehler(string $art): array {
+    $datei = sys_get_temp_dir() . '/ar_kontakt_tag_' . $art . '_' . hash('sha256', __FILE__) . '.json';
+    $heute = date('Y-m-d');
+    $stand = is_file($datei) ? (array) json_decode((string) file_get_contents($datei), true) : [];
+    $anzahl = (($stand['tag'] ?? '') === $heute) ? (int) ($stand['anzahl'] ?? 0) : 0;
+    return [$datei, $heute, $anzahl];
+}
+function hochzaehlen(array $z): void {
+    [$datei, $heute, $anzahl] = $z;
+    @file_put_contents($datei, json_encode(['tag' => $heute, 'anzahl' => $anzahl + 1]), LOCK_EX);
+}
+
 $en = feld('sprache', 2) === 'en';
 $t = $en
     ? ['pflicht' => 'Please enter your name.', 'mail' => 'Please enter a valid email address so we can reply.', 'ok' => 'Please confirm that we may use your details to answer your request.', 'viel' => 'Too many requests. Please try again in a few minutes or email us directly.', 'fehl' => 'Sending did not work.']
@@ -63,8 +92,9 @@ $t = $en
 if (feld('homepage', 200) !== '') {
     antwort(200, ['ok' => true]);
 }
+// Ohne Zeitstempel oder zu schnell ausgefüllt: wie Erfolg antworten, aber nichts senden (Bots merken es nicht).
 $start = (int) feld('t', 20);
-if ($start > 0 && (time() - intdiv($start, 1000)) < MIN_SEKUNDEN) {
+if ($start <= 0 || (time() - intdiv($start, 1000)) < MIN_SEKUNDEN) {
     antwort(200, ['ok' => true]);
 }
 
@@ -76,7 +106,8 @@ $zeiten = [];
 if (is_file($sperrdatei)) {
     $zeiten = array_filter((array) json_decode((string) file_get_contents($sperrdatei), true), fn($z) => is_int($z) && $z > $jetzt - SPERRFENSTER);
 }
-if (count($zeiten) >= MAX_JE_IP) {
+$tagAnfragen = tageszaehler('anfragen');
+if (count($zeiten) >= MAX_JE_IP || $tagAnfragen[2] >= MAX_JE_TAG) {
     antwort(429, ['ok' => false, 'fehler' => $t['viel']]);
 }
 
@@ -98,10 +129,7 @@ if (feld('einwilligung', 5) !== '1') {
     antwort(422, ['ok' => false, 'fehler' => $t['ok']]);
 }
 
-$host = explode(':', strtolower($_SERVER['HTTP_HOST'] ?? 'localhost'))[0];
-$host = preg_replace('/[^a-z0-9.-]/', '', $host) ?: 'localhost';
-$host = preg_replace('/^www\./', '', $host);
-$absender = 'website@' . $host;
+$absender = ABSENDER;
 
 // 1. Anfrage an das Postfach. Feldnamen passen zum Postfach-Abgleich des Systems (parse_inquiry).
 $text = "Neue Anfrage über die Website\n\n"
@@ -132,9 +160,9 @@ $bestaetigung = $en
     ? "Hello,\n\nthank you for your interest. We have received your request and will get back to you shortly.\n\n"
       . "Kind regards\nYunus Altun, Calvin Riechert and Hamza\nAltun & Riechert\nAchardweg 17, 70435 Stuttgart\naltunriechert@gmail.com\n\n"
       . "You are receiving this email because this address was entered in the request form on our website. If that was not you, please ignore this email.\n"
-    : "Guten Tag,\n\nvielen Dank für Ihr Interesse. Ihre Anfrage ist bei uns eingegangen, wir melden uns zeitnah bei Ihnen.\n\n"
+    : "Hallo,\n\ndanke für dein Interesse. Deine Anfrage ist bei uns angekommen, wir melden uns zeitnah bei dir.\n\n"
       . "Viele Grüße\nYunus Altun, Calvin Riechert und Hamza\nAltun & Riechert\nAchardweg 17, 70435 Stuttgart\naltunriechert@gmail.com\n\n"
-      . "Sie erhalten diese E-Mail, weil diese Adresse im Anfrage-Formular auf unserer Website angegeben wurde. Falls Sie das nicht waren, ignorieren Sie diese Nachricht bitte.\n";
+      . "Du bekommst diese E-Mail, weil diese Adresse im Anfrage-Formular auf unserer Website angegeben wurde. Falls du das nicht warst, ignoriere diese Nachricht bitte.\n";
 $kopf2 = [
     'From: =?UTF-8?Q?Altun_&_Riechert?= <' . $absender . '>',
     'Reply-To: ' . EMPFAENGER,
@@ -144,7 +172,12 @@ $kopf2 = [
     'Auto-Submitted: auto-replied',
     'X-Auto-Response-Suppress: All',
 ];
-senden($email, $en ? 'Thank you for your request – Altun & Riechert' : 'Danke für Ihre Anfrage – Altun & Riechert', $bestaetigung, $kopf2, $absender);
+$tagBestaetigung = tageszaehler('bestaetigung');
+if ($tagBestaetigung[2] < MAX_BESTAETIGUNG_TAG) {
+    senden($email, $en ? 'Thank you for your request – Altun & Riechert' : 'Danke für deine Anfrage – Altun & Riechert', $bestaetigung, $kopf2, $absender);
+    hochzaehlen($tagBestaetigung);
+}
+hochzaehlen($tagAnfragen);
 
 $zeiten[] = $jetzt;
 @file_put_contents($sperrdatei, json_encode(array_values($zeiten)), LOCK_EX);

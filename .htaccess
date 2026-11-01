@@ -1,0 +1,15 @@
+# Sicherheits-Header für den Webserver bei IONOS (Apache, mod_headers).
+# Die Seite lädt nur eigene Dateien: Skripte, Styles, Bilder, Videos und Schriften kommen von dieser Domain,
+# das Anfrage-Formular sendet per fetch an kontakt.php (ebenfalls diese Domain).
+# 'unsafe-inline' bleibt für Skripte und Styles nötig: kleines Inline-Skript im <head> (fixierter Hero),
+# Inline-Skript der Muster-Website und style="…"-Attribute. Fremde Skripte bleiben trotzdem gesperrt.
+# data: bei Bildern: Die Muster-Website zeigt hochgeladene Fotos als lokale Vorschau.
+<IfModule mod_headers.c>
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
+  # HSTS nur über HTTPS senden. Die Weiterleitung http → https bitte im IONOS-Kundenbereich einschalten.
+  Header always set Strict-Transport-Security "max-age=31536000" env=HTTPS
+</IfModule>

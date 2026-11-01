@@ -15,7 +15,7 @@
     web: "Website (optional)", msg: "What is it about? (optional)", msgPh: "e.g. We want more enquiries via Google.",
     consent: 'I agree that Altun &amp; Riechert may use my details to answer my request. Details in the <a href="' + base + 'datenschutz.html" target="_blank" rel="noopener">privacy policy</a> (German).',
     send: "Send request", sending: "Sending…", close: "Close",
-    done: "Thank you! Your request has arrived. We have sent you a confirmation by email and will get back to you shortly.",
+    done: "Thank you! Your request has arrived. You will usually get a confirmation by email, and we will get back to you shortly.",
     errName: "Please enter your name.", errMail: "Please enter a valid email address so we can reply.",
     errOk: "Please confirm that we may use your details to answer your request.",
     fallback: "Sending did not work. Your email program is opening instead.", topic: "Topic"
@@ -25,7 +25,7 @@
     web: "Website (optional)", msg: "Worum geht es? (optional)", msgPh: "z. B. Wir wollen mehr Anfragen über Google.",
     consent: 'Ich bin einverstanden, dass Altun &amp; Riechert meine Angaben nutzt, um meine Anfrage zu beantworten. Details in der <a href="' + base + 'datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.',
     send: "Anfrage senden", sending: "Wird gesendet …", close: "Schließen",
-    done: "Danke! Deine Anfrage ist bei uns angekommen. Du bekommst gleich eine Bestätigung per E-Mail, und wir melden uns zeitnah bei dir.",
+    done: "Danke! Deine Anfrage ist bei uns angekommen. In der Regel bekommst du gleich eine Bestätigung per E-Mail, und wir melden uns zeitnah bei dir.",
     errName: "Bitte gib deinen Namen an.", errMail: "Bitte gib eine gültige E-Mail-Adresse an, damit wir antworten können.",
     errOk: "Bitte bestätige, dass wir deine Angaben für die Antwort nutzen dürfen.",
     fallback: "Das Senden hat nicht geklappt. Dein E-Mail-Programm öffnet sich stattdessen.", topic: "Thema"

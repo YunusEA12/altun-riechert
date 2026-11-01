@@ -29,6 +29,14 @@ Eingerichtet auf Wunsch von Yunus am 25.10.2026. Die Dateien sind die gemeinsame
 | DESIGN-01 | Lange Scrollstrecke und großen Footer mit Yunus entscheiden. | Bewusste Entscheidung; kein automatisches Verwerfen des Referenzdesigns. |
 | RELEASE-01 | Hosting auf geprüftes Exportpaket ausrichten. | Nur Manifest-Dateien online; interne Pfade liefern 404/403. |
 
+## Aufgaben an Codex (Meldung Claude, 01.11.2026)
+
+| ID | Aufgabe | Abnahme |
+|---|---|---|
+| SEC-HTACCESS | `.htaccess` (Sicherheits-Header: CSP, X-Frame-Options, nosniff, Referrer-Policy, Permissions-Policy, HSTS) liegt im Repo-Root. `build_public.py` lehnt versteckte Dateien ab („Hidden files are not public assets“). Bitte `.htaccess` gezielt erlauben und in `scripts/public-files.json` aufnehmen. | `.htaccess` im Exportpaket; CSP lokal ohne Verstöße geprüft (Claude, 9 Seiten × 2 Breiten). |
+| SEC-SINK | `HTML_SINK assets/anfrage.js:37`: `innerHTML` setzt nur feste Texte und die eigene Skript-URL zusammen, keine Eingaben. Bitte nachprüfen und als bekannt markieren. | Warnung bewertet. |
+| SEC-KONTAKT | `kontakt.php` gehärtet (Pflicht-Zeitstempel, Origin-Prüfung, feste Absender-Adresse, Tageslimits). Bitte Review, nach dem Hochladen einmal echt testen. | Review und Live-Test. |
+
 ## Wiederkehrender Sicherheitscheck
 
 Die Codex-Automation **Website-Sicherheitsprüfung** ist täglich um 09:00 geplant und an diese Aufgabe gebunden. Sie läuft über die lokale App-Automation; dies ist kein ständig aktiver Schutzdienst. Sie prüft neue Änderungen und meldet nur neue handlungsrelevante Befunde oder Fehler, keine täglichen Wiederholungen bekannter Punkte.

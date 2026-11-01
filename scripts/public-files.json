@@ -27,8 +27,6 @@
   "images/grafik/portrait-calvin.svg",
   "images/grafik/portrait-hamza.svg",
   "images/placeholder/bild.svg",
-  "videos/panel-webseiten.mp4",
-  "videos/panel-ki-assistent.mp4",
   "beispiel/index.html",
   "beispiel/fonts/bricolage-var.woff2",
   "beispiel/fonts/OFL-Bricolage.txt",
@@ -44,8 +42,6 @@
   "en/leistungen/ki-assistent.html",
   "leistungen/automatisierung.html",
   "en/leistungen/automatisierung.html",
-  "videos/mobil/panel-webseiten.mp4",
-  "videos/mobil/panel-ki-assistent.mp4",
   "videos/ueber-uns.mp4",
   "videos/mobil/ueber-uns.mp4",
   "images/ueber-uns.webp",
@@ -60,7 +56,6 @@
   "images/kontakt.webp",
   "images/panel-fachkraefte.webp",
   "images/panel-automatisierung.webp",
-  "downloads/ki-ratgeber.pdf",
   "kontakt.php",
   "assets/anfrage.js"
 ]
