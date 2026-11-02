@@ -82,3 +82,15 @@ Die KI-Videos mit Personen bei **Fachkräfte** und **Automatisierung** sind wied
 - Datenschutz Abschnitt 4 und CLAUDE.md (Abschnitt 10) angepasst.
 - Lokal getestet mit `php -S` und `AR_KONTAKT_TEST=1` (Mails in Datei): DE, EN, Leistungsseite, Panel-Link, Escape. Security-Check: neue Warnung HTML_SINK in `anfrage.js` – `innerHTML` enthält nur feste Texte und die Skript-URL, Nutzereingaben werden nur per `textContent` gesetzt.
 - Offen: echter Versand auf IONOS testen (Absender `website@<domain>`, SPF der Domain); Postfach-Abgleich im Brain muss aktiv sein, damit Anfragen automatisch als Kontakt erscheinen.
+
+## Nachtrag 5 (02.11., Wunsch Calvin): Ratgeber raus, Sicherheits- und Abmahn-Prüfung
+
+- **KI-Ratgeber entfernt:** Download-Link in allen Fußzeilen (Startseite + KI-Assistent/Automatisierung, DE/EN), CSS `.footer__guide`, `downloads/ki-ratgeber.pdf` und Manifest-Eintrag. Quellen in `docs/ratgeber/` bleiben intern.
+- **KI-Kennzeichnung (AI Act Art. 50 Abs. 4, seit 2.8.2026):** Fußzeile aller Seiten DE/EN: „Symbolbilder und -videos teilweise mit KI erstellt.“ (Panel-Bilder/Videos Webseiten und KI-Assistent stammen aus Gemini).
+- **`kontakt.php` gehärtet:** Absendungen mit fremdem `Origin` → 403; globale Obergrenze 30 Eingangsbestätigungen/Stunde (darüber geht nur noch die Mail ans Team). Getestet lokal (fremd 403, eigen/ohne Origin 200).
+- **`.htaccess` neu** (IONOS/Apache): keine Ordnerlisten, versteckte Dateien gesperrt, `nosniff`, `X-Frame-Options SAMEORIGIN`, Referrer-Policy, Permissions-Policy, COOP. HTTPS-Weiterleitung/HSTS auskommentiert, bis SSL auf der Domain steht. Keine CSP (Inline-Skript/-Styles).
+  **Aufgabe an Codex:** `build_public.py` lehnt versteckte Dateien ab („Hidden files are not public assets“), daher steht `.htaccess` nicht im Manifest und muss beim IONOS-Upload einzeln mit hoch. Bitte entscheiden, ob `.htaccess` als erlaubte Ausnahme in den Export soll.
+- **Schriften:** nur Archivo (Startseite) und Bricolage Grotesque (Muster-Website), beide lokal als woff2, SIL OFL 1.1 mit Lizenztext, kein Reserved Font Name → Teilmengen unter gleichem Namen erlaubt. Keine Google-Fonts-/CDN-Anfragen. Kein Abmahnrisiko erkennbar.
+- **Animationen/Videos:** eigener Code (Canvas, CSS), keine Fremdbibliotheken (kein GSAP/Lottie mit Lizenzpflicht), Videos selbst erstellt oder aus Calvins Gemini-Material ohne Musik. Kein Abmahnrisiko erkennbar.
+- **Security-Check:** 0 Fehler, 2 bekannte Warnungen (Git-Historie, `innerHTML` mit festen Texten in `anfrage.js`). Keine externen Anfragen, kein `target="_blank"` ohne `noopener`. Unittests OK, Export OK.
+- **Restrisiken (Rechts-Chat):** Impressum ohne Telefonnummer und „GbR“ nicht belegt (größtes Abmahnrisiko); Design an lpas.com angelehnt (eigener Code, keine fremden Assets – gering); Gemini-Bilder: Nutzung nach Google-Bedingungen; im Webseiten-Video ist unleserlicher KI-Text zu sehen (optisch, nicht rechtlich).

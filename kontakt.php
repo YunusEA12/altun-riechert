@@ -20,6 +20,7 @@ const BETREFF_PREFIX = '[Website-Anfrage]';
 const MAX_JE_IP = 3;          // Anfragen je IP ...
 const SPERRFENSTER = 600;     // ... in 10 Minuten
 const MIN_SEKUNDEN = 3;       // schneller ausgefüllt = Bot
+const MAX_BESTAETIGUNGEN_JE_STUNDE = 30;   // Obergrenze für Eingangsbestätigungen insgesamt (Schutz vor Mail-Bombing)
 
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
@@ -58,6 +59,16 @@ $en = feld('sprache', 2) === 'en';
 $t = $en
     ? ['pflicht' => 'Please enter your name.', 'mail' => 'Please enter a valid email address so we can reply.', 'ok' => 'Please confirm that we may use your details to answer your request.', 'viel' => 'Too many requests. Please try again in a few minutes or email us directly.', 'fehl' => 'Sending did not work.']
     : ['pflicht' => 'Bitte gib deinen Namen an.', 'mail' => 'Bitte gib eine gültige E-Mail-Adresse an, damit wir antworten können.', 'ok' => 'Bitte bestätige, dass wir deine Angaben für die Antwort nutzen dürfen.', 'viel' => 'Zu viele Anfragen. Bitte versuche es in ein paar Minuten erneut oder schreib uns direkt.', 'fehl' => 'Senden hat nicht geklappt.'];
+
+// Nur Absendungen von der eigenen Website annehmen (Browser senden bei fetch() einen Origin-Header).
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+if ($origin !== '') {
+    $originHost = strtolower((string) parse_url($origin, PHP_URL_HOST));
+    $eigenerHost = strtolower(explode(':', $_SERVER['HTTP_HOST'] ?? '')[0]);
+    if ($originHost === '' || preg_replace('/^www\./', '', $originHost) !== preg_replace('/^www\./', '', $eigenerHost)) {
+        antwort(403, ['ok' => false, 'fehler' => 'Nicht erlaubt.']);
+    }
+}
 
 // Honeypot: Menschen sehen das Feld nicht und lassen es leer.
 if (feld('homepage', 200) !== '') {
@@ -144,7 +155,14 @@ $kopf2 = [
     'Auto-Submitted: auto-replied',
     'X-Auto-Response-Suppress: All',
 ];
-senden($email, $en ? 'Thank you for your request – Altun & Riechert' : 'Danke für Ihre Anfrage – Altun & Riechert', $bestaetigung, $kopf2, $absender);
+// Globale Obergrenze: Auch bei vielen verschiedenen IPs gehen höchstens MAX_BESTAETIGUNGEN_JE_STUNDE Bestätigungen raus.
+$zaehlerdatei = sys_get_temp_dir() . '/ar_kontakt_bestaetigungen_' . hash('sha256', __FILE__) . '.json';
+$gesendet = is_file($zaehlerdatei) ? array_filter((array) json_decode((string) file_get_contents($zaehlerdatei), true), fn($z) => is_int($z) && $z > $jetzt - 3600) : [];
+if (count($gesendet) < MAX_BESTAETIGUNGEN_JE_STUNDE) {
+    senden($email, $en ? 'Thank you for your request – Altun & Riechert' : 'Danke für Ihre Anfrage – Altun & Riechert', $bestaetigung, $kopf2, $absender);
+    $gesendet[] = $jetzt;
+    @file_put_contents($zaehlerdatei, json_encode(array_values($gesendet)), LOCK_EX);
+}
 
 $zeiten[] = $jetzt;
 @file_put_contents($sperrdatei, json_encode(array_values($zeiten)), LOCK_EX);

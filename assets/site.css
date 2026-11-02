@@ -783,9 +783,6 @@ video.footer__bg { opacity: .85; }
 html:not(.js) video::-webkit-media-controls,
 html:not(.js) video::-webkit-media-controls-enclosure { display: none !important; }
 
-/* Download-Link zum Ratgeber unter den Kontakt-Buttons */
-.footer__guide { margin: 4px 0 0; font-size: 15px; }
-.footer__guide .btn-line { color: rgba(255, 255, 255, .88); }
 
 /* ===================================================================
    Anfrage-Formular (assets/anfrage.js, sendet an kontakt.php)

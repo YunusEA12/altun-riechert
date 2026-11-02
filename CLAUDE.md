@@ -246,6 +246,8 @@ Design-Vorlage ist die **Startseite von lpas.com** (Entscheidung Yunus, 25.10.20
 - **Öffentliches Repo = öffentliche Daten.** Mit `.nojekyll` liefert GitHub Pages **jede** Datei im Repo aus, auch `_briefe/` und einen Obsidian-Vault. Firmenlisten, Briefe, Ansprechpartner und interne Notizen gehören in ein **privates** Repo. Die Datenschutzerklärung verspricht ein „privates, nicht öffentliches Repository“, das muss stimmen.
 - **Bewertungen nie als Gegenleistung verlangen** (LG Hildesheim, 11 O 12/21). Pilotplätze gibt es „gegen Referenz“, nicht gegen Bewertung.
 - Beispiele immer als Beispiel kennzeichnen. Die Muster-Website behält Hinweisleiste und `noindex`.
+- **KI-Kennzeichnung (AI Act Art. 50, 02.11.2026):** Fußzeile jeder Seite nennt „Symbolbilder und -videos teilweise mit KI erstellt.“ / „Some illustrative images and videos were created with AI.“ Bleibt, solange KI-Bilder/-Videos eingebunden sind.
+- **`.htaccess`** (Sicherheits-Kopfzeilen) liegt im Repo, wird vom Exportpaket aber nicht erfasst (versteckte Datei) → beim IONOS-Upload einzeln mit hochladen. Kein Ratgeber-Download mehr auf der Seite (Entscheidung Calvin, 02.11.).
 - Kundennamen/-logos nur mit Freigabe.
 
 ---
