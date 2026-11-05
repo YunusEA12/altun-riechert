@@ -11,7 +11,7 @@ Eine **kurze, knappe, knackige Website** für **Altun & Riechert**. Sie soll vor
 
 ## 2. Wer wir sind & was wir anbieten
 
-- **Altun & Riechert:** Yunus Altun, Calvin Riechert und **Hamza** (gehört fest zum Team, nie weglassen). Geplant ist eine GbR, die Rechtsform ist noch offen.
+- **Altun & Riechert (Stand 05.11.2026, Entscheidung Calvin):** Inhaber ist **Hamza Altun**, Einzelunternehmer (Kleingewerbe). Auf Website, in Bewerbungen und Mails steht nur Hamza Altun; die Partner werden **nicht namentlich** genannt („Partner-Netzwerk“). „Altun & Riechert“ ist vorerst Geschäftsbezeichnung (Firmierung rechtlich prüfen lassen).
 - **Anschrift:** Achardweg 17, 70435 Stuttgart. Der Absender auf Website und Briefen muss identisch sein (Stuttgart, **nicht** Remseck).
 - **E-Mail:** altunriechert@gmail.com. Es gibt noch keine eigene Domain und kein Telefon.
 - **Angebot:** Wir helfen Betrieben in der **Region Stuttgart und im Kreis Ludwigsburg**, online mehr Anfragen zu bekommen. Wir starten mit dem Handwerk und sind offen für alle Branchen.

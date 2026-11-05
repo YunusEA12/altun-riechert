@@ -141,10 +141,10 @@ if (!senden(EMPFAENGER, BETREFF_PREFIX . ' ' . ($bereich !== '' ? $bereich . ': 
 // 2. Eingangsbestätigung – fester Text ohne Formularinhalte.
 $bestaetigung = $en
     ? "Hello,\n\nthank you for your interest. We have received your request and will get back to you shortly.\n\n"
-      . "Kind regards\nYunus Altun, Calvin Riechert and Hamza\nAltun & Riechert\nAchardweg 17, 70435 Stuttgart\naltunriechert@gmail.com\n\n"
+      . "Kind regards\nHamza Altun\nAltun & Riechert\nAchardweg 17, 70435 Stuttgart\naltunriechert@gmail.com\n\n"
       . "You are receiving this email because this address was entered in the request form on our website. If that was not you, please ignore this email.\n"
     : "Guten Tag,\n\nvielen Dank für Ihr Interesse. Ihre Anfrage ist bei uns eingegangen, wir melden uns zeitnah bei Ihnen.\n\n"
-      . "Viele Grüße\nYunus Altun, Calvin Riechert und Hamza\nAltun & Riechert\nAchardweg 17, 70435 Stuttgart\naltunriechert@gmail.com\n\n"
+      . "Viele Grüße\nHamza Altun\nAltun & Riechert\nAchardweg 17, 70435 Stuttgart\naltunriechert@gmail.com\n\n"
       . "Sie erhalten diese E-Mail, weil diese Adresse im Anfrage-Formular auf unserer Website angegeben wurde. Falls Sie das nicht waren, ignorieren Sie diese Nachricht bitte.\n";
 $kopf2 = [
     'From: =?UTF-8?Q?Altun_&_Riechert?= <' . $absender . '>',

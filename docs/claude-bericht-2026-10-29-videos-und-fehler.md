@@ -94,3 +94,10 @@ Die KI-Videos mit Personen bei **Fachkräfte** und **Automatisierung** sind wied
 - **Animationen/Videos:** eigener Code (Canvas, CSS), keine Fremdbibliotheken (kein GSAP/Lottie mit Lizenzpflicht), Videos selbst erstellt oder aus Calvins Gemini-Material ohne Musik. Kein Abmahnrisiko erkennbar.
 - **Security-Check:** 0 Fehler, 2 bekannte Warnungen (Git-Historie, `innerHTML` mit festen Texten in `anfrage.js`). Keine externen Anfragen, kein `target="_blank"` ohne `noopener`. Unittests OK, Export OK.
 - **Restrisiken (Rechts-Chat):** Impressum ohne Telefonnummer und „GbR“ nicht belegt (größtes Abmahnrisiko); Design an lpas.com angelehnt (eigener Code, keine fremden Assets – gering); Gemini-Bilder: Nutzung nach Google-Bedingungen; im Webseiten-Video ist unleserlicher KI-Text zu sehen (optisch, nicht rechtlich).
+
+## Nachtrag 6 (05.11., Entscheidung Calvin): Hamza Altun als Inhaber
+
+- Team-Sektion DE/EN: nur noch **Hamza Altun (Inhaber · Ansprechpartner)** und eine Karte **„Partner-Netzwerk“** ohne Namen. Yunus und Calvin sind von allen Seiten entfernt (Menü-Hinweis, Fußzeilen der Leistungsseiten, HTML-Kommentare, Porträt-Grafiken `portrait-yunus.svg`/`portrait-calvin.svg` gelöscht, neue `partner.svg`, `portrait-hamza.svg` jetzt „HA“).
+- Impressum und Datenschutz: Verantwortlich **Hamza Altun, Einzelunternehmer (Kleingewerbe), Geschäftsbezeichnung „Altun & Riechert“**. Anschrift unverändert Achardweg 17 – **bestätigen, dass das Hamzas ladungsfähige Anschrift ist**.
+- `kontakt.php`: Eingangsbestätigung unterschreibt mit Hamza Altun.
+- Für den Rechts-Chat: Ein Einzelunternehmer mit der Bezeichnung „Altun & Riechert“ kann eine Gesellschaft mit zwei Inhabern vortäuschen (Irreführung). „& Partner“ ist Partnerschaftsgesellschaften vorbehalten (§ 11 PartGG) und wird deshalb nicht als Name verwendet.
