@@ -80,7 +80,8 @@
 
   // Videos laden erst, wenn ihr Panel sichtbar wird (preload="none"), und laufen nur dort –
   // spart Datenvolumen auf dem Handy. Ohne JS bleibt das Vorschaubild stehen.
-  var panelVideos = document.querySelectorAll(".panel__image video");
+  // Dazu kommen die Videos in Über uns, Ablauf, Beispiel und Kontakt (data-video).
+  var panelVideos = document.querySelectorAll(".panel__image video, video[data-video]");
   var videosStopped = false;   // Pause-Knopf: hält alle Panel-Videos an (WCAG 2.2.2)
   function setVideo(v, on) {
     if (on && !calm.matches && !videosStopped) { v.play().catch(function () {}); } else { v.pause(); }
@@ -105,7 +106,7 @@
       panelVideos.forEach(function (x) { setVideo(x, x.dataset.visible === "1"); });
       syncToggles();
     });
-    v.parentNode.appendChild(b);
+    (v.closest("[data-video-host]") || v.parentNode).appendChild(b);   // nie innerhalb eines Links
     toggles.push(b);
   });
   syncToggles();
@@ -353,7 +354,7 @@
   bar.className = "scroll-progress";
   bar.setAttribute("aria-hidden", "true");
   document.body.appendChild(bar);
-  var feature = document.querySelector(".browser img");
+  var feature = document.querySelector(".browser img, .browser__media");
   var ticking = false;
   function onScroll() {
     if (ticking) return;

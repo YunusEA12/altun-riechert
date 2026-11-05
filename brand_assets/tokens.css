@@ -1,4 +1,4 @@
-/* Altun & Riechert – Marken-Tokens (verbindlich)
+/* Altun KI & Web – Marken-Tokens (verbindlich)
    Quelle: Übergabe vom 25.10.2026 und bestehende Website.
    Schriften immer lokal einbinden (SIL OFL, Lizenztext liegt in fonts/). */
 
@@ -27,7 +27,7 @@
   --brand-white: #FFFFFF;
 
   /* Schriften */
-  --font-brand: "Archivo", "Arial Narrow", Arial, sans-serif;   /* Website Altun & Riechert */
+  --font-brand: "Archivo", "Arial Narrow", Arial, sans-serif;   /* Website Altun KI & Web */
   --font-example: "Bricolage Grotesque", sans-serif;            /* nur Muster-Website */
   --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 }
