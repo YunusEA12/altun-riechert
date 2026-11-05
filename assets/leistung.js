@@ -1,4 +1,4 @@
-/* Altun & Riechert – Leistungs-Unterseiten. Alles hier ist Zusatz: Inhalte und Kontaktweg
+/* Altun KI & Web – Leistungs-Unterseiten. Alles hier ist Zusatz: Inhalte und Kontaktweg
    funktionieren auch ohne dieses Skript. */
 (function () {
   var root = document.documentElement;

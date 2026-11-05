@@ -4,7 +4,7 @@
  *
  * 1. An das gemeinsame Postfach (EMPFAENGER). Der Betreff beginnt mit "[Website-Anfrage]": Daran
  *    erkennt das System auf dem Server (Brain/Verwaltung, Postfach-Abgleich) die Anfrage und legt
- *    daraus einen Kontakt an. In Gmail sortiert ein Filter sie zusätzlich in das Label "A&R/Website-Anfragen".
+ *    daraus einen Kontakt an. In Gmail sortiert ein Filter sie zusätzlich in das Label "A&R/Website-Anfragen" (Gmail-Label, Name bleibt).
  * 2. Eine kurze Eingangsbestätigung an die angegebene Adresse. Sie enthält bewusst KEINEN Text aus
  *    dem Formular, damit niemand das Formular nutzen kann, um fremden Leuten Inhalte zu schicken.
  *
@@ -141,13 +141,13 @@ if (!senden(EMPFAENGER, BETREFF_PREFIX . ' ' . ($bereich !== '' ? $bereich . ': 
 // 2. Eingangsbestätigung – fester Text ohne Formularinhalte.
 $bestaetigung = $en
     ? "Hello,\n\nthank you for your interest. We have received your request and will get back to you shortly.\n\n"
-      . "Kind regards\nHamza Altun\nAltun & Riechert\nAchardweg 17, 70435 Stuttgart\naltunriechert@gmail.com\n\n"
+      . "Kind regards\nHamza Altun\nAltun KI & Web\nAchardweg 17, 70435 Stuttgart\naltunriechert@gmail.com\n\n"
       . "You are receiving this email because this address was entered in the request form on our website. If that was not you, please ignore this email.\n"
     : "Guten Tag,\n\nvielen Dank für Ihr Interesse. Ihre Anfrage ist bei uns eingegangen, wir melden uns zeitnah bei Ihnen.\n\n"
-      . "Viele Grüße\nHamza Altun\nAltun & Riechert\nAchardweg 17, 70435 Stuttgart\naltunriechert@gmail.com\n\n"
+      . "Viele Grüße\nHamza Altun\nAltun KI & Web\nAchardweg 17, 70435 Stuttgart\naltunriechert@gmail.com\n\n"
       . "Sie erhalten diese E-Mail, weil diese Adresse im Anfrage-Formular auf unserer Website angegeben wurde. Falls Sie das nicht waren, ignorieren Sie diese Nachricht bitte.\n";
 $kopf2 = [
-    'From: =?UTF-8?Q?Altun_&_Riechert?= <' . $absender . '>',
+    'From: =?UTF-8?Q?Altun_KI_&_Web?= <' . $absender . '>',
     'Reply-To: ' . EMPFAENGER,
     'MIME-Version: 1.0',
     'Content-Type: text/plain; charset=UTF-8',
@@ -159,7 +159,7 @@ $kopf2 = [
 $zaehlerdatei = sys_get_temp_dir() . '/ar_kontakt_bestaetigungen_' . hash('sha256', __FILE__) . '.json';
 $gesendet = is_file($zaehlerdatei) ? array_filter((array) json_decode((string) file_get_contents($zaehlerdatei), true), fn($z) => is_int($z) && $z > $jetzt - 3600) : [];
 if (count($gesendet) < MAX_BESTAETIGUNGEN_JE_STUNDE) {
-    senden($email, $en ? 'Thank you for your request – Altun & Riechert' : 'Danke für Ihre Anfrage – Altun & Riechert', $bestaetigung, $kopf2, $absender);
+    senden($email, $en ? 'Thank you for your request – Altun KI & Web' : 'Danke für Ihre Anfrage – Altun KI & Web', $bestaetigung, $kopf2, $absender);
     $gesendet[] = $jetzt;
     @file_put_contents($zaehlerdatei, json_encode(array_values($gesendet)), LOCK_EX);
 }

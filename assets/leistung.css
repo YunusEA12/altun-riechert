@@ -1,4 +1,4 @@
-/* Altun & Riechert – Leistungs-Unterseiten (leistungen/*.html, en/leistungen/*.html)
+/* Altun KI & Web – Leistungs-Unterseiten (leistungen/*.html, en/leistungen/*.html)
    Nutzt Header, Menü, Buttons und Footer aus site.css. Jede Seite setzt ihre Farben über
    --theme, --theme-ink und --accent am <body>. Effekte laufen nur mit Bewegung; ohne JS bleibt alles lesbar. */
 

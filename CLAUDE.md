@@ -11,6 +11,7 @@ Eine **kurze, knappe, knackige Website** für **Altun & Riechert**. Sie soll vor
 
 ## 2. Wer wir sind & was wir anbieten
 
+- **Name ab 05.11.2026 abends: „Altun KI & Web“** (Logo-Kachel „A**KI**“, KI in Amber; Entscheidung Calvin). Gespräche führt Hamza **gemeinsam mit dem Team** (ohne Namen). E-Mail bleibt vorerst altunriechert@gmail.com.
 - **Altun & Riechert (Stand 05.11.2026, Entscheidung Calvin):** Inhaber ist **Hamza Altun**, Einzelunternehmer (Kleingewerbe). Auf Website, in Bewerbungen und Mails steht nur Hamza Altun; die Partner werden **nicht namentlich** genannt („Partner-Netzwerk“). „Altun & Riechert“ ist vorerst Geschäftsbezeichnung (Firmierung rechtlich prüfen lassen).
 - **Anschrift:** Achardweg 17, 70435 Stuttgart. Der Absender auf Website und Briefen muss identisch sein (Stuttgart, **nicht** Remseck).
 - **E-Mail:** altunriechert@gmail.com. Es gibt noch keine eigene Domain und kein Telefon.
